@@ -13,11 +13,14 @@ Short Name   | Title                                                         | T
 -------------|---------------------------------------------------------------|----------|------------|-------
 [RFC-1](1)   | The Tango control system                                      | Standard | Draft      | Vincent Hardion
 [RFC-2](2)   | The device object model                                       | Standard | Draft      | Vincent Hardion
-[RFC-x](x)   | The command model                                             | Standard | Draft      | 
-[RFC-x](x)   | The attribute model                                           | Standard | Draft      | 
-[RFC-x](x)   | The property model                                            | Standard | Draft      | 
+[RFC-3](x)   | The command model                                             | Standard | Draft      | 
+[RFC-4](x)   | The attribute model                                           | Standard | Draft      | 
+[RFC-5](x)   | The property model                                            | Standard | Draft      | Vincent Hardion
 [RFC-x](x)   | The database system                                           | Standard | Draft      | 
+[RFC-x](x)   | The database system - Directory                               | Standard | Draft      | 
+[RFC-x](x)   | The database system - Persistance                             | Standard | Draft      | 
 [RFC-x](x)   | The server model                                              | Standard | Draft      | 
+[RFC-x](x)   | The class model                                               | Standard | Draft      | 
 [RFC-x](x)   | The dynamic attribute and command                             | Standard | Draft      | 
 [RFC-x](x)   |                                                               | Standard | Draft      | 
 [RFC-x](x)   | Logging service                                               | Standard | Draft      | 
@@ -33,4 +36,5 @@ Short Name   | Title                                                         | T
 [RFC-x](x)   | High Level API                                                | Standard | Draft      | 
 [RFC-x](x)   | High Level API - Python implementation                        | Standard | Draft      | 
 [RFC-x](x)   | High Level API - Java   implementation                        | Standard | Draft      | 
+[RFC-x](x)   |                                                               | Standard | Draft      | 
 [RFC-x](x)   |                                                               | Standard | Draft      | 
