@@ -14,7 +14,9 @@ Participants:
     - Agree to focus on the Model (Device, Property, Attribute, Command) and the Reply-Request Protocol – YES 
     - **Goal for next meeting**: in two weeks command and property specification will be ready to go to stable 
     - Agree to use the DRAFT state - YES 
-    - Agree to issue request for the rest -  YES 
+    - Agree to issue request for the rest -  YES
+    
+    The RFC list will be reviewed and updated iteratively.
 
 4) Define the responsible editors list 
     - [ ] Piotr will send an email to  the steering committee asking for editors 
@@ -38,6 +40,6 @@ Participants:
     - The next meeting (27.06.2019) will be called by Reynald, as Piotr is on vacation 
 
 Actions:
-- [ ] Vincent will push the rfc to tango-controls GitHub organization
+- [x] Vincent will push the rfc to tango-controls GitHub organization
 - [ ] Piotr will send emails (see point 4.)
-- [ ] Piotr will setup a slack channel (see 5.)
+- [x] Piotr will setup a slack channel (see 5.)
