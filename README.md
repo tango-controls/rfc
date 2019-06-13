@@ -11,30 +11,23 @@ The process to add or change an RFC is the following:
 
 Short Name   | Title                                                         | Type     | Status     | Editor
 -------------|---------------------------------------------------------------|----------|------------|-------
-[RFC-1](1)   | The Tango control system                                      | Standard | Draft      | Vincent Hardion
-[RFC-2](2)   | The device object model                                       | Standard | Draft      | Vincent Hardion
-[RFC-3](x)   | The command model                                             | Standard | Draft      | 
-[RFC-4](x)   | The attribute model                                           | Standard | Draft      | 
-[RFC-5](x)   | The property model                                            | Standard | Draft      | Vincent Hardion
-[RFC-x](x)   | The database system                                           | Standard | Draft      | 
-[RFC-x](x)   | The database system - Directory                               | Standard | Draft      | 
-[RFC-x](x)   | The database system - Persistance                             | Standard | Draft      | 
-[RFC-x](x)   | The server model                                              | Standard | Draft      | 
-[RFC-x](x)   | The class model                                               | Standard | Draft      | 
-[RFC-x](x)   | The dynamic attribute and command                             | Standard | Draft      | 
-[RFC-x](x)   |                                                               | Standard | Draft      | 
-[RFC-x](x)   | Logging service                                               | Standard | Draft      | 
-[RFC-x](x)   | Cache system                                                  | Standard | Draft      | 
-[RFC-x](x)   | Memorised attribute service                                   | Standard | Draft      | 
-[RFC-x](x)   | Authorisation system                                          | Standard | Draft      | 
-[RFC-x](x)   |                                                               | Standard | Draft      | 
-[RFC-x](x)   | The Request-Reply protocol                                    | Standard | Draft      | 
-[RFC-x](x)   | The Request-Reply protocol - CORBA implementation             | Standard | Draft      | 
-[RFC-x](x)   | The Publisher-Subsciber protocol                              | Standard | Draft      | 
-[RFC-x](x)   | The Publisher-Subsciber protocol - ZeroMQ implementation      | Standard | Draft      | 
-[RFC-x](x)   |                                                               | Standard | Draft      | 
-[RFC-x](x)   | High Level API                                                | Standard | Draft      | 
-[RFC-x](x)   | High Level API - Python implementation                        | Standard | Draft      | 
-[RFC-x](x)   | High Level API - Java   implementation                        | Standard | Draft      | 
-[RFC-x](x)   |                                                               | Standard | Draft      | 
-[RFC-x](x)   |                                                               | Standard | Draft      | 
+[RFC-1](1)   | The Tango control system                                      | Standard | Draft      | 
+[RFC-2](2)   | The device object model                                       | Standard | Draft      | 
+[RFC-3](3)   | The command model                                             | Standard | Draft      | 
+[RFC-4](4)   | The attribute model                                           | Standard | Draft      | 
+[RFC-5](5)   | The property model                                            | Standard | Draft      | 
+[RFC-6](6)   | The database system                                           | Standard | Draft      | 
+[RFC-8](8)   | The server model                                              | Standard | Draft      | 
+[RFC-9](9)   | The class model                                               | Standard | Draft      | 
+[RFC-10](10) | The Request-Reply protocol                                    | Standard | Draft      | 
+[RFC-11](11) | The Request-Reply protocol - CORBA implementation             | Standard | Draft      | 
+[RFC-12](12) | The Publisher-Subscriber protocol                             | Standard | Draft      | 
+[RFC-13](13) | The Publisher-Subscriber protocol - ZeroMQ implementation     | Standard | Draft      | 
+[RFC-XX](XX) | The dynamic attribute and command                             | Standard | Draft      | 
+[RFC-XX](XX) | Logging service                                               | Standard | Draft      | 
+[RFC-XX](XX) | Cache system                                                  | Standard | Draft      | 
+[RFC-XX](XX) | Memorised attribute service                                   | Standard | Draft      | 
+[RFC-XX](XX) | Authorisation system                                          | Standard | Draft      | 
+[RFC-XX](XX) | High Level API                                                | Standard | Draft      | 
+[RFC-XX](XX) | High Level API - Python implementation                        | Standard | Draft      | 
+[RFC-XX](XX) | High Level API - Java   implementation                        | Standard | Draft      | 
