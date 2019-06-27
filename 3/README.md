@@ -1,10 +1,16 @@
 ---
 domain: rfc.tango-controls.org
+
 shortname: 3/Command
+
 name: Command
+
 status: draft
+
 editor: [Sergi Blanchi-Torné](mailto:sblanch@cells.es)
+
 contributors: [Vincent Hardion](mailto:vincent.hardion@maxiv.lu.se)
+
 ---
 
 This document describes the specification of the Tango Command model, a guideline for the implementer of the Tango Control System.
@@ -27,22 +33,35 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ### Goals
 
- A Command in a Tango Controls represents an action, a sequence or other procedure executed remotely by a Device.
+ A Command in a Tango Controls represents an action, a sequence or other procedure executed remotely by a Device. The meaning of commands is quite similar to the meaning of methods in object oriented design.
 
- Additionally, it aims to:
+This specification aims to define a Command in order to be able to :
+ 
  * Execute action considering an argument
 
- * Expect a reply in any case
+ 
+ * Execute an asynchronous action 
 
+ 
+ * Expect a reply in any case within a certain timeout
+
+ 
  * Be represented by meta data
 
- * Be used to read and write device parameters, as an alternative to read Tango Attribute 
+ 
+
+Additionally, Command may be used for:
+
+ * Reading and writing device parameters, as an alternative to read and write Tango Attribute for legacy reason (although Tango Attribute is the prefer way).
+
 
 ### Use Cases
 
  The use of Command by the developer of Device allows to resolve different situation:
 
- * TODO see issue
+ * A command "Stop" can trigger the ending of a movement for a motor or an integration for a detector
+ * A command "Send" can take any SCPI command as argument and wait for the reply
+ * A command "Execute" can launch a macro which may take long time to be executed in the background. The reply is just an acknowledgement that the sequence will be executed. The current state of progress can be retrieve by the state of the Tango Device
 
 ## Specification
 
