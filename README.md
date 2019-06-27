@@ -13,7 +13,7 @@ Short Name   | Title                                                         | T
 -------------|---------------------------------------------------------------|----------|------------|-------
 [RFC-1](1)   | The Tango control system                                      | Standard | Draft      | 
 [RFC-2](2)   | The device object model                                       | Standard | Draft      | 
-[RFC-3](3/README.md)   | The command model                                             | Standard | Draft      | 
+[RFC-3](3/README.md)   | The command model                                             | Standard | Draft      | Sergi Blanch-Torné
 [RFC-4](4)   | The attribute model                                           | Standard | Draft      | 
 [RFC-5](5)   | The property model                                            | Standard | Draft      | 
 [RFC-6](6)   | The database system                                           | Standard | Draft      | 
