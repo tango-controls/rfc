@@ -3,7 +3,8 @@ domain: rfc.tango-controls.org
 shortname: 3/Command
 name: Command
 status: draft
-editor: Vincent Hardion (vincent.hardion@maxiv.lu.se)
+editor: [Sergi Blanchi-Torné](mailto:sblanch@cells.es)
+contributors: [Vincent Hardion](mailto:vincent.hardion@maxiv.lu.se)
 ---
 
 This document describes the specification of the Tango Command model, a guideline for the implementer of the Tango Control System.
