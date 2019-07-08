@@ -15,7 +15,7 @@ Short Name   | Title                                                         | T
 [RFC-2](2)   | The device object model                                       | Standard | Draft      | 
 [RFC-3](3)   | The command model                                             | Standard | Draft      | 
 [RFC-4](4)   | The attribute model                                           | Standard | Draft      | 
-[RFC-5](5)   | The property model                                            | Standard | Draft      | 
+[RFC-5](5/README)   | The property model                                            | Standard | Draft      | Gwenaelle Abeillé
 [RFC-6](6)   | The database system                                           | Standard | Draft      | 
 [RFC-8](8)   | The server model                                              | Standard | Draft      | 
 [RFC-9](9)   | The class model                                               | Standard | Draft      | 
