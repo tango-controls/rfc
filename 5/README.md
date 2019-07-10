@@ -3,7 +3,7 @@ domain: rfc.tango-controls.org
 shortname: 5/PROPERTY
 name:Property
 status: raw
-editor: Vincent Hardion (vincent.hardion@maxiv.lu.se)
+editor: Gwenaëlle Abeillé (gwenaelle.abeille@synchrotron-soleil.fr)
 ---
 
 This document describes the Property,  a Tango concept representing an element of configuration in order to customise a Tango element. This document describes version 1.0 of the Property.
@@ -22,7 +22,12 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Tango Property Specification
 
- A Property is designed to represent any information of configuration in Tango.
+ A Property is a persisted item of Tango that is mainly used for configuration purposes. 4 types of properties exist:
+
+ *  Class property: a property that is attached to a Device Class (cf RFC-2). This property is accessible from all devices of the class
+ *  Device property: a property that is attached to a Device (RFC-2). This property is accessible from only one device
+ *  Attribute property: a property that is attached to an Attribute (RFC-4).
+ *  Free property: TODO
 
 ### Goals
 
@@ -47,14 +52,6 @@ There are many use cases for the usage of a Property:
 
 
 ## Specification
-
-A Tango Property is a strict definition of a pair of key/value
-* configuration are represented in the form of properties.
-* data are represented in the form of attributes.
-* actions are represented in the form of commands.
-
-Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, Attribute, Command following the rules below:
-
 
 A Tango Property is a strict definition of a pair of key/value
 * The Property SHALL have one key, called Property Name
