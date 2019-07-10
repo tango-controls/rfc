@@ -1,12 +1,15 @@
 ---
 domain: rfc.tango-controls.org
 shortname: 5/PROPERTY
-name:Property
+name: Property
 status: raw
-editor: Gwenaëlle Abeillé (gwenaelle.abeille@synchrotron-soleil.fr)
+editor: Gwenaëlle Abeillé `<at synchrotron-soleil.fr - gwenaelle.abeille>`
+contributors:
+  - Vincent Hardion `<at maxiv.lu.se - vincent.hardion>`
+  - Reynald Bourtembourg `<at esrf.fr - bourtemb>`
 ---
 
-This document describes the Property,  a Tango concept representing an element of configuration in order to customise a Tango element. This document describes version 1.0 of the Property.
+This document describes the Property, a Tango concept representing an element of configuration in order to customise a Tango element. This document describes version 1.0 of the Property.
 
 See also: 2/Device, X/Database, X/Attribute, X/Class
 
@@ -57,19 +60,19 @@ There are many use cases for the usage of a Property:
 
 A Tango Property is a strict definition of a pair of key/value
 * The Property SHALL have one key, called Property Name
-* The Property SHALL have one value, called Property Value
-* If the device is started upon a Tango Database, Class, Device, Attribute and Free Properties MUST BE be persisted into the Tango Database (RFC6)
-* If the device is started without a Tango Database, the device and class properties MUST BE persisted in a file (but no support for the attribute properties) 
-* All device and class properties SHOULD be directly modified and accessed througth the database device or its file
-* Attribute properties SHOULD be modified and accessed at any time througth the device object (RFC-2)
+* The Property SHALL have one value, which could be empty, called Property Value
+* If the device is started upon a Tango Database, Class, Device, Attribute and Free Properties MAY be persisted into the Tango Database (RFC6)
+* If the device is started without a Tango Database, the device and class properties MAY be persisted in a file (but no support for the attribute properties) 
+* All device and class properties MAY be directly modified and accessed through the database device or its file
+* Attribute properties SHOULD be modified and accessed at any time through the device object (RFC-2)
 * All default attribute and device properties are OPTIONAL
-* The attribute, class and device properties MAY BE defined in the device code and they MAY BE OPTIONAL OR REQUIRED (mandatory)
+* The attribute, class and device properties MAY be defined in the device code and they MAY be OPTIONAL OR REQUIRED (mandatory)
 * TODO memorized attributes, system properties
 * TODO : properties history
 * TODO: error management
 * All device and class properties MUST be loaded at init command or device start-up
-* If a device property does not exist, the device MUST load its class property
-* All device and class properties SHOULD be modified and accessed througth the database device (RFC-6)
+* If a device property does not exist, the device MUST load the class property having the same name
+* All device and class properties MAY be modified and accessed through the database device when using a Tango Database (RFC-6)
 * A Tango device MUST manage the following default device properties: cmd_min_poll_period, min_poll_period, attr_min_poll_period, poll_ring_depth, cmd_poll_ring_depth, attr_poll_ring_depth, polled_attr, logging_target, logging_level, logging_rft (TODO: description of each one)
 * An attribute MUST manage the following default attribute properties (TODO: descriptions):
 	 * String **label** default value "";
@@ -108,7 +111,7 @@ property-name = 1*VCHAR
 ```
 * The property name is case insensitive
 * The Property value MUST use the following convention:
-        single value that may contains any caracter
+        single value that may contain any character
         or an array with carriage return
         special values: "NaN", "inf"
 	* TODO nodbproperties file convention		
