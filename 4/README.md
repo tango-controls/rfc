@@ -170,8 +170,10 @@ pointed by *__root_att* MUST be reflected in the forwarded Attribute.
 
 ### Attribute properties
 
-An Attribute MAY have associated following dynamic metadata in form of
-Properties (see RFC 5/Property):
+An Attribute MAY have associated dynamic metadata in form of
+Properties (see RFC 5/Property).
+
+General properties:
 * *description*, providing textual information about the Attribute,
 * *label*, providing textual label to use as Attribute's name,
 * *unit*, providing textual representation of Attribute's unit,
@@ -192,7 +194,9 @@ Properties (see RFC 5/Property):
   It MUST be a vaild numerical value.
   It MUST be defined only for Attributes with numerical *data type*.
   It MUST be defined only for writable Attributes.
-  It MUST be greater than *max value*,
+  It MUST be greater than *max value*.
+
+Properties for alarming purposes:
 * *min alarm*, describing the threshold value of Attribute's *read value*
   below which the attribute is considered as having alarm *quality*.
   It MUST be a vaild numerical value.
@@ -214,14 +218,38 @@ Properties (see RFC 5/Property):
   Otherwise the attribute is considered as having alarm *quality*.
   It MUST be defined only for writable Attributes,
   It MUST be defined if *delta val* is also defined.
-* TODO: describe event-related properties,
-* *rel change*,
-* *abs change*,
-* *period*, 
-* *archive rel change*,
-* *archive abs change*,
-* *archive period*,
 
+Properties for event reporting purposes:
+* *rel change*, *abs change*, *archive rel chagne*, *archive abs chagne*,
+  describing the threshold values for relative and absolute change
+  in Attribute's *read value* above which
+  a *CHANGE* event or *ARCHIVE* event MUST be reported.
+  It MUST be either a valid numerical value
+  or a pair of valid numerical values separated by a `,`.
+  If one value is specified, it MUST be used for both negative
+  and positive change.
+  If two values are specified, the first MUST be used for netative change
+  and the second MUST be used for positive change.
+  It MUST be defined only for Attributes with numerical *data type*,
+* *period*, *archive period*, describing the minimum time period
+  in milliseconds after which a *PERIODIC* or *ARCHIVE* event MUST be reported,
+  regardless of Attribute's *read value*. If *period* is not specified,
+  a default value of 1000 ms is used,
+  It MUST be defined only for Attributes with numerical *data type*.
+
+```abnf
+rel-change = change
+abs-change = chagne
+
+archive-rel-change = change
+archive-abs-change = chagne
+
+number = [ "-" ] 1*DIGIT [ "." ] *DIGIT
+change = number [ "," number ]
+
+period = [ "-" ] 1*DIGIT
+archive-period = period
+```
 
 ### Attribute runtime parameters
 
