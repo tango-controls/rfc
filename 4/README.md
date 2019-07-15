@@ -150,7 +150,22 @@ If *memorized* is set and *__value* property is other than "Not used yet"
 
 #### Forwarded attribute
 
-TODO
+An Attribute can be a forwarded attribute. A forwarded Attribute MUST have
+associated *__root_att* property.
+It MUST be defined before attribute initialization at startup.
+It MUST NOT be changed in runtime.
+It MUST point to an existing attribute in another device.
+
+Allowed syntax for *__root_att* is specified below as `<full-attribute-name>`.
+
+Each read and write request to a forwarded Attribute MUST be passed
+to the Attribute pointed by *__root_att*.
+
+Each change to properties or to other metadata associated with a forwarded
+Attribute MUST be reflected in the Attribute pointed by *__root_att*.
+
+Each change to properties or to other metadata associated with the Attribute
+pointed by *__root_att* MUST be reflected in the forwarded Attribute.
 
 
 ### Attribute properties
