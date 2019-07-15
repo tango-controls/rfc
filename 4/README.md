@@ -61,7 +61,8 @@ An Attribute MUST have associated following static metadata:
   It MUST be unique [^1] among all Attributes of a particular device.
   It MAY contain any character (including multi-byte characters)
   except that it MUST NOT contain `\0` character.
-  It MAY be empty,
+  It MAY be empty.
+  See `<attribute-name>` specification below,
 * *data type*, an enumeration describing the type of the data (X/DataTypes),
 * *data format*, an enumeration describing the dimension of the data
   (one of *SCALAR*, *SPECTRUM*, *IMAGE*),
@@ -236,13 +237,31 @@ at given point in time an Attribute MUST have associated:
 
 ### Attribute aliases
 
-TODO
-An Attribute MAY have associated *aliases*.
+A *full attribute name* consists of *device name* and *attribute name*
+separated by "/" character.
 
+An Attribute MAY have associated *alias*, a string which can be used
+in place of *full attribute name* to address the Attribute.
+An Attribute MUST NOT have more than one *alias*.
 
-### TODO
+An *alias* MUST be stored in the database.
 
-Formal specification of Attribute static model is given below:
+An *alias* MUST be unique.
+
+An *alias* MAY contain any character (including multi-byte characters) except
+that it MUST NOT contain any of `/`, ` ` (space), `#`, `:`, `->`.
+It MAY be empty.
+See `<attribute-alias>` specification below.
+
+### Attribute naming schema
+
+Formal specification of Attribute name is given below:
 ```ABNF
-attribute = "whatever"
+attribute-name = *attribute-name-char
+attribute-name-char = %x01-FF ; OCTET except %x00
+
+full-attribute-name = device-name "/" attribute-name
+
+attribute-alias = *attribute-alias-char
+attribute-alias-char = OCTET ; except %x00 "/" " " "#" ":" "->"
 ```
