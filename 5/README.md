@@ -7,6 +7,7 @@ editor: Gwenaëlle Abeillé `<at synchrotron-soleil.fr - gwenaelle.abeille>`
 contributors:
   - Vincent Hardion `<at maxiv.lu.se - vincent.hardion>`
   - Reynald Bourtembourg `<at esrf.fr - bourtemb>`
+  - Andy Gotz <andy.gotz@esrf.fr>
 ---
 
 This document describes the Property, a Tango concept representing an element of configuration in order to customise a Tango element. This document describes version 1.0 of the Property.
