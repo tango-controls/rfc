@@ -10,7 +10,7 @@ contributors:
   - Andy Gotz <andy.gotz@esrf.fr>
 ---
 
-This document describes the Property, a Tango concept representing an element of configuration in order to customise a Tango element. This document describes version 1.0 of the Property.
+This document describes the Property, a Tango concept representing one or more values to configure one of the following Tango elements namely Tango Device, Class, Attribute, System or a not associated to any Tango element, so called free properties. This document describes version 1.0 of the Property.
 
 See also: 2/Device, X/Database, X/Attribute, X/Class
 
