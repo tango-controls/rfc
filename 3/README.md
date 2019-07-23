@@ -10,7 +10,7 @@ status: draft
 editor: [Sergi Blanchi-Torné](mailto:sblanch@cells.es)
 
 contributors: [Vincent Hardion](mailto:vincent.hardion@maxiv.lu.se)
-
+	
 ---
 
 This document describes the specification of the Tango Command model, a guideline for the implementer of the Tango Control System.
@@ -75,186 +75,180 @@ Additionally, Command may be used for:
 
  * The Command SHALL have one output Argument, called ARGOUT
  
- An Argument represents the input and output of a Command and its specification can only applied to a Command. It can be specify as below:
+ An Argument represents the input and output of a Command and its specification can only applied to a Command as below:
 
- * Argument SHALL have an Argument Type which describe the type of the Argument Value
+ * Argument SHALL have an Argument Type which set the type of the Argument Value
 
- * Argument SHALL have an Argument Type which describe the type of the Argument Value
- 
- TODO: I don't know if the string representation of the argument type is only a client thing ( Jive, ). Even so maybe it can be define here.
- 
+ * Argument MAY have an Argument Description which describe the meaning of the Argument Value
+  
  An Argument Value only exists during the phase of execution of a Command. 
  In this case a Command MAY have 2 Arguments Values, one for ARGIN and one for ARGOUT.
  
- A Argument type, value and  is specified as below:
+ The Argument Type, Argument Value, Argument Representation and Argument Description are specified below as litteral representation. This SHOULD NOT constraint the implementation to use a binary format for the transport layer.
 
  ``` ABNF
- argument = argument-type argument-repr argument-value
- argument-type = dev-void-type | dev-double-type | ...
- argument-repr = dev-void-repr | ... # Here sound strange
- argument-value = dev-void-value | dev-double-value | ...
+ argument = dev-void | dev-double | dev-boolean | dev-float | dev-short | dev-long | dev-long64 | dev-string | dev-uchar | dev-ushort | dev-ulong | dev-ulong64 | dev-boolean-array | dev-double-array | dev-float-array | dev-short-array | dev-long-array | dev-long64-array | dev-char-array | dev-string-array | dev-ushort-array | dev-ulong-array | dev-ulong64-array | dev-long-string-array | dev-double-string-array | dev-boolean-array | dev-encoded | dev-encoded-array 
  
- dev-void = dev-void-type dev-void-repr dev-void-value
- dev-void-type = 0x00
- dev-void-repr = DEVVOID | DevVoid
+ argument-desc = 0*CHAR
+
+ ; Float Definition inspired by python float definition 
+ ; Some examples of floating point literals: 3.14 10. .001 1e100 3.14e-10
+ floatnumber = [ "-" ] pointfloat | exponentfloat
+ pointfloat = [intpart] fraction | intpart "."
+ exponentfloat:  ( %d1-9 DIGIT* | pointfloat) exponent
+ intpart:        %d1-9 DIGIT* | %d0
+ fraction:       "." DIGIT+
+ exponent:       ("e"|"E") ["+"|"-"] DIGIT+
+
+ dev-void = dev-void-type WSP dev-void-value
+ dev-void-type = "DEVVOID" | "DevVoid"
  dev-void-value = NULL
  
- dev-double = dev-double-type dev-double-repr dev-double-value
- dev-double-type = 0x02
- dev-double-repr = DEVDOUBLE | DevDouble
- dev-double-value = ...
+ dev-double = dev-double-type WSP dev-double-value
+ dev-double-type = "DEVDOUBLE" | "DevDouble"
+ dev-double-value = floatnumber ; double-precision normalized numbers in IEC 60559
 
- dev-boolean = dev-boolean-type dev-boolean-repr dev-boolean-value
- dev-boolean-type = 0x03
- dev-boolean-repr = DEVBOOLEAN | DevBoolean
- dev-boolean-value = ...
+ dev-boolean = dev-boolean-type WSP dev-boolean-value
+ dev-boolean-type = "DEVBOOLEAN" | "DevBoolean"
+ dev-boolean-value = BIT
 
- dev-float = dev-float-type dev-float-repr dev-float-value
- dev-float-type = 0x02
- dev-float-repr = DEVFLOAT | DevFloat
- dev-float-value = ...
+ dev-float = dev-float-type WSP dev-float-value
+ dev-float-type = "DEVFLOAT" | "DevFloat"
+ dev-float-value = floatnumber ; single-precision normalized numbers in IEC 60559
 
- dev-short = dev-short-type dev-short-repr dev-short-value
- dev-short-type = 0x02
- dev-short-repr = DEVSHORT | DevShort
- dev-short-value = ...
+ dev-short = dev-short-type WSP dev-short-value
+ dev-short-type = "DEVSHORT" | "DevShort"
+ dev-short-value = ["-"] DIGIT* ; In the range of "(2^15) - 1" to "-(2^15)".
 
- dev-long = dev-long-type dev-long-repr dev-long-value
- dev-long-type = 0x02
- dev-long-repr = DEVLONG | DevLong
- dev-long-value = ...
+ dev-long = dev-long-type WSP dev-long-value
+ dev-long-type = "DEVLONG" | "DevLong"
+ dev-long-value = ["-"] DIGIT* ; In the range of "(2^31) - 1" to "-(2^31)".
 
- dev-long64 = dev-long64-type dev-long64-repr dev-long64-value
- dev-long64-type = 0x02
- dev-long64-repr = DEVLONG64 | DevLong64
- dev-long64-value = ...
+ dev-long64 = dev-long64-type WSP dev-long64-value
+ dev-long64-type = "DEVLONG64" | "DevLong64"
+ dev-long64-value = ["-"] DIGIT* ; In the range of "(2^63) - 1" to "-(2^63)".
 
- dev-string = dev-string-type dev-string-repr dev-string-value
- dev-string-type = 0x02
- dev-string-repr = DEVSTRING | DevString
- dev-string-value = ...
+ dev-string = dev-string-type WSP dev-string-value
+ dev-string-type = "DEVSTRING" | "DevString"
+ dev-string-value = DQUOTE CHAR* DQUOTE
 
- dev-uchar = dev-uchar-type dev-uchar-repr dev-uchar-value
- dev-uchar-type = 0x02
- dev-uchar-repr = DEVUCHAR | DevUChar
- dev-uchar-value = ... (octet)
+ dev-uchar = dev-uchar-type WSP dev-uchar-value
+ dev-uchar-type = "DEVUCHAR" | "DevUChar"
+ dev-uchar-value = DIGIT* ; In the range of "0" to "(2^8) - 1". In abnf syntax it may correspond to %d0-255
 
- dev-ushort = dev-ushort-type dev-ushort-repr dev-ushort-value
- dev-ushort-type = 0x02
- dev-ushort-repr = DEVUSHORT | DevUShort
- dev-ushort-value = ...
+ dev-ushort = dev-ushort-type WSP dev-ushort-value
+ dev-ushort-type = "DEVUSHORT" | "DevUShort"
+ dev-ushort-value = DIGIT* ; In the range of "0" to "(2^16) - 1".
 
- dev-ulong = dev-ulong-type dev-ulong-repr dev-ulong-value
- dev-ulong-type = 0x02
- dev-ulong-repr = DEVULONG | DevULong
- dev-ulong-value = ...
+ dev-ulong = dev-ulong-type WSP dev-ulong-value
+ dev-ulong-type = "DEVULONG" | "DevULong"
+ dev-ulong-value = DIGIT* ; In the range of "0" to "(2^32) - 1".
 
- dev-ulong64 = dev-ulong64-type dev-ulong64-repr dev-ulong64-value
- dev-ulong64-type = 0x02
- dev-ulong64-repr = DEVULONG64 | DevULong64
- dev-ulong64-value = ...
+ dev-ulong64 = dev-ulong64-type WSP dev-ulong64-value
+ dev-ulong64-type = "DEVULONG64" | "DevULong64"
+ dev-ulong64-value = DIGIT* ; In the range of "0" to "(2^64) - 1".
 
- dev-boolean-array = dev-boolean-array-type dev-boolean-array-repr dev-boolean-array-value
- dev-boolean-array-type = 0x02
- dev-boolean-array-repr = DEVVARBOOLEANARRAY | DevVarBooleanArray
- dev-boolean-array-value = ... a dev-boolean*
+ dev-state = dev-state-type WSP dev-state-value
+ dev-state-type = "DEVSTATE" | "DevState"
+ dev-state-value = "ALARM" | "INSERT" | "STANDBY" | "CLOSE" | "MOVING" | "UNKNOWN" | "DISABLE" | "OFF" | "EXTRACT" | "ON" | "FAULT" | "OPEN" | "INIT" | "RUNNING"
 
- dev-double-array = dev-double-array-type dev-double-array-repr dev-double-array-value
- dev-double-array-type = 0x02
- dev-double-array-repr = DEVVARDOUBLEARRAY | DevVarDoubleArray
- dev-double-array-value = ... a dev-double*
+ dev-boolean-array = dev-boolean-array-type  WSP dev-boolean-array-value
+ dev-boolean-array-type = "DEVVARBOOLEANARRAY" | "DevVarBooleanArray"
+ dev-boolean-array-value = "[" dev-boolean [ ("," dev-boolean)* ] "]" 
 
- dev-float-array = dev-float-array-type dev-float-array-repr dev-float-array-value
- dev-float-array-type = 0x02
- dev-float-array-repr = DEVVARFLOATARRAY | DevVarFloatArray
- dev-float-array-value = ... a dev-float*
+ dev-double-array = dev-double-array-type  WSP dev-double-array-value
+ dev-double-array-type = "DEVVARDOUBLEARRAY" | "DevVarDoubleArray"
+ dev-double-array-value = "[" dev-double [ ("," dev-double)* ] "]" 
 
- dev-short-array = dev-short-array-type dev-short-array-repr dev-short-array-value
- dev-short-array-type = 0x02
- dev-short-array-repr = DEVVARSHORTARRAY | DevVarShortArray
- dev-short-array-value = ... a dev-short*
+ dev-float-array = dev-float-array-type WSP dev-float-array-value
+ dev-float-array-type = "DEVVARFLOATARRAY" | "DevVarFloatArray"
+ dev-float-array-value = "[" dev-float [ ("," dev-float)* ] "]"
 
- dev-long-array = dev-long-array-type dev-long-array-repr dev-long-array-value
- dev-long-array-type = 0x02
- dev-long-array-repr = DEVVARLONGARRAY | DevVarLongArray
- dev-long-array-value = ... a dev-long*
+ dev-short-array = dev-short-array-type WSP dev-short-array-value
+ dev-short-array-type = "DEVVARSHORTARRAY" | "DevVarShortArray"
+ dev-short-array-value = "[" dev-short [ ("," dev-short)* ] "]"
 
- dev-long64-array = dev-long64-array-type dev-long64-array-repr dev-long64-array-value
- dev-long64-array-type = 0x02
- dev-long64-array-repr = DEVVARLONG64ARRAY | DevVarLong64Array
- dev-long64-array-value = ... a dev-long64*
+ dev-long-array = dev-long-array-type WSP dev-long-array-value
+ dev-long-array-type = "DEVVARLONGARRAY" | "DevVarLongArray"
+ dev-long-array-value = "[" dev-long [ ("," dev-long)* ] "]"
 
- dev-char-array = dev-char-array-type dev-char-array-repr dev-char-array-value
- dev-char-array-type = 0x02
- dev-char-array-repr = DEVVARCHARARRAY | DevVarCharArray
- dev-char-array-value = ... a dev-char*
+ dev-long64-array = dev-long64-array-type WSP dev-long64-array-value
+ dev-long64-array-type = "DEVVARLONG64ARRAY" | "DevVarLong64Array"
+ dev-long64-array-value = "[" dev-long64 [ ("," dev-long64)* ] "]"
 
- dev-string-array = dev-string-array-type dev-string-array-repr dev-string-array-value
- dev-string-array-type = 0x02
- dev-string-array-repr = DEVVARSTRINGARRAY | DevVarStringArray
- dev-string-array-value = ... a dev-string*
+ dev-char-array = dev-char-array-type WSP dev-char-array-value
+ dev-char-array-type = "DEVVARCHARARRAY" | "DevVarCharArray"
+ dev-char-array-value = "[" dev-char [ ("," dev-char)* ] "]"
 
- dev-ushort-array = dev-ushort-array-type dev-ushort-array-repr dev-ushort-array-value
- dev-ushort-array-type = 0x02
- dev-ushort-array-repr = DEVVARUSHORTARRAY | DevVarUShortArray
- dev-ushort-array-value = ... a dev-ushort*
+ dev-string-array = dev-string-array-type WSP dev-string-array-value
+ dev-string-array-type = "DEVVARSTRINGARRAY" | "DevVarStringArray"
+ dev-string-array-value = "[" dev-string [ ("," dev-string)* ] "]"
 
- dev-ulong-array = dev-ulong-array-type dev-ulong-array-repr dev-ulong-array-value
- dev-ulong-array-type = 0x02
- dev-ulong-array-repr = devvarulongarray | devvarulongarray
- dev-ulong-array-value = ... a dev-ulong*
+ dev-ushort-array = dev-ushort-array-type WSP dev-ushort-array-value
+ dev-ushort-array-type = "DEVVARUSHORTARRAY" | "DevVarUShortArray"
+ dev-ushort-array-value = "[" dev-ushort [ ("," dev-ushort)* ] "]"
 
- dev-ulong64-array = dev-ulong64-array-type dev-ulong64-array-repr dev-ulong64-array-value
- dev-ulong64-array-type = 0x02
- dev-ulong64-array-repr = DEVVARULONG64ARRAY | DevVarULong64Array
- dev-ulong64-array-value = ... a dev-ulong64*
+ dev-ulong-array = dev-ulong-array-type WSP dev-ulong-array-value
+ dev-ulong-array-type = "DEVVARULONGARRAY" | "DevVarULongArray"
+ dev-ulong-array-value = "[" dev-ulong [ ("," dev-ulong)* ] "]"
 
- dev-long-string-array = dev-long-string-array-type dev-long-string-array-repr dev-long-string-array-value
- dev-long-string-array-type = 0x02
- dev-long-string-array-repr = DEVVARLONGSTRINGARRAY | DevVarLongStringArray
+ dev-ulong64-array = dev-ulong64-array-type WSP dev-ulong64-array-value
+ dev-ulong64-array-type = "DEVVARULONG64ARRAY" | "DevVarULong64Array"
+ dev-ulong64-array-value = "[" dev-ulong64 [ ("," dev-ulong64)* ] "]" 
+
+ dev-long-string-array = dev-long-string-array-type WSP dev-long-string-array-value
+ dev-long-string-array-type = "DEVVARLONGSTRINGARRAY" | "DevVarLongStringArray"
+ dev-long-string-array-value =  dev-long-string-array-lvalue  dev-long-string-array-rvalue
  dev-long-string-array-lvalue = dev-long-array
  dev-long-string-array-rvalue = dev-string-array
- dev-long-string-array-value = dev-long-array dev-string-array
 
- dev-double-string-array = dev-double-string-array-type dev-double-string-array-repr dev-double-string-array-value
- dev-double-string-array-type = 0x02
- dev-double-string-array-repr = DEVVARDOUBLESTRINGARRAY | DevVarDoubleStringArray
+ dev-double-string-array = dev-double-string-array-type WSP dev-double-string-array-value
+ dev-double-string-array-type = "DEVVARDOUBLESTRINGARRAY" | "DevVarDoubleStringArray"
+ dev-double-string-array-value =  dev-double-string-array-dvalue dev-double-string-array-rvalue
  dev-double-string-array-dvalue = dev-double-array
  dev-double-string-array-rvalue = dev-string-array
- dev-double-string-array-value = dev-double-array dev-string-array
 
- dev-boolean-array = dev-boolean-array-type dev-boolean-array-repr dev-boolean-array-value
- dev-boolean-array-type = 0x02
- dev-boolean-array-repr = DEVVARBOOLEANARRAY | DevVarBooleanArray
- dev-boolean-array-value = ... a dev-boolean*
-
- dev-encoded = dev-encoded-type dev-encoded-repr dev-encoded-value
- dev-encoded-type = 0x02
- dev-encoded-repr = DEVENCODED | DevEncoded
+ dev-encoded = dev-encoded-type WSP dev-encoded-value
+ dev-encoded-type = "DEVENCODED | "DevEncoded"
+ dev-encoded-value =  dev-encoded-encoded-format  dev-encoded-encoded-data
  dev-encoded-encoded-format = dev-string
  dev-encoded-encoded-data = dev-char-array
- dev-encoded-value = dev-string dev-char-array
 
- dev-encoded-array = dev-encoded-array-type dev-encoded-array-repr dev-encoded-array-value
- dev-encoded-array-type = 0x02
- dev-encoded-array-repr = DEVVARENCODEDARRAY | DevVarEncodedArray
- dev-encoded-array-value = ... a dev-encoded*
+ dev-encoded-array = dev-encoded-array-type WSP dev-encoded-array-value
+ dev-encoded-array-type = DEVVARENCODEDARRAY | DevVarEncodedArray
+ dev-encoded-array-value = "[" dev-encoded [ ("," dev-encoded)* ] "]"
+``` 
  
- 
- Additionally, the Command can be represented by meta data:
+Additionally, the Command can be represented by meta data:
 
- * A Command MAY have a description text called Command Description
+ * A Command SHALL have a visibility level for the user called Display Level, which MAY be taken in consideration in the User Interface.
+
+ ```abnf
+ display-level = "OPERATOR" | "EXPERT"
+ ```
+
+ Note: The description of a command is given by both the description of ARGIN and ARGOUT. There is no Command Description as such.
+
+
+### Reserved Commands
+
+ Although the user can define any kind of commands, some specific commands are essential to the Tango Device to work properly. 
+ The Reserved Command MUST be define as the Command Name, the ARGIN and the ARGOUT as describe below:
  
+| Reserved Command | Name | ARGIN | ARGOUT |
+|---|---|---|---|
+| State Command | "State" | DevVoid| DevState |
+| Status Command | "Status" | DevVoid| DevString |
+| Init Command | "Init" | DevVoid| DevVoid |
+
  
 ### Global Behaviour
 
- * The Command SHALL always return a result when executed
+ * The Command SHALL always return a result when executed even when the ARGOUT is from the type DevVoid. The only exception is a "Fire and Forget" which force to be executed in one way (flag for asynchronous command execution).
 
  * The execution of the Command SHALL be unique
 
- * The execution of the Command SHALL be unique
-
- * The execution of the Command SHALL apply ionly in the context of a Device
+ * The execution of the Command SHALL apply only in the context of a Device
 
 ### Naming convention
  * The Command Name SHALL use the following convention:
