@@ -54,29 +54,62 @@ There are X main use cases for Template:
 
 A Tango Device is a strict definition of a distributed object. 
 * configuration are represented in the form of properties.
-* data are represented in the form of attributes.
+* data are represented in the form of attributes and pipes.
 * actions are represented in the form of commands.
 
 Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, Attribute, Command following the rules below:
 
 
 * The Device is a distributed object which SHALL be accessed locally or via network.
-* The Device SHALL be an instance of one Class
+* The Device SHALL be an instance of one Device Class (see RFC-9)
 * The Device MAY have one or several Property, called Device Property
-* The Device MAY have one or several Attribute
+* The Device MAY have one or several Attribute, 
 * The Device SHALL have one State attribute 
 * The Device SHALL have one Status attribute
+* The Device MAY have one or seeveral Pipe
 * The Device MAY have one or several Command
 * The Device SHALL have one unique identifier which represents its Name
 
 * The Class MAY have one or more Device instance
 * The Class MAY have one or several Property, called Class Property
 
+### Devcie Interface
+
+The Devcie Interface is a list of Attributes, Pipes and Commands provided by a Device Instance.
+The Device instance SHALL expose (provides access) all Attributes, Pipes and Commands defined by its Device Class.
+
+The Device instance MAY expose Attributes and/or Commands not defined by its Device Class. 
+These are called Dynamic Attributes and/or Dynamic Commands respectively. 
+The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initalisation phase and/or Device Operation. 
+
 ### Naming convention
+
 * The Device's Name SHALL use the following convention:
 ``` ABNF
 device-name = domain "/" family "/" member
 domain = 1*VCHAR
 family = 1*VCHAR
 member = 1*VCHAR
-```
+``
+
+### Device lifecycle
+
+The Device lifecycle is:
+* Devcie Initialisation phase
+* Device Operation phase
+* Device Destruction phase 
+
+[TO-DO]
+#### Device Initialization
+
+* Object creation
+* Devcie exporting
+
+#### Device Operation
+
+* Attribute read and write
+* Command Call
+* Device State handling
+
+#### Device Destruction
+
