@@ -90,7 +90,7 @@ device-name = domain "/" family "/" member
 domain = 1*VCHAR
 family = 1*VCHAR
 member = 1*VCHAR
-``
+```
 
 ### Device lifecycle
 
