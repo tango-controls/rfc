@@ -3,7 +3,7 @@ domain: rfc.tango-controls.org
 shortname: 2/Device
 name: Device Model
 status: raw
-editor: Vincent Hardion (vincent.hardion@maxiv.lu.se)
+editor: David Erb (david.erb@maxiv.lu.se)
 ---
 
 This document describes the Tango Device model specification version 5.0.
@@ -22,15 +22,15 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Tango Device Specification
 
-A Device is designed to represent any controlled object in Tango.
+A Device is designed to represent any controlled object in Tango Controls system.
 This specification is inspired by the comment written by A. Götz and E. Taurel in the tango.idl file from the original implementation (https://tango-controls.github.com)
 
 ### Related Specification
 
 ### Goals
 
-The Tango Device aims to represents the fundamental interface for all TANGO objects. Directly inspired from the object oriented programming a Device object has data and actions.
-
+The Tango Device aims to represents the fundamental interface for all TANGO objects. Directly inspired from the object 
+oriented programming a Device object has data and actions.
 
 Additionally, it aims to:
 
@@ -57,34 +57,35 @@ A Tango Device is a strict definition of a distributed object.
 * data are represented in the form of attributes and pipes.
 * actions are represented in the form of commands.
 
-Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, Attribute, Command following the rules below:
-
+Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, 
+Attribute, Command following the rules below:
 
 * The Device is a distributed object which SHALL be accessed locally or via network.
-* The Device SHALL be an instance of one Device Class (see RFC-9)
-* The Device MAY have one or several Property, called Device Property
-* The Device MAY have one or several Attribute, 
+* The Device SHALL be an instance of one Device Class, see [RFC-9]()
+* The Device MAY have one or several Property, called Device Property, see [RFC-5]()
+* The Device MAY have one or several Attribute, see [RFC-4]() 
 * The Device SHALL have one State attribute 
 * The Device SHALL have one Status attribute
-* The Device MAY have one or seeveral Pipe
-* The Device MAY have one or several Command
+* The Device MAY have one or several Pipe
+* The Device MAY have one or several Command, see [RFC-3]()
 * The Device SHALL have one unique identifier which represents its Name
 
 * The Class MAY have one or more Device instance
 * The Class MAY have one or several Property, called Class Property
 
-### Devcie Interface
+### Device Interface
 
-The Devcie Interface is a list of Attributes, Pipes and Commands provided by a Device Instance.
-The Device instance SHALL expose (provides access) all Attributes, Pipes and Commands defined by its Device Class.
+The Device Interface is a list of Attributes, Pipes and Commands provided by a Device Instance.
+The Device instance SHALL expose (provides access to) all Attributes, Pipes and Commands defined by its Device Class.
 
 The Device instance MAY expose Attributes and/or Commands not defined by its Device Class. 
-These are called Dynamic Attributes and/or Dynamic Commands respectively. 
-The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initalisation phase and/or Device Operation. 
+These are called Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
+The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or Device Operation. 
 
 ### Naming convention
 
 * The Device's Name SHALL use the following convention:
+
 ``` ABNF
 device-name = domain "/" family "/" member
 domain = 1*VCHAR
@@ -95,17 +96,49 @@ member = 1*VCHAR
 ### Device lifecycle
 
 The Device lifecycle is:
-* Devcie Initialisation phase
-* Device Operation phase
-* Device Destruction phase 
+* Device Initialisation phase, when Device object is created and made visible in a Tango Controls system (see [RFC-1](), [RFC-8]())
+* Device Operation phase, when Device Interface MUST be available to actors of the Tango Controls system.
+* Device Destruction phase, when Device SHOULD be unregistered from the Tango Control system and Device Interface MAY not
+  be available within the Tango Controls system. 
 
-[TO-DO]
+The device lifecycle MUST be implemented by a Device Server.
+
+### Device State
+
+Value of Device's State attribute MAY impact how the Device object respond to:
+
+* Writing to a Device's Attribute or to a Device's Pipe  
+* Calling a Device's Command
+
+Device MAY not execute (block) the attribute write or the pipe write operation or the command execution code for certain States.
+In such a case the the Device object SHALL respond with throwing an exception.  [TO-DO: specify which exception]
+The way how a Device object respond to the above calls define a Device State Machine.
+
+**NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
+attribute value. 
+
+ 
+
+[TO-DO: Move the following to Device Server ? ]
 #### Device Initialization
 
-* Object creation
-* Devcie exporting
+Device Initialisation phase is intended to prepare Device Object for Operation. 
+
+Device Initialization SHOULD be divided into two subsequent steps:
+
+1) Object creation, when an object is created in a space of a Device Server process. After this phase Device object 
+   SHALL be accessible locally and via network. During this phase the same `user code` which is executed when the 
+   Device Init command is executed MAY be called.
+
+2) Device exporting, when Device is made visible within the Tango Controls system. It SHALL use a Database System 
+   ([RFC-6]()) to provide information on how other actors in the system can access its interface. 
+
+
+The Device Server MUST implement at least Object creation step.
 
 #### Device Operation
+
+
 
 * Attribute read and write
 * Command Call
