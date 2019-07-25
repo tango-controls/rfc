@@ -171,7 +171,7 @@ pointed by *__root_att* MUST be reflected in the forwarded Attribute.
 ### Attribute properties
 
 An Attribute MAY have associated dynamic metadata in form of
-Properties (see RFC 5/Property).
+Properties (see [RFC 5/Property](/5)).
 
 General properties:
 * *description*, providing textual information about the Attribute,
@@ -282,6 +282,8 @@ at given point in time an Attribute MUST have associated:
 
 A *full attribute name* consists of *device name* and *attribute name*
 separated by "/" character.
+
+See [RFC 2/Device](/2) for the definition of `<device-name>`.
 
 An Attribute MAY have associated *alias*, a string which can be used
 in place of *full attribute name* to address the Attribute.
