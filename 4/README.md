@@ -115,12 +115,6 @@ an Attribute MAY have associated following additional static metadata:
   except that they MUST NOT contain `\0` character.
   It MAY be empty.
 
-TODO
-These are associated with the device in DB but impact the attribute.
-TBD where we want to document such properties.
-* *polled*,
-* *polling period*.
-
 
 #### Memorized attribute
 
@@ -237,6 +231,8 @@ Properties for event reporting purposes:
   a default value of 1000 ms is used,
   It MUST be defined only for Attributes with numerical *data type*.
 
+See [Attribute events section](#attribute-events) for more details.
+
 ```abnf
 rel-change = change
 abs-change = chagne
@@ -297,6 +293,33 @@ An *alias* MAY contain any character (including multi-byte characters) except
 that it MUST NOT contain any of `/`, ` ` (space), `#`, `:`, `->`.
 It MAY be empty.
 See `<attribute-alias>` specification below.
+
+
+### Attribute events
+
+An Attribute can send following events:
+* *PERIODIC*,
+* *CHANGE*,
+* *ARCHIVE*,
+* *PIPE*,
+* *DATA READY*,
+* *ATTR CONF*,
+* *USER*,
+
+In order to send *PERIODIC*, *CHANGE*, *ARCHIVE*, *PIPE* and *DATA READY*
+events, an attribute must be polled. See
+[Attribute polling section](#attribute-events) for more details.
+
+See [Attribute properties section](#attribute-properties) for specific
+conditions under which the events are sent.
+
+
+### Attribute polling
+
+An Attribute can be polled. A polling for the Attribute can be configured
+in Device with *polled attr* Property. See [RFC XX/Cache system](/XX) for
+more details.
+
 
 ### Attribute naming schema
 
