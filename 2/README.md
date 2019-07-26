@@ -58,29 +58,30 @@ A Tango Device is a strict definition of a distributed object.
 * actions are represented in the form of commands.
 
 Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, 
-Attribute, Command following the rules below:
+Attribute, Pipe, Command following the rules below:
 
 * The Device is a distributed object which SHALL be accessed locally or via network.
 * The Device SHALL be an instance of one Device Class, see [RFC-9]()
 * The Device MAY have one or several Property, called Device Property, see [RFC-5]()
 * The Device MAY have one or several Attribute, see [RFC-4]() 
-* The Device SHALL have one State attribute 
-* The Device SHALL have one Status attribute
 * The Device MAY have one or several Pipe
 * The Device MAY have one or several Command, see [RFC-3]()
+
+
+* The Device SHALL have one State attribute 
+* The Device SHALL have one Status attribute
+* The Device SHALL have one State command
+* The Device SHALL have one Status command
+
+**Note**: Future specification may remove 'SHALL have' requirements for State and Status commands.
+
+
+[TO-DO: Should the two points below be moved to Class RFC?]
+* The Device Class MAY have one or more Device instance
+* The Device Class MAY have one or several Property, called Class Property
+
+
 * The Device SHALL have one unique identifier which represents its Name
-
-* The Class MAY have one or more Device instance
-* The Class MAY have one or several Property, called Class Property
-
-### Device Interface
-
-The Device Interface is a list of Attributes, Pipes and Commands provided by a Device Instance.
-The Device instance SHALL expose (provides access to) all Attributes, Pipes and Commands defined by its Device Class.
-
-The Device instance MAY expose Attributes and/or Commands not defined by its Device Class. 
-These are called Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
-The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or Device Operation. 
 
 ### Naming convention
 
@@ -92,6 +93,17 @@ domain = 1*VCHAR
 family = 1*VCHAR
 member = 1*VCHAR
 ```
+
+ 
+### Device Interface
+
+The Device Interface is a list of Attributes, Pipes and Commands provided by a Device Instance.
+The Device instance SHALL expose (provides access to) all Attributes, Pipes and Commands defined by its Device Class.
+
+The Device instance MAY expose Attributes and/or Commands not defined by its Device Class. 
+These are called Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
+The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or Device Operation. 
+
 
 ### Device lifecycle
 
@@ -117,7 +129,6 @@ The way how a Device object respond to the above calls define a Device State Mac
 **NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
 attribute value. 
 
- 
 
 [TO-DO: Move the following to Device Server ? ]
 #### Device Initialization
@@ -137,8 +148,6 @@ Device Initialization SHOULD be divided into two subsequent steps:
 The Device Server MUST implement at least Object creation step.
 
 #### Device Operation
-
-
 
 * Attribute read and write
 * Command Call
