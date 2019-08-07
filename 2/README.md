@@ -42,11 +42,18 @@ Additionally, it aims to:
 
 ### Use Cases
 
-There are X main use cases for Template:
+Typical use cases for Device are:
 
-* To reduce the entry cost of RFC submission.
+* It is common for particle accelerator systems to use a set of power supplies for powering a magnet system. 
+  Power supplies may come from a different vendors. These power supplies may use different communication interfaces
+  and protocols for remote control. However, there is a need to steer these power supplies from a remote locations in 
+  a unified and consistent way. Steering includes setting and reading of voltages and currents as well as switching the 
+  power supplies on and off, each individually. Having them integrated into a system as Devices, each with an unique name, 
+  however with Current and Voltage attributes and On() and Off() commands fulfills the requirement and assure consistency.
 
-* To make coherent the RFC
+* Remote monitoring of a complex device like aa electro-magnet, which is powered by power supplies and requires a cooling
+  system maybe provided by a Device with the following attributes: MagneticField, CoilTemperature, State and Status and 
+  with the following commands On() and Off().   
 
 ...
 
