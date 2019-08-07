@@ -137,28 +137,3 @@ The way how a Device object respond to the above calls define a Device State Mac
 attribute value. 
 
 
-[TO-DO: Move the following to Device Server ? ]
-#### Device Initialization
-
-Device Initialisation phase is intended to prepare Device Object for Operation. 
-
-Device Initialization SHOULD be divided into two subsequent steps:
-
-1) Object creation, when an object is created in a space of a Device Server process. After this phase Device object 
-   SHALL be accessible locally and via network. During this phase the same `user code` which is executed when the 
-   Device Init command is executed MAY be called.
-
-2) Device exporting, when Device is made visible within the Tango Controls system. It SHALL use a Database System 
-   ([RFC-6]()) to provide information on how other actors in the system can access its interface. 
-
-
-The Device Server MUST implement at least Object creation step.
-
-#### Device Operation
-
-* Attribute read and write
-* Command Call
-* Device State handling
-
-#### Device Destruction
-
