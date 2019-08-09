@@ -14,48 +14,66 @@ See also: X/Command, X/Attribute, X/Property, X/Pipe
 
 Copyright (c) 2019 MAX IV Laboratory.
 
-This Specification is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. This Specification is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses>.
+This Specification is free software; you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later 
+version. This Specification is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even 
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details. You should have received a copy of the GNU General Public License along with this program; 
+if not, see <http://www.gnu.org/licenses>.
 
-This Specification is a [free and open standard](http://www.digistan.org/open-standard:definition) and is governed by the Digital Standards Organization's [Consensus-Oriented Specification System](http://www.digistan.org/spec:1/COSS).
+This Specification is a [free and open standard](http://www.digistan.org/open-standard:definition) and is governed by 
+the Digital Standards Organization's [Consensus-Oriented Specification System](http://www.digistan.org/spec:1/COSS).
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", 
+and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 
 ## Tango Device Specification
 
 A Device is designed to represent any controlled object in Tango Controls system.
-This specification is inspired by the comment written by A. Götz and E. Taurel in the tango.idl file from the original implementation (https://tango-controls.github.com)
+This specification is inspired by the comment written by A. Götz and E. Taurel in the tango.idl file from 
+the original implementation (https://github.com/tango-controls/tango-idl)
 
 ### Related Specification
 
 ### Goals
 
-The Tango Device aims to represents the fundamental interface for all TANGO objects. Directly inspired from the object 
-oriented programming a Device object has data and actions.
+The Tango Device represents the fundamental interface for all TANGO objects. Directly inspired from the object 
+oriented programming a Device object has data and actions. It allows users of the Tango Controls system to access 
+(read and/or write) information (data) stored in or processed by hardware or virtual devices and call actions which
+may influence hardware state and behaviour.  Typically, access to data is provided via Device's Attributes and Pipes
+and actions are initiated by calling Device's Commands.  
 
 Additionally, it aims to:
 
-* Provide ...
+* Provide a standard way of translating different communication protocols to a communication protocol implemented by
+  Tango Controls. For example, the same generic GUI application may be used to control a power supply interfaced with
+  the SCPI protocol and to control a stepper motor driver interfaced with the CAN bus.
 
-* Be usable as ...
+* Be usable as a logical abstraction of hardware. For example the same GUI application may be used to control power 
+  supplies powering magnets and powering heat coils.
 
-* Be compatible ...
+* Expose, to Users and other Actors of the Tango Controls system, a semantic interface which is well understood, 
+  intuitive, and match the object-oriented paradigm. For example, a power supply Device may be implemented in Java, 
+  Python or C++ language. Irrespectively to the implementation language, Attributes *current* and *voltage* can be 
+  implemented as field members of an object, while *on* and *off* commands can be implemented as methods of the 
+  same object.     
+  
 
 ### Use Cases
 
 Typical use cases for Device are:
 
-* It is common for particle accelerator systems to use a set of power supplies for powering a magnet system. 
-  Power supplies may come from a different vendors. These power supplies may use different communication interfaces
-  and protocols for remote control. However, there is a need to steer these power supplies from a remote locations in 
+* It is common for particles accelerator systems to use a set of power supplies for powering a magnet system. 
+  Power supplies may come from different vendors. These power supplies may use different communication interfaces
+  and protocols for a remote control. However, there is a need to steer these power supplies from a remote locations in 
   a unified and consistent way. Steering includes setting and reading of voltages and currents as well as switching the 
   power supplies on and off, each individually. Having them integrated into a system as Devices, each with an unique name, 
-  however with Current and Voltage attributes and On() and Off() commands fulfills the requirement and assure consistency.
+  with Current and Voltage attributes and On() and Off() commands fulfills the requirement and assure consistency.
 
 * Remote monitoring of a complex device like aa electro-magnet, which is powered by power supplies and requires a cooling
-  system maybe provided by a Device with the following attributes: MagneticField, CoilTemperature, State and Status and 
-  with the following commands On() and Off().   
-
-...
+  system may be provided by a Device with the following attributes: MagneticField, CoilTemperature, State and Status and 
+  with the commands On() and Off(). This Device, to serve its interface is using information coming (directly or through
+  other devices) from power supplies and cooling systems.  
 
 ## Specification
 
@@ -136,4 +154,13 @@ The way how a Device object respond to the above calls define a Device State Mac
 **NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
 attribute value. 
 
+### Device Black Box
 
+
+### Events
+
+
+### Logging 
+
+
+### Cache and polling mechanism
