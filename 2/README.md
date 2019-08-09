@@ -78,33 +78,29 @@ Typical use cases for Device are:
 ## Specification
 
 A Tango Device is a strict definition of a distributed object. 
-* configuration are represented in the form of properties.
-* data are represented in the form of attributes and pipes.
-* actions are represented in the form of commands.
+* configuration is represented in the form of properties.
+* data are represented in the form of Attributes and Pipes.
+* actions are represented in the form of Commands.
 
 Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, 
 Attribute, Pipe, Command following the rules below:
 
-* The Device is a distributed object which SHALL be accessed locally or via network.
+* The Device is a distributed object which SHALL be accessible locally or via network.
 * The Device SHALL be an instance of one Device Class, see [RFC-9]()
 * The Device MAY have one or several Property, called Device Property, see [RFC-5]()
 * The Device MAY have one or several Attribute, see [RFC-4]() 
 * The Device MAY have one or several Pipe
 * The Device MAY have one or several Command, see [RFC-3]()
 
+* The Device SHALL have one Init command
 
 * The Device SHALL have one State attribute 
 * The Device SHALL have one Status attribute
 * The Device SHALL have one State command
 * The Device SHALL have one Status command
 
+
 **Note**: Future specification may remove 'SHALL have' requirements for State and Status commands.
-
-
-[TO-DO: Should the two points below be moved to Class RFC?]
-* The Device Class MAY have one or more Device instance
-* The Device Class MAY have one or several Property, called Class Property
-
 
 * The Device SHALL have one unique identifier which represents its Name
 
@@ -119,15 +115,32 @@ family = 1*VCHAR
 member = 1*VCHAR
 ```
 
+### Device Class
+
+A Device Class is an association of a list of Device Class Properties, a list of Attributes, a list of Pipes, 
+a list of Commands, a list of Device Properties with a Device Class Name.  
+
+* The Device Class Name SHOULD reflect its instances application context. 
+* The Device Class Name SHALL use the following convention:
+
+``` ABNF
+device-class-name = 1*VCHAR
+```
+
+* The Device Class MAY have one or more Device instance
+* The Device Class MAY have one or several Property, called Class Property
+
+* The Device SHALL expose (provide access to) all Attributes, Pipes and Commands defined by its Device Class.
  
 ### Device Interface
 
-The Device Interface is a list of Attributes, Pipes and Commands provided by a Device Instance.
-The Device instance SHALL expose (provides access to) all Attributes, Pipes and Commands defined by its Device Class.
+The Device Interface is a list of Attributes, Pipes and Commands provided by a Device.
 
-The Device instance MAY expose Attributes and/or Commands not defined by its Device Class. 
-These are called Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
-The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or Device Operation. 
+* The Device MAY expose Attributes and/or Commands not defined by its Device Class. These are called 
+  Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
+
+* The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or 
+  Device Operation phase. 
 
 
 ### Device lifecycle
