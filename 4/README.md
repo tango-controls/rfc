@@ -64,6 +64,7 @@ An Attribute MUST have associated following static metadata:
   It MUST be unique [^1] among all Attributes of a particular device.
   It MAY contain any character (including multi-byte characters)
   except that it MUST NOT contain `\0` character.
+  It MUST not not be "Status" or "State", which are reserved names.
   It MAY be empty.
   See `<attribute-name>` specification below,
 * *data type*, an enumeration describing the type of the data (X/DataTypes),
@@ -73,6 +74,13 @@ An Attribute MUST have associated following static metadata:
   (one of *READ*, *WRITE*, *READ_WRITE*, *READ_WITH_WRITE*).
 * *display level*, an enumeration describing visibility level of the Attribute
   (one of *EXPERT*, *OPERATOR*).
+
+> **Note:**
+> Although it is possible to use a wide range of characters in the Attribute's
+> name, it is RECOMMENDED to use only numbers, letters (upper- and lower-case)
+> and an underscore (`_`) to ensure compatibility with various tools and client
+> applications. Also note that the Attribute name SHOULD contain at least one
+> letter and SHOULD NOT start with a digit.
 
 An Attribute can be read from, if *writable* is one of *READ*, *READ_WRITE*,
 *READ_WITH_WRITE*.
