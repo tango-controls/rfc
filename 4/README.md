@@ -34,6 +34,9 @@ An Attribute is a Tango concept representing a physical quantity of a device.
 The main purpose of an Attribute is to provide read and (optionally) write
 access to this quantity.
 
+In object oriented terminology, the Attribute corresponds to an instance
+variable (also called a field or a member) of a Device object.
+See [RFC 2/Device](/2) for the definition of the Device.
 
 ### Use Cases
 
