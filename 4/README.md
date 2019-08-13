@@ -3,7 +3,7 @@ domain: rfc.tango-controls.org
 shortname: 4/Attribute
 name:Attribute
 status: draft
-editor: [Sergi Blanchi-Torné](mailto:)
+editor: [Sergi Blanchi-Torné](mailto:sblanch@cells.es)
 contributors: [Michal Liszcz](mailto:michal.liszcz@s2innovation.com)
 ---
 
