@@ -48,7 +48,7 @@ Some example use cases of an Attribute are:
 ## Specification
 
 An Attribute has:
-* A set of static metadata that constitute to Attribute's definition,
+* A set of static metadata that constitute Attribute's definition,
 * A set of dynamically configurable properties, e.g. for alarming purposes,
 * A set of runtime parameters describing Attribute's value at given point
   in time.
@@ -62,10 +62,7 @@ at runtime after the Attribute is initialized.
 An Attribute MUST have associated following static metadata:
 * *name*, a string identifying the Attribute.
   It MUST be unique [^1] among all Attributes of a particular device.
-  It MAY contain any character (including multi-byte characters)
-  except that it MUST NOT contain `\0` character.
-  It MUST not not be "Status" or "State", which are reserved names.
-  It MAY be empty.
+  It MAY contain any character (including multi-byte characters).
   See `<attribute-name>` specification below,
 * *data type*, an enumeration describing the type of the data (X/DataTypes),
 * *data format*, an enumeration describing the dimension of the data
@@ -132,8 +129,8 @@ an Attribute MAY have associated following additional static metadata:
 An Attribute MUST have associated following static metadata:
 * *memorized*, a flag describing whether *set value* is stored in the database
   and restored during Attribute initialization,
-* *write hardware at init*, a flag describing whether *set value* is
-  written to the Attribute during initialization or *init* call.
+* *write hardware at init*, a flag describing whether the memorized
+  *set value* is written to the Attribute during initialization or *init* call.
   It is effective only if *memorized* is also set.
 
 To set *memorized*, following constraints MUST be satisfied:
@@ -142,13 +139,13 @@ To set *memorized*, following constraints MUST be satisfied:
 * *writable* MUST NOT be *READ* or *READ_WITH_WRITE*.
 
 If *memorized* is set and if database is being used,
-the *set value* MUST be persisted in the *__value* property upon each write
-to the Attribute.
+the *set value* MUST be persisted in the *__value* Attribute property upon
+each write to the Attribute.
 
-If *memorized* is set and *__value* property is other than "Not used yet"
-(default):
+If *memorized* is set and *__value* Attribute property is other than
+"Not used yet" (default):
 * only during Attribute initialization (at startup):
-  * *set value* MUST be set with a value stored in *__value* property,
+  * *set value* MUST be set with a value stored in *__value* Attribute property,
 * during Attribute initialization (at startup) or during an *init* command
   execution, if *write hardware at init* is also set:
   * value stored in *set value* MUST be written to the Attribute.
@@ -156,7 +153,7 @@ If *memorized* is set and *__value* property is other than "Not used yet"
 #### Forwarded attribute
 
 An Attribute can be a forwarded attribute. A forwarded Attribute MUST have
-associated *__root_att* property.
+associated *__root_att* Attribute property.
 It MUST be defined before attribute initialization at startup.
 It MUST NOT be changed in runtime.
 It MUST point to an existing attribute in another device.
@@ -190,42 +187,46 @@ General properties:
   representation. It MUST comply to
   [`printf`](http://man7.org/linux/man-pages/man3/printf.3.html)
   format string specification,
-* *min value*, describing the minimum value of Attribute's *read value*.
-  It MUST be a vaild numerical value.
+* *min value*, describing the minimum value of Attribute's *set value*.
   It MUST be defined only for Attributes with numerical *data type*.
   It MUST be defined only for writable Attributes.
-  It MUST be lower than *max value*,
-* *max value*, describing the maximum value of Attribute's *read value*.
-  It MUST be a vaild numerical value.
+  If defined:
+  it MUST be a valid numerical value,
+  it MUST be lower than *max value* (if specified),
+* *max value*, describing the maximum value of Attribute's *set value*.
   It MUST be defined only for Attributes with numerical *data type*.
   It MUST be defined only for writable Attributes.
-  It MUST be greater than *max value*.
+  If defined:
+  it MUST be a valid numerical value,
+  it MUST be greater than *min value* (if specified).
 
 Properties for alarming purposes:
 * *min alarm*, describing the threshold value of Attribute's *read value*
   below which the attribute is considered as having alarm *quality*.
-  It MUST be a vaild numerical value.
   It MUST be defined only for Attributes with numerical *data type*.
-  It MUST be lower than *max alarm*,
+  If defined:
+  it MUST be a valid numerical value,
+  it MUST be lower than *max alarm* (if specified),
 * max alarm*, describing the threshold value of Attribute's *read value*
   above which the attribute is considered as having alarm *quality*.
-  It MUST be a vaild numerical value.
   It MUST be defined only for Attributes with numerical *data type*.
-  It MUST be greater than *min alarm*,
+  If defined:
+  it MUST be a valid numerical value,
+  it MUST be greater than *min alarm* (if specified),
 * *min warning*, is deprecated,
 * *max warning*, is deprecated,
 * *delta val*, describing the maximum difference between Attribute's
   *read value* and *set value* after *delta t* time period,
   above which the attribute is considered as having alarm *quality*.
   It MUST be defined only for writable Attributes,
-* *delta t*, describing the time period after which the difference between
-  *read value* and *set value* must be lower than *delta val*.
-  Otherwise the attribute is considered as having alarm *quality*.
+* *delta t*, describing the time period (in milliseconds) after which the
+  difference between *read value* and *set value* must be lower than
+  *delta val*. Otherwise the attribute is considered as having alarm *quality*.
   It MUST be defined only for writable Attributes,
   It MUST be defined if *delta val* is also defined.
 
 Properties for event reporting purposes:
-* *rel change*, *abs change*, *archive rel chagne*, *archive abs chagne*,
+* *rel change*, *abs change*, *archive rel change*, *archive abs change*,
   describing the threshold values for relative and absolute change
   in Attribute's *read value* above which
   a *CHANGE* event or *ARCHIVE* event MUST be reported.
@@ -233,28 +234,34 @@ Properties for event reporting purposes:
   or a pair of valid numerical values separated by a `,`.
   If one value is specified, it MUST be used for both negative
   and positive change.
-  If two values are specified, the first MUST be used for netative change
+  If two values are specified, the first MUST be used for negative change
   and the second MUST be used for positive change.
   It MUST be defined only for Attributes with numerical *data type*,
 * *period*, *archive period*, describing the minimum time period
   in milliseconds after which a *PERIODIC* or *ARCHIVE* event MUST be reported,
   regardless of Attribute's *read value*. If *period* is not specified,
   a default value of 1000 ms is used,
-  It MUST be defined only for Attributes with numerical *data type*.
+
+If relative change is specified, it MUST be expressed as a percentage change
+relative to the value reported in the previous event, e.g. a relative change
+of 1 will generate an event when:
+```
+(current value - previous value) / previous value > 1%
+```
 
 See [Attribute events section](#attribute-events) for more details.
 
 ```abnf
 rel-change = change
-abs-change = chagne
+abs-change = change
 
 archive-rel-change = change
-archive-abs-change = chagne
+archive-abs-change = change
 
 number = [ "-" ] 1*DIGIT [ "." ] *DIGIT
 change = number [ "," number ]
 
-period = [ "-" ] 1*DIGIT
+period = 1*DIGIT
 archive-period = period
 ```
 
@@ -298,7 +305,7 @@ An Attribute MUST NOT have more than one *alias*.
 
 An *alias* MUST be stored in the database.
 
-An *alias* MUST be unique.
+An *alias* MUST be unique across the whole Tango system.
 
 An *alias* MAY contain any character (including multi-byte characters) except
 that it MUST NOT contain any of `/`, ` ` (space), `#`, `:`, `->`.
@@ -312,24 +319,27 @@ An Attribute can send following events:
 * *PERIODIC*,
 * *CHANGE*,
 * *ARCHIVE*,
-* *PIPE*,
 * *DATA READY*,
 * *ATTR CONF*,
 * *USER*,
 
-In order to send *PERIODIC*, *CHANGE*, *ARCHIVE*, *PIPE* and *DATA READY*
-events, an attribute must be polled. See
-[Attribute polling section](#attribute-events) for more details.
+Events can be sent automatically by a polling mechanism,
+automatically by the Tango system or manually from the device server code.
 
-See [Attribute properties section](#attribute-properties) for specific
-conditions under which the events are sent.
+The polling mechanism can send PERIODIC, CHANGE and ARCHIVE events.
+In order to send events via the polling mechanism,
+the polling for the Attribute MUST be enabled.
+See [Attribute properties](#attribute-properties) section for conditions upon
+which the events are sent with the polling enabled.
+See [RFC XX/Cache system](/XX) for more details on polling configuration.
 
+The Tango system MUST send ATTR CONF event whenever Attribute configuration
+is changed.
+See [Attribute properties](#attribute-properties) section for a list of
+modifiable attribute Properties.
 
-### Attribute polling
-
-An Attribute can be polled. A polling for the Attribute can be configured
-in Device with *polled attr* Property. See [RFC XX/Cache system](/XX) for
-more details.
+The device server code can manually send *CHANGE*, *ARCHIVE*, *DATA READY*
+and *USER* events without the need to configure the polling for the Attribute.
 
 
 ### Attribute naming schema
