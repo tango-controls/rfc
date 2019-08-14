@@ -68,6 +68,9 @@ An Attribute MUST have associated following static metadata:
   (one of *SCALAR*, *SPECTRUM*, *IMAGE*),
 * *writable*, an enumeration describing the write access to the Attribute
   (one of *READ*, *WRITE*, *READ_WRITE*, *READ_WITH_WRITE*).
+  * An Attribute can be read from, if *writable* is one of *READ*, *READ_WRITE*,
+    *READ_WITH_WRITE*.
+  * An Attribute can be written to, if *writable* is one of *WRITE*, *READ_WRITE*.
 * *display level*, an enumeration describing visibility level of the Attribute
   (one of *EXPERT*, *OPERATOR*).
 
@@ -78,10 +81,6 @@ An Attribute MUST have associated following static metadata:
 > applications. Also note that the Attribute name SHOULD contain at least one
 > letter and SHOULD NOT start with a digit.
 
-An Attribute can be read from, if *writable* is one of *READ*, *READ_WRITE*,
-*READ_WITH_WRITE*.
-
-An Attribute can be written to, if *writable* is one of *WRITE*, *READ_WRITE*.
 
 [^1]: In current implementation it is possible to define more than one
 Attribute with the same name, but only one can be accessed externally.
