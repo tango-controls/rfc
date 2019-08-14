@@ -62,7 +62,6 @@ at runtime after the Attribute is initialized.
 An Attribute MUST have associated following static metadata:
 * *name*, a string identifying the Attribute.
   It MUST be unique [^1] among all Attributes of a particular device.
-  It MAY contain any character (including multi-byte characters).
   See `<attribute-name>` specification below,
 * *data type*, an enumeration describing the type of the data (X/DataTypes),
 * *data format*, an enumeration describing the dimension of the data
@@ -74,7 +73,7 @@ An Attribute MUST have associated following static metadata:
 
 > **Note:**
 > Although it is possible to use a wide range of characters in the Attribute's
-> name, it is RECOMMENDED to use only numbers, letters (upper- and lower-case)
+> name, it is RECOMMENDED to use only numbers, ASCII letters (upper- and lower-case)
 > and an underscore (`_`) to ensure compatibility with various tools and client
 > applications. Also note that the Attribute name SHOULD contain at least one
 > letter and SHOULD NOT start with a digit.
@@ -119,8 +118,6 @@ If *data type* is *ENUM*,
 an Attribute MAY have associated following additional static metadata:
 * *enum labels*, a list of strings describing textual representation
   of enumerated values.
-  Its elements MAY contain any character (including multi-byte characters)
-  except that they MUST NOT contain `\0` character.
   It MAY be empty.
 
 
@@ -307,7 +304,7 @@ An *alias* MUST be stored in the database.
 
 An *alias* MUST be unique across the whole Tango system.
 
-An *alias* MAY contain any character (including multi-byte characters) except
+An *alias* MAY contain any character except
 that it MUST NOT contain any of `/`, ` ` (space), `#`, `:`, `->`.
 It MAY be empty.
 See `<attribute-alias>` specification below.
@@ -347,7 +344,7 @@ and *USER* events without the need to configure the polling for the Attribute.
 Formal specification of Attribute name is given below:
 ```ABNF
 attribute-name = *attribute-name-char
-attribute-name-char = %x01-FF ; OCTET except %x00
+attribute-name-char = %d48-57 / %d65-90 / %d97-122 / "_" ; 0-9 / A-Z / a-z / _
 
 full-attribute-name = device-name "/" attribute-name
 
