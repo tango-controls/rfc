@@ -129,10 +129,11 @@ An Attribute MUST have associated following static metadata:
   *set value* is written to the Attribute during initialization or *init* call.
   It is effective only if *memorized* is also set.
 
-To set *memorized*, following constraints MUST be satisfied:
-* *data format* MUST be *SCALAR*,
-* *data type* MUST NOT be *STATE* or *ENCODED*,
-* *writable* MUST NOT be *READ* or *READ_WITH_WRITE*.
+A conforming implementation MUST allow to set the *memorized* flag and MUST
+support memorization for attributes which:
+* *data format* is *SCALAR*,
+* *writable* is *WRITE* or *READ_WRITE*,
+* *data type* is not *STATE* or *ENCODED*.
 
 If *memorized* is set and if database is being used,
 the *set value* MUST be persisted in the *__value* Attribute property upon
