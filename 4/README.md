@@ -343,7 +343,7 @@ and *USER* events without the need to configure the polling for the Attribute.
 
 Formal specification of Attribute name is given below:
 ```ABNF
-attribute-name = *attribute-name-char
+attribute-name = 1*attribute-name-char
 attribute-name-char = %d48-57 / %d65-90 / %d97-122 / "_" ; 0-9 / A-Z / a-z / _
 
 full-attribute-name = device-name "/" attribute-name
