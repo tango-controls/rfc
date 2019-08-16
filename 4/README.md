@@ -210,8 +210,20 @@ Properties for alarming purposes:
   If defined:
   it MUST be a valid numerical value,
   it MUST be greater than *min alarm* (if specified),
-* *min warning*, is deprecated,
-* *max warning*, is deprecated,
+* *min warning*,
+  describing the threshold value of Attribute's *read value*
+  below which the attribute is considered as having warning *quality*.
+  It MUST be defined only for Attributes with numerical *data type*.
+  If defined:
+  it MUST be a valid numerical value,
+  it MUST be lower than *max warning* (if specified),
+* *max warning*,
+  describing the threshold value of Attribute's *read value*
+  above which the attribute is considered as having warning *quality*.
+  It MUST be defined only for Attributes with numerical *data type*.
+  If defined:
+  it MUST be a valid numerical value,
+  it MUST be greater than *min warning* (if specified),
 * *delta val*, describing the maximum difference between Attribute's
   *read value* and *set value* after *delta t* time period,
   above which the attribute is considered as having alarm *quality*.
