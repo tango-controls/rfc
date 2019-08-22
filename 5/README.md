@@ -74,7 +74,7 @@ A Tango Property is a strict definition of a pair of key/value
 * When a error occurs (i.e. network issue, Tango Database timeout...), a DevFailed exception MUST be thrown (RFC-x for DevFailed?)
 * All device and class properties MUST be loaded at init command or device start-up (RFC-8)
 * A device or class property MAY have an OPTIONAL default value. 
-	* The device property loading flow in pseudo-code is:
+	* The device property value loading flow in pseudo-code is:
 	```
 	property-value = getDevicePropertyFromTangoDBorFile(device-name, property-name)
 	if(property-value is empty)
@@ -82,7 +82,7 @@ A Tango Property is a strict definition of a pair of key/value
 	if(property-value is empty && default-value is not empty)
   		property-value = default-value
   	```
-	* The class property loading flow property-name is:
+	* The class property valueloading flow is:
 	```
 	property-value = getClassPropertyFromTangoDBorFile(class-name, property-name)
 	if(property-value is empty && default-value is not empty)
