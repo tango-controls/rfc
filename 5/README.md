@@ -12,7 +12,7 @@ contributors:
 
 This document describes the Property, a Tango concept representing one or more values to configure one of the following Tango elements namely Tango Device, Class, Attribute, System or a not associated to any Tango element, so called free properties. This document describes version 1.0 of the Property.
 
-See also: 2/Device, X/Database, X/Attribute, X/Class
+See also: 2/Device, 6/Database, 4/Attribute, 9/Class
 
 ## Preamble
 
@@ -31,7 +31,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
  *  Class property: a property that is attached to a Device Class (cf RFC-9). This property is accessible from all devices of the class
  *  Device property: a property that is attached to a Device (RFC-2). This property is accessible from only one device
  *  Attribute property: a property that is attached to an Attribute (RFC-4).
- *  Free property: TODO
+ *  Free property: a property to persist data that is not related to any Tango class, device or attribute.
 
 ### Goals
 
@@ -54,8 +54,9 @@ There are many use cases for the usage of a Property:
 
 * To change the representation of an information in order to be more user friendly a Property can define a new data format for the graphical user interface to convert the raw data.
 
-* TODO: Memorized Attribute
+* To configure some alarms on attribute's value.
 
+* To memorize the attribute value each time it changes.
 
 ## Specification
 
@@ -63,62 +64,105 @@ A Tango Property is a strict definition of a pair of key/value
 * The Property SHALL have one key, called Property Name
 * The Property SHALL have one value, which could be empty, called Property Value
 * If the device is started upon a Tango Database, Class, Device, Attribute and Free Properties MAY be persisted into the Tango Database (RFC6)
-* If the device is started without a Tango Database, the device and class properties MAY be persisted in a file (but no support for the attribute properties) 
+* If the device is started without a Tango Database, the device and class properties MAY be persisted in a file (but no support for the attribute properties). 
 * All device and class properties MAY be directly modified and accessed through the database device or its file
 * Attribute properties SHOULD be modified and accessed at any time through the device object (RFC-2)
 * All default attribute and device properties are OPTIONAL
-* The attribute, class and device properties MAY be defined in the device code and they MAY be OPTIONAL OR REQUIRED (mandatory)
-* TODO memorized attributes, system properties
-* TODO : properties history
-* TODO: error management
-* All device and class properties MUST be loaded at init command or device start-up
-* If a device property does not exist, the device MUST load the class property having the same name
+* The attribute, class and device properties MAY be defined in the device code and they MAY be OPTIONAL OR REQUIRED (also called mandatory properties).
+* TODO: system properties
+* If the device is started upon a Tango Database, the class and device properties changes are historized in the Tango Database (RFC-6)
+* When a error occurs (i.e. network issue, Tango Database timeout...), a DevFailed exception MUST be thrown (RFC-x for DevFailed?)
+* All device and class properties MUST be loaded at init command or device start-up (RFC-8)
+* A device or class property MAY have an OPTIONAL default value. 
+	* The device property loading flow in pseudo-code is:
+	```
+	property-value = getDevicePropertyFromTangoDBorFile(device-name, property-name)
+	if(property-value is empty)
+  		property-value = getClassPropertyFromTangoDBorFile(class-name, property-name)
+	if(property-value is empty && default-value is not empty)
+  		property-value = default-value
+  	```
+	* The class property loading flow property-name is:
+	```
+	property-value = getClassPropertyFromTangoDBorFile(class-name, property-name)
+	if(property-value is empty && default-value is not empty)
+  		property-value = default-value
+  	```
 * All device and class properties MAY be modified and accessed through the database device when using a Tango Database (RFC-6)
-* A Tango device MUST manage the following default device properties: cmd_min_poll_period, min_poll_period, attr_min_poll_period, poll_ring_depth, cmd_poll_ring_depth, attr_poll_ring_depth, polled_attr, logging_target, logging_level, logging_rft (TODO: description of each one)
-* An attribute MUST manage the following default attribute properties (TODO: descriptions):
-	 * String **label** default value "";
-	 * String **description** default value  "No description"
-	 * String **unit** default value "No unit"
-	 * String **standard_unit** default value "No standard unit"
-	 * String **display_unit** default value "No display unit"
-	 * String **format** default value :
-				* attribute type is a string, "%s"
-				* attribute type is float or double, "%6.2f"
-				* "Not specified" otherwise
-  * String **min_value** default value "Not specified"
-  * String **max_value** default value  "Not specified"
-  * String **min_alarm** default value "Not specified"
-  * String **max_alarm** default value  "Not specified"
-  * String **min_warning** default value  "Not specified"
-  * String **max_warning** default value  "Not specified"
-  * String **delta_t** default value  "Not specified"
-  * String **delta_val** default value "Not specified"
-		* String **abs_change** default value "Not specified"
-		* String **rel_change** default value "Not specified"
-		* String **event_period** default value "Not specified"
-		* String **archive_period** default value "Not specified"
-		* String **archive_rel_change** default value "Not specified"
-		* String **archive_abs_change** default value "Not specified"
-		* String **enum_labels** default value "Not specified"
-		* String **__root_att** default value "Not specified"
-		* String **enum_labels**
-		* String **__value**
+* A Tango device MUST manage the following default device properties, see RFC-cache and RFC-logging:
 
+| Name | Default value |  Description |
+| --- | --- | --- |
+| poll_ring_depth | "" | ? |
+| min_poll_period | "" | Minimum polling period for attributes and commands |
+| cmd_min_poll_period | "" | List of command minimum polling periods |
+| cmd_poll_ring_depth | "" | List of command polling history depth |
+| attr_min_poll_period | "" | List of attribute minimum polling periods |
+| attr_poll_ring_depth | "" | List of attribute polling history depth |
+| polled_attr | "" | List of polled attribute's names|
+| logging_target | "" | Device logging target, a file or a device. ex: "file:/tmp/file.log", "device:log/device/logger.1" |
+| logging_level | "" | Device logging level (FATAL, ERROR, WARN, INFO, DEBUG, OFF) |
+| logging_rft | "" | ? |
+
+* An attribute MUST manage the following default attribute properties (TODO: move this to specifics RFCs: Attribute Configuration properties / Attribute Event properties / Attribute Properties?):
+	* Attribute Configuration properties :
+	
+| Name | Default value |  Description |
+| --- | --- | --- |
+| label | "" | |
+| description | "No description" | A description of the attribute |
+| unit | "No unit" | |
+| standard_unit | "No standard unit" | |
+| display_unit | "No display unit" | Unit to display |
+| format | if attribute type is a string, "%s". If attribute type is float or double, "%6.2f". "Not specified" otherwise | Display format |
+
+	* Attribute Configuration properties, see RFC-4:
+	
+| Name | Default value |  Description |
+| --- | --- | --- |
+| min_value | "Not specified" | Only for numeric attributes. Minimum allowed attribute value.|
+| max_value | "Not specified" | Only for numeric attributes. Maximum allowed attribute value. |
+| min_alarm | "Not specified" | Only for numeric attributes. Attribute's value minimum alarm |
+| max_alarm | "Not specified" | Only for numeric attributes. Attribute's value maximum alarm |
+| min_warning | "Not specified" | Only for numeric attributes. Attribute's value minimum warning|
+| max_warning | "Not specified" | Only for numeric attributes. Attribute's value maximum warning|
+| delta_t | "Not specified" | Only for numeric attributes. Attribute's value delta time used to process delta Alarm. |
+| delta_val | "Not specified" | Only for numeric attributes. Attribute's value delta value used to process delta Alarm. |
+| enum_labels | "Not specified" |  Only used for DevEnum attributes. List of enumerated labels. |
+| __root_att | "Not specified" | Only used for forwarded attributes. Name of the underlying attribute. |
+| __value | "" | Only used for memorized attributes. Memorized attribute's value. |
+
+	* Attribute Event properties, see RFC-12 and RFC-13 :
+| Name | Default value |  Description |
+| --- | --- | --- |
+| event_period | "Not specified" | Change event period. |
+| abs_change | "Not specified" | Value to trigger an absolute change event.  |
+| rel_change | "Not specified" | Value to trigger a relative change event.  |
+| archive_period | "Not specified" | Archiving event period.|
+| archive_abs_change | "Not specified" | Value to trigger an absolute archiving event. |
+| archive_rel_change | "Not specified" | Value to trigger an relative archiving event.  |
 
 ### Naming convention
 * The Property's Name SHALL use the following convention:
 ``` ABNF
-property-name = 1*VCHAR
+alphanum = ALPHA / DIGIT 
+underscore = %x5F
+device_property_name = 1*1ALPHA 0*254(alphanum / underscore)
+class_property_name = 1*1ALPHA 0*254(alphanum / underscore)
+free_property_name = 1*1ALPHA 0*254(alphanum / underscore)
+attribute_property_name = 1*1(ALPHA / underscore) 0*254(alphanum / underscore)
 ```
-* The property name is case insensitive
 * The Property value MUST use the following convention:
-        single value that may contain any character
-        or an array with carriage return
-        special values: "NaN", "inf"
-	* TODO nodbproperties file convention		
+``` ABNF
+ propery-value = CHAR / 1*CHAR CR / "NaN" / "inf"
+ ```
+
+### Properties for device without database
+
+* A device started without a Tango Database MAY use a file to persits its properties. Here is an example file content that must be provided	
 ```
 # --- 1/1/1 properties
-1/1/1->myProp:titi
+1/1/1->myProp:value
 
 
 CLASS/MyClass->myClassProp: 10
