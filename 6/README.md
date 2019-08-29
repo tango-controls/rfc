@@ -9,7 +9,6 @@ contributors: [David Erb](mailto:david.erb@maxiv.lu.se)
 
 This document describes the Tango Database specification.
 
-
 ## Preamble
 
 Copyright (c) 2019 Tango Controls
