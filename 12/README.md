@@ -44,7 +44,7 @@ For more details see [RFC-2](https://github.com/tango-controls/rfc/tree/draft/2)
 
 *Tango Server API* (server API) - an API that user uses to develop *Tango Device* functionality.
 
-*Upstream Tango Server/Device* (upstream server) - a *Tango Device* to which updates *client* subscribes for.  
+*Upstream Tango Server/Device* (upstream server/device) - a *Tango Device* to which updates *client* subscribes for.  
 
 *Polling thread* (polling thread) - a thread within *Tango Server* that polls periodically defined *Tango Device*'s attributes/sometimes commands.
 
@@ -54,20 +54,24 @@ For more details see [RFC-2](https://github.com/tango-controls/rfc/tree/draft/2)
 
 *Tango Event Callback* (callback) - a piece of code that *client library* executes when an update is received.
 
+*Channel* - virtual client-server point-to-point connection for transmitting events
+
 ## Definitions
 
-This section offers a number of ABNF formal definitions for entities repeatedly used below in this document. 
+This section offers a number of ABNF formal definitions for entities repeatedly used below in this document.
 
-```ABNF
-EVENT_TYPE = "QUALITY_EVENT" | "INTERFACE_CHANGE" | "PIPE" | "ATTR_CONF_EVENT" |  "CHANGE_EVENT" | "PERIODIC_EVENT" | "ARCHIVE_EVENT" | "USER_EVENT" | "HEARTBEAT"
+> **NOTE**: in the below ABNF some basic definitions are used as rules, spaces are replaced with '_' 
 
-HEARTBEAT_ENDPOINT = "(upstream server FQDN):port"  
+```ABNF  
+SUBSCRIBER_INFO = [(upstream_device) (attribute_name) (action) EVENT_TYPE (client_idl_ver)]
+                                                                
+SUBSCRIPTION_INFO = [(server library release ver) (upstream device idl ver) (zmq_sub_event_hwm) (rate) (ivl) (zmq release ver) (heartbeat_endpoint) (event_endpoint) n*(alternate_heartbeat_endpoint) n*(alternate_event_endpoint) (heartbeat_channel) (event_channel)]
 
-EVENT_ENDPOINT = "(upstream server FQDN):port"
+EVENT_TYPE = "QUALITY_EVENT"/"INTERFACE_CHANGE"/"PIPE"/"ATTR_CONF_EVENT"/"CHANGE_EVENT"/"PERIODIC_EVENT"/"ARCHIVE_EVENT"/"USER_EVENT"/"HEARTBEAT"
 
-HEARTBEAT_CHANNEL = "(upstream admin device FQDN)/heartbeat" 
+EVENT_CHANNEL = channel
 
-EVENT_CHANNEL = "(upstream admin device FQDN)/(attr).EVENT_TYPE[_idl5]" 
+HEARTBEAT_CHANNEL = channel
 ```
 
 ## Runtime requirements
@@ -92,65 +96,47 @@ The main goal of the this protocol implementation is to allow client receive eve
 
 ![Subscription_2.png](images/Subscription_2.png)
 
-Negotiation phase implies that client executes admin's EventSubscriptionChange command:
+Negotiation phase implies that client and server exchange required data using Tango commands [RFC-3, RFC-13]:
 
-* Admin MUST implement EventSubscriptionChange command: 
+* Client MUST notify server providing SUBSCRIBER_INFO to establish Publisher-Subscriber relationship
 
-```ABNF
-EventSubscriptionChange = Tango Command
-EventSubscriptionChange_ARGIN-type  = DevVarStringArr 
-EventSubscriptionChange_ARGIN-value = "[ (upstream device), (attribute), "subscribe", EVENT_TYPE]"
-EventSubscriptionChange_ARGOUT-type = DevLong
-EventSubscriptionChange_ARGOUT-value = "(server library release ver)"
-```
+  > in Tango 9 the above is done by executing EventSubscriptionChange admin command 
+  > Tango 9 forces client to explicitly execute ZmqEventSubscriptionChange to use ZMQ based implementation [RFC-13]                                                                                                              
 
-**NOTE**: Tango Server Library v9.3.3 force client to explicitly call ZmqEventSubscriptionChange to use ZMQ based implementation [RFC-13]: 
- 
-```ABNF
-ZmqEventSubscriptionChange = Tango Command
-ZmqEventSubscriptionChangeArgument-type  = DevVarStringArr 
-ZmqEventSubscriptionChangeArgument-value = "[ upstream device, attribute, action ("subscribe|unsubscribe"), EVENT_TYPE]"
-ZmqEventSubscriptionChangeOutput-type = DevVarLongStringArr
-ZmqEventSubscriptionChangeOutput-value = "[(server library release ver), (upstream device idl ver), (zmq_sub_event_hwm), (rate), (ivl), (zmq release ver); (heartbeat_endpoint), (event_endpoint), n*(alternate_heartbeat_endpoint), n*(alternate_event_endpoint),(heartbeat_channel), (event_channel)]"
-```
+* Server MUST respond to the client providing SUBSCRIPTION_INFO
 
-* Client MUST execute admin's EventSubscriptionChange command to establish Publisher-Subscriber relationship
+* Client MUST connect to upstream server using provided SUBSCRIPTION_INFO
 
-* Client SHOULD establish tcp? connection to heartbeat/event endpoints
+* Client SHOULD postpone event subscription process in case of connection failure and try again later 
 
-* Client MAY iterate over alternative heartbeat/event endpoints to establish connection if above has failed
+Tango Event System uses concept of channels for delivering events. Channel is established between client and admin. There are two channels per subscription: heartbeat and event.
 
-* Client MAY use provided heartbeat/event channels to identify event source 
+* Client MUST establish channel or multicast connection to heartbeat/event endpoints
+
+* Server MAY send and client MAY iterate over alternative heartbeat/event endpoints to establish connection
+
+* Client MAY NOT use provided heartbeat/event channels to identify event source 
 
 ### Subscription 
 
 * Server MUST send events via corresponding EVENT_CHANNEL
 
-* Server MUST send HEARTBEAT event every 9 seconds
+* Server MUST send HEARTBEAT via corresponding HEARTBEAT_CHANNEL event every 9 seconds
 
-* Client MUST execute EventConfirmSubscription command every 600 seconds to indicate its interest in subscription
-
-```abnf
-EventConfirmSubscription
-```  
+* Client SHOULD indicate its interest in subscription not later than every 600s
 
 ### Cancel event subscription
 
-* Client MAY cancel its subscription by executing EventSubscriptionChange on upstream admin 
+* Client MAY cancel its subscription
 
-```abnf
-
-EventSubscriptionChange_ARGIN-value = "[ (upstream device), (attribute), "unsubscribe", EVENT_TYPE]"
-
-```
-
-* Server MUST stop to send events to client whose subscription is canceled
+* Server SHOULD NOT send events to client whose subscription is canceled
 
 ### Fault tolerance
 
 Tango Pub-Sub protocol implies a number of fault tolerance techniques:
 
 - server heartbeat
+- transparent client reconnection
 - client subscription confirmation
 - events client/server buffer
 
@@ -158,8 +144,12 @@ Tango Pub-Sub protocol implies a number of fault tolerance techniques:
 
 * Client MAY try to re-subscribe indefinitely
 
-* Server MAY cancel client's subscription if it does not confirm its interest i.e. EventConfirmSubscription was not executed
+* Server MAY cancel client's subscription if it does not confirm its interest
 
 * Client/Server SHOULD implement (in/out)coming events buffer to prevent overload 
 
 * Client/Server MUST prevent crash in case events overflow
+
+* Client SHOULD be notified in case of missing events 
+
+  > e.g.: In the current C++ implementation at least, the client callback is executed with an API_MissedEvents error event when the client library detected that some events got lost. There is a mechanism with some counters associated with each event to help detecting this kind of problems
