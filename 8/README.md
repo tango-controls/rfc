@@ -1,12 +1,13 @@
 ---
 domain: rfc.tango-controls.org
-shortname: X/SERVER
+shortname: 8/SERVER
 name: Device Server Model
 status: raw
 editor: 
+contributors: Piotr Goryl, Vincent Hardion
 ---
 
-This document provides Device Server specification.
+This document provides the specification of the Device Server.
 
 See also: 2/Device
 
@@ -21,51 +22,55 @@ This Specification is a [free and open standard](http://www.digistan.org/open-st
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 
 ## Tango Device Server specification
-Template is a ...
+
+ The specication of '''Device Server''' aims to define a standard Device representing a process of Device management.
 
 ### Goals
 
- aims to ...
+ A Device Server in a Tango Controls aims to control the process of communication and lifecycle of the Device.
 
 Additionally, it aims to:
 
-* Provide ...
+* Provide a blackbox that register the operation on a Device
 
-* Be usable as ...
-
-* Be compatible ...
+* Be usable as a Device
 
 ### Use Cases
 
 There are X main use cases for Device Server:
 
-* To reduce the entry cost of RFC submission.
+* to manage several Device in the same process
 
-* To make coherent the RFC
+* to share the same channel of communication
 
+* to serialise the operation per Device
 
-#### Device Initialization
+## Specification
+The Device Server can manage the communication with one or several Device.  Additionally it enforces the behaviour compatibility with the Tango Control System and offer different meta service.
 
-Device Initialisation phase is intended to prepare Device Object for Operation. 
+The Device Server SHALL follow these specification below in order to  control and monitor this communication:
 
-Device Initialization SHOULD be divided into two subsequent steps:
+* The Device Server MUST be a Device it self.
 
-1) Object creation, when an object is created in a space of a Device Server process. After this phase Device object 
-   SHALL be accessible locally and via network. During this phase the same `user code` which is executed when the 
-   Device Init command is executed MAY be called.
+Additionally,
+* A Device Server MAY be call DServer or Admin Device but the term Device Server is RECOMMENDED
 
-2) Device exporting, when Device is made visible within the Tango Controls system. It SHALL use a Database System 
-   ([RFC-6]()) to provide information on how other actors in the system can access its interface. 
-
-
-The Device Server MUST implement at least Object creation step.
-
-#### Device Operation
+#### Device Server interface
 
 * Attribute read and write
 * Command Call
 * Device State handling
 
-#### Device Destruction
+#### The Device Export sequence
+
+The phase called Device Export is intended to prepare the Device for its operation and accessibility in the Tango Control System by the Device Server:
+
+* The Device Server MUST take in charge of the Device Export
+
+* The Device Export SHOULD bring the Device at the same State than after an Init Command.
+* The Device Export SHOULD execute the Device Registration of the Database([RFC-6]()), in order to be accessible locally and via network.
+
+
+#### The Device Unexport sequence
 
 ...
