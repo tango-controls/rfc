@@ -100,7 +100,8 @@ Negotiation phase implies that client and server exchange required data using Ta
 
 * Client MUST notify server providing SUBSCRIBER_INFO to establish Publisher-Subscriber relationship
 
-  > in Tango 9 the above is done by executing EventSubscriptionChange admin command 
+  > in Tango 9 the above is done by executing EventSubscriptionChange admin command  
+                                                                                                        >
   > Tango 9 forces client to explicitly execute ZmqEventSubscriptionChange to use ZMQ based implementation [RFC-13]                                                                                                              
 
 * Server MUST respond to the client providing SUBSCRIPTION_INFO
