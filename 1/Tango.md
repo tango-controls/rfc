@@ -3,7 +3,7 @@ domain: rfc.tango-controls.org
 shortname: 1/TANGO
 name: Tango Control System
 status: raw
-editor: Vincent Hardion (vincent.hardion@maxiv.lu.se)
+editor: Lorenzo Pivetta (lorenzo.pivetta@elettra.eu)
 ---
 
 This document describes Tango, a control system framework. This RFC define the specification of a control system following the philosophy of Tango.
