@@ -103,11 +103,11 @@ Attribute, Pipe, Command following the rules below:
 
 **Note**: Future specification may remove 'SHALL have' requirements for State and Status commands.
 
-* The Device SHALL have one unique identifier which represents its Name
+* The Device SHALL have one unique identifier which represents its Device Name
 
 ### Naming convention
 
-* The Device's Name SHALL use the following convention:
+* The Device Name SHALL use the following convention:
 
 ``` ABNF
 device-name = domain "/" family "/" member
@@ -143,14 +143,15 @@ The Device Interface is a list of Attributes, Pipes and Commands provided by a D
 * The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or 
   Device Operation phase. 
 
-
 ### Device lifecycle
 
 The Device lifecycle is:
-* Device Initialisation phase, when Device object is created and made visible in a Tango Controls System (see [RFC-1](), [RFC-8]())
-* Device Operation phase, when Device Interface MUST be available to actors of the Tango Controls System.
-* Device Destruction phase, when Device SHOULD be unregistered from the Tango Control system and Device Interface MAY not
-  be available within the Tango Controls System. 
+* Device MUST be in one of two phases: Exported or Not Exported.
+* In the Exported phase, Device Interface MUST be accessible to actors of the Tango Controls System.
+* In the Not Exported phase, Device Interface MUST NOT be accessible to actors of the Tango Controls System.
+* At the transition from the phase Not Exported to the phase Exported the Device MUST be initialised as if its 
+  Init Command was executed.
+* At the transition from the phase Exported to the phase Not Exported the Device SHOULD gracefully be uninitialised. 
 
 The device lifecycle MUST be implemented by a Device Server.
 
