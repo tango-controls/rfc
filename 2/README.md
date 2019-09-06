@@ -4,6 +4,7 @@ shortname: 2/Device
 name: Device Model
 status: raw
 editor: David Erb (david.erb@maxiv.lu.se)
+contributor: Piotr Goryl (piotr.goryl@s2innovation.com)
 ---
 
 This document describes the Tango Device model specification version 5.0.
