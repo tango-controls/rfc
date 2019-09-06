@@ -9,7 +9,7 @@ contributor: Piotr Goryl (piotr.goryl@s2innovation.com)
 
 This document describes the Tango Device model specification version 5.0.
 
-See also: X/Command, X/Attribute, X/Property, X/Pipe
+See also: 1/TANGO, 3/Command, 4/Attribute, 5/Property, 7/Pipe, 8/Server, 9/Class
 
 ## Preamble
 
