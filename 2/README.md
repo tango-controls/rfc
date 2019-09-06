@@ -155,7 +155,21 @@ The Device lifecycle is:
 
 The device lifecycle MUST be implemented by a Device Server.
 
-### Device State
+### Device State and Status
+
+A value of State attribute SHOULD reflect context of a running Device. If Device is related to a hardware or virtual
+entity or to some process, the value of State attribute SHOULD reflect the state of entity or process.   
+
+[TO-DO: default Status attribute value ]
+
+[TO-DO: default state and status command ]
+
+### State Machine
+
+If not implemented explicitly by the Device Server,  State attribute value is set by default to `UNKNOWN`.
+It is RECOMMENDED to override this behaviour by adequate implementation of the Device Server.
+
+[TO-DO: automatic ALARM state]
 
 Value of Device's State attribute MAY impact how the Device object respond to:
 
