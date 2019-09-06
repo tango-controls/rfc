@@ -30,7 +30,7 @@ and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119]
 
 ## Tango Device Specification
 
-A Device is designed to represent any controlled object in Tango Controls system.
+A Device is designed to represent any controlled object in Tango Controls System.
 This specification is inspired by the comment written by A. Götz and E. Taurel in the tango.idl file from 
 the original implementation (https://github.com/tango-controls/tango-idl)
 
@@ -39,7 +39,7 @@ the original implementation (https://github.com/tango-controls/tango-idl)
 ### Goals
 
 The Tango Device represents the fundamental interface for all TANGO objects. Directly inspired from the object 
-oriented programming a Device object has data and actions. It allows users of the Tango Controls system to access 
+oriented programming a Device object has data and actions. It allows users of the Tango Controls System to access 
 (read and/or write) information (data) stored in or processed by hardware or virtual devices and call actions which
 may influence hardware state and behaviour.  Typically, access to data is provided via Device's Attributes and Pipes
 and actions are initiated by calling Device's Commands.  
@@ -53,7 +53,7 @@ Additionally, it aims to:
 * Be usable as a logical abstraction of hardware. For example the same GUI application may be used to control power 
   supplies powering magnets and powering heat coils.
 
-* Expose, to Users and other Actors of the Tango Controls system, a semantic interface which is well understood, 
+* Expose, to Users and other Actors of the Tango Controls System, a semantic interface which is well understood, 
   intuitive, and match the object-oriented paradigm. For example, a power supply Device may be implemented in Java, 
   Python or C++ language. Irrespectively to the implementation language, Attributes *current* and *voltage* can be 
   implemented as field members of an object, while *on* and *off* commands can be implemented as methods of the 
@@ -147,10 +147,10 @@ The Device Interface is a list of Attributes, Pipes and Commands provided by a D
 ### Device lifecycle
 
 The Device lifecycle is:
-* Device Initialisation phase, when Device object is created and made visible in a Tango Controls system (see [RFC-1](), [RFC-8]())
-* Device Operation phase, when Device Interface MUST be available to actors of the Tango Controls system.
+* Device Initialisation phase, when Device object is created and made visible in a Tango Controls System (see [RFC-1](), [RFC-8]())
+* Device Operation phase, when Device Interface MUST be available to actors of the Tango Controls System.
 * Device Destruction phase, when Device SHOULD be unregistered from the Tango Control system and Device Interface MAY not
-  be available within the Tango Controls system. 
+  be available within the Tango Controls System. 
 
 The device lifecycle MUST be implemented by a Device Server.
 
