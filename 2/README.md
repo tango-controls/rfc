@@ -193,11 +193,11 @@ The Init command purpose is to re-initialise the Device.
 
 Value of Device's State attribute MAY impact how the Device object responds to:
 
-* Writing to a Device's Attribute or a Device's Pipe  
-* Calling a Device's Command
+* Reading and writing of its Attribute or Pipe  
+* Calling a Command
 
-The Device MAY not execute (block) the attribute write or the pipe write operation or the command execution code for individual States.
-In such a case the Device object SHALL respond with throwing a `DevFailed` exception.
+The Device MAY not execute (block) the Attribute or Pipe read or write operation or the command execution code 
+for individual States. In such a case the Device object SHALL respond with throwing a `DevFailed` exception.
 The way how a Device object responds to the above calls define a Device State Machine.
 
 **NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
