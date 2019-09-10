@@ -152,6 +152,14 @@ The Device lifecycle is:
 
 The device lifecycle MUST be implemented by a Device Server.
 
+### Init command
+
+The Init command purpose is to re-initialise the Device.
+
+* The Init command, when called, SHALL in a sequence:
+  * gracefully un-initialise the Device (free any dynamic resources allocated to the Device)
+  * initialise the Device
+
 ### Device State and Status
 
 * The *data type* of State Attribute MUST be `DevState`. The *read value* of Status attribute MUST be 
