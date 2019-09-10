@@ -9,7 +9,8 @@ contributor: Piotr Goryl (piotr.goryl@s2innovation.com)
 
 This document describes the Tango Device model specification version 5.0.
 
-See also: 1/TANGO, 3/Command, 4/Attribute, 5/Property, 7/Pipe, 8/Server, 9/Class
+See also: [1/TANGO](/1), [3/Command](/2), [4/Attribute](/4), [5/Property](/5), [6/Database](/6), [7/Pipe](/7), 
+          [8/Server](/8)
 
 ## Preamble
 
@@ -85,11 +86,11 @@ Its model can be represented as a defined tree which each elements are from a de
 Attribute, Pipe, Command following the rules below:
 
 * The Device is a distributed object which SHALL be accessible locally or via network.
-* The Device SHALL be an instance of one Device Class, see [RFC-9]()
-* The Device MAY have one or several Property, called Device Property, see [RFC-5]()
-* The Device MAY have one or several Attribute, see [RFC-4]() 
-* The Device MAY have one or several Pipe
-* The Device MAY have one or several Command, see [RFC-3]()
+* The Device SHALL be an instance of one Device Class, see [Device Class section](#device-class)
+* The Device MAY have one or several Property, called Device Property, see [RFC 5/Property](/5)
+* The Device MAY have one or several Attribute, see [RFC 4/Attribute](/4) 
+* The Device MAY have one or several Pipe, see [RFC 7/Pipe](/7)
+* The Device MAY have one or several Command, see [RFC 3/Command](/3)
 
 * The Device SHALL have one Init command
 
@@ -198,7 +199,7 @@ attribute value.
 
 ### Reserved Device Names
 
-However it is possible to use any Device Name as it is stated in [Naming convention](#naming-convention) section,
+However it is possible to use any Device Name as it is stated in [Naming convention section](#naming-convention),
 some groups of names are reserved. One is Admin Device Name (see [RFC 8/Server](/8)), defined as follows: 
 
 ``` ABNF
@@ -215,6 +216,6 @@ member = 1*VCHAR
 Devices of some of Device Classes are used to provide standard Tango Controls System services. 
 These Device Classes' Names SHOULD not be used for other purposes. Below is a list of reserved Device Class Names:
 
-* `%i"DataBaseds"`
+* `%i"DataBaseds"`, see [RFC 6/Database](/6)
 * `%i"TangoAccessControl"`
 * `%i"DServer"`
