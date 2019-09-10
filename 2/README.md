@@ -103,7 +103,7 @@ Attribute, Pipe, Command following the rules below:
 
 **Note**: Future specification may remove 'SHALL have' requirements for State and Status commands.
 
-* The Device SHALL have one unique identifier which represents its Device Name
+* The Device SHALL have one unique identifier which represents its Device Name.
 
 ### Naming convention
 
@@ -157,28 +157,42 @@ The device lifecycle MUST be implemented by a Device Server.
 
 ### Device State and Status
 
-A value of State attribute SHOULD reflect context of a running Device. If Device is related to a hardware or virtual
-entity or to some process, the value of State attribute SHOULD reflect the state of entity or process.   
+* The *data type* of State Attribute MUST be `DevState`. The *read value* of Status attribute MUST be 
+  of `DevState` data type.
+* The State attribute's *writable* metadata MUST be `READ`.
+* The *data format* of State Attribute MUST be `SCALAR`.
+* The *read value* of State Attribute SHOULD reflect the context of a running Device. If Device is related to hardware or a virtual entity or some process, the value of State attribute SHOULD reflect the state of the entity or process.
 
-[TO-DO: default Status attribute value ]
+* The *data type* of Status attribute MUST `DevString`. The *read value* of Status attribute MUST be 
+  of `DevString` data type.
+* The Status attribute's `writable` metadata MUST be `READ`. 
+* The `data format` of the Status attribute MUST be `SCALAR`.
 
-[TO-DO: default state and status command ]
+* A *read value* of Status Attribute SHOULD provide status information related to the Device. 
+* Default implementation SHOULD set Status Attribute's  *read value* to indicate the Device State. 
+* The Status default behaviour MAY be re-implemented with a user-code in Device Server to provide 
+  more or other information. 
+
+* The State Command MUST return the same value as would be read from the State Attribute at the time 
+  of the command execution.
+* The Status Command MUST return the same value as would be read from the Status Attribute at the time of the command execution.
 
 ### State Machine
 
-If not implemented explicitly by the Device Server,  State attribute value is set by default to `UNKNOWN`.
-It is RECOMMENDED to override this behaviour by adequate implementation of the Device Server.
+* If not implemented explicitly by the Device Server, State Attribute *read value* SHALL be set to `UNKNOWN`. 
+  It is RECOMMENDED to override this behaviour by an adequate implementation of the Device Server.
 
-[TO-DO: automatic ALARM state]
+* If at least one of Device Attribute has the *quality* set to `ALARM` the *read value* of Device State attribute 
+  MUST be `ALARM`.
 
-Value of Device's State attribute MAY impact how the Device object respond to:
+Value of Device's State attribute MAY impact how the Device object responds to:
 
 * Writing to a Device's Attribute or to a Device's Pipe  
 * Calling a Device's Command
 
-Device MAY not execute (block) the attribute write or the pipe write operation or the command execution code for certain States.
-In such a case the the Device object SHALL respond with throwing an exception.  [TO-DO: specify which exception]
-The way how a Device object respond to the above calls define a Device State Machine.
+The Device MAY not execute (block) the attribute write or the pipe write operation or the command execution code for individual States.
+In such a case the Device object SHALL respond with throwing a `DevFailed` exception.
+The way how a Device object responds to the above calls define a Device State Machine.
 
 **NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
 attribute value. 
