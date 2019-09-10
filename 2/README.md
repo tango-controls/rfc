@@ -3,13 +3,13 @@ domain: rfc.tango-controls.org
 shortname: 2/Device
 name: Device Model
 status: raw
-editor: [Vincent Hardion](mailto:vincent.hardion@maxiv.lu.se))
+editor: [Vincent Hardion](mailto:vincent.hardion@maxiv.lu.se)
 contributors: [Piotr Goryl](mailto:piotr.goryl@s2innovation.com)
 ---
 
 This document describes the Tango Device model specification version 5.0.
 
-See also: [1/TANGO](/1), [3/Command](/2), [4/Attribute](/4), [5/Property](/5), [6/Database](/6), [7/Pipe](/7), 
+See also: [1/TANGO](/1), [3/Command](/3), [4/Attribute](/4), [5/Property](/5), [6/Database](/6), [7/Pipe](/7), 
           [8/Server](/8)
 
 ## Preamble
