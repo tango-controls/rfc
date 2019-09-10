@@ -37,10 +37,9 @@ the original implementation (https://github.com/tango-controls/tango-idl)
 
 ### Goals
 
-The Tango Device represents the fundamental interface for all TANGO objects. Directly inspired from the object 
-oriented programming a Device object has data and actions. It allows users of the Tango Controls System to access 
+The Tango Device represents the fundamental interface for all TANGO objects. Directly inspired by object-oriented programming, a Device object has data and actions. It allows users of the Tango Controls System to access 
 (read and/or write) information (data) stored in or processed by hardware or virtual devices and call actions which
-may influence hardware state and behaviour.  Typically, access to data is provided via Device's Attributes and Pipes
+may influence hardware state and behaviour.  Typically, access to data is provided via Device's Attributes, and Pipes
 and actions are initiated by calling Device's Commands.  
 
 Additionally, it aims to:
@@ -49,8 +48,7 @@ Additionally, it aims to:
   Tango Controls. For example, the same generic GUI application may be used to control a power supply interfaced with
   the SCPI protocol and to control a stepper motor driver interfaced with the CAN bus.
 
-* Be usable as a logical abstraction of hardware. For example the same GUI application may be used to control power 
-  supplies powering magnets and powering heat coils.
+* Be usable as a logical abstraction of the hardware. For example, the same GUI application may be used to control power supplies which are powering magnets and powering heat coils.
 
 * Expose, to Users and other Actors of the Tango Controls System, a semantic interface which is well understood, 
   intuitive, and match the object-oriented paradigm. For example, a power supply Device may be implemented in Java, 
@@ -70,7 +68,7 @@ Typical use cases for Device are:
   power supplies on and off, each individually. Having them integrated into a system as Devices, each with an unique name, 
   with Current and Voltage attributes and On() and Off() commands fulfills the requirement and assure consistency.
 
-* Remote monitoring of a complex device like aa electro-magnet, which is powered by power supplies and requires a cooling
+* Remote monitoring of a complex device like an electro-magnet, which is powered by power supplies and requires a cooling
   system may be provided by a Device with the following attributes: MagneticField, CoilTemperature, State and Status and 
   with the commands On() and Off(). This Device, to serve its interface is using information coming (directly or through
   other devices) from power supplies and cooling systems.  
@@ -78,26 +76,26 @@ Typical use cases for Device are:
 ## Specification
 
 A Tango Device is a strict definition of a distributed object. 
-* configuration is represented in the form of properties.
+* configuration is represented in the form of Properties.
 * data are represented in the form of Attributes and Pipes.
 * actions are represented in the form of Commands.
 
-Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, 
+Its model can be represented as a defined tree which each element are from a defined type: Class, Device, Property, 
 Attribute, Pipe, Command following the rules below:
 
-* The Device is a distributed object which SHALL be accessible locally or via network.
-* The Device SHALL be an instance of one Device Class, see [Device Class section](#device-class)
-* The Device MAY have one or several Property, called Device Property, see [RFC 5/Property](/5)
-* The Device MAY have one or several Attribute, see [RFC 4/Attribute](/4) 
-* The Device MAY have one or several Pipe, see [RFC 7/Pipe](/7)
-* The Device MAY have one or several Command, see [RFC 3/Command](/3)
+* The Device is a distributed object which SHALL be accessible locally or via the network.
+* The Device SHALL be an instance of one Device Class, see [Device Class section](#device-class).
+* The Device MAY have one or several Property, called Device Property, see [RFC 5/Property](/5).
+* The Device MAY have one or several Attribute, see [RFC 4/Attribute](/4).
+* The Device MAY have one or several Pipe, see [RFC 7/Pipe](/7).
+* The Device MAY have one or several Command, see [RFC 3/Command](/3).
 
-* The Device SHALL have one Init command
+* The Device SHALL have one Init command.
 
-* The Device SHALL have one State attribute 
-* The Device SHALL have one Status attribute
-* The Device SHALL have one State command
-* The Device SHALL have one Status command
+* The Device SHALL have one State attribute. 
+* The Device SHALL have one Status attribute.
+* The Device SHALL have one State command.
+* The Device SHALL have one Status command.
 
 
 **Note**: Future specification may remove 'SHALL have' requirements for State and Status commands.
@@ -127,8 +125,8 @@ a list of Commands, a list of Device Properties with a Device Class Name.
 device-class-name = 1*VCHAR
 ```
 
-* The Device Class MAY have one or more Device instance
-* The Device Class MAY have one or several Property, called Class Property
+* The Device Class MAY have one or more Device instance.
+* The Device Class MAY have one or several Property, called Class Property.
 
 * The Device SHALL expose (provide access to) all Attributes, Pipes and Commands defined by its Device Class.
  
@@ -187,7 +185,7 @@ The device lifecycle MUST be implemented by a Device Server.
 
 Value of Device's State attribute MAY impact how the Device object responds to:
 
-* Writing to a Device's Attribute or to a Device's Pipe  
+* Writing to a Device's Attribute or a Device's Pipe  
 * Calling a Device's Command
 
 The Device MAY not execute (block) the attribute write or the pipe write operation or the command execution code for individual States.
