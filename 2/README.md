@@ -34,8 +34,6 @@ A Device is designed to represent any controlled object in Tango Controls System
 This specification is inspired by the comment written by A. Götz and E. Taurel in the tango.idl file from 
 the original implementation (https://github.com/tango-controls/tango-idl)
 
-### Related Specification
-
 ### Goals
 
 The Tango Device represents the fundamental interface for all TANGO objects. Directly inspired from the object 
@@ -105,7 +103,7 @@ Attribute, Pipe, Command following the rules below:
 
 * The Device SHALL have one unique identifier which represents its Device Name.
 
-### Naming convention
+###Naming convention
 
 * The Device Name SHALL use the following convention:
 
@@ -161,7 +159,8 @@ The device lifecycle MUST be implemented by a Device Server.
   of `DevState` data type.
 * The State attribute's *writable* metadata MUST be `READ`.
 * The *data format* of State Attribute MUST be `SCALAR`.
-* The *read value* of State Attribute SHOULD reflect the context of a running Device. If Device is related to hardware or a virtual entity or some process, the value of State attribute SHOULD reflect the state of the entity or process.
+* The *read value* of State Attribute SHOULD reflect the context of a running Device. If Device is related to hardware
+  or a virtual entity or some process, the value of State attribute SHOULD reflect the state of the entity or process.
 
 * The *data type* of Status attribute MUST `DevString`. The *read value* of Status attribute MUST be 
   of `DevString` data type.
@@ -196,3 +195,26 @@ The way how a Device object responds to the above calls define a Device State Ma
 
 **NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
 attribute value. 
+
+### Reserved Device Names
+
+However it is possible to use any Device Name as it is stated in [Naming convention](#naming-convention) section,
+some groups of names are reserved. One is Admin Device Name (see [RFC 8/Server](/8)), defined as follows: 
+
+``` ABNF
+admin-device-name = domain "/" family "/" member
+domain = %i"dserver"
+family = 1*VCHAR
+member = 1*VCHAR
+``` 
+
+`admin-device-name` MUST not be used for Devices of other than `DServer` Device Class.  
+
+### Reserved Device Class Names
+
+Devices of some of Device Classes are used to provide standard Tango Controls System services. 
+These Device Classes' Names SHOULD not be used for other purposes. Below is a list of reserved Device Class Names:
+
+* `%i"DataBaseds"`
+* `%i"TangoAccessControl"`
+* `%i"DServer"`
