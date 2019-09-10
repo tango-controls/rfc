@@ -196,14 +196,3 @@ The way how a Device object responds to the above calls define a Device State Ma
 
 **NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
 attribute value. 
-
-### Device Black Box
-
-
-### Events
-
-
-### Logging 
-
-
-### Cache and polling mechanism
