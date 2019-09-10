@@ -3,7 +3,7 @@ domain: rfc.tango-controls.org
 shortname: 2/Device
 name: Device Model
 status: raw
-editor: [David Erb](mailto:david.erb@maxiv.lu.se)
+editor: [Vincent Hardion](mailto:vincent.hardion@maxiv.lu.se))
 contributors: [Piotr Goryl](mailto:piotr.goryl@s2innovation.com)
 ---
 
