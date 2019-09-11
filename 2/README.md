@@ -128,7 +128,7 @@ device-class-name = 1*VCHAR
 * The Device Class MAY have one or more Device instance.
 * The Device Class MAY have one or several Property, called Class Property.
 
-* The Device SHALL expose (provide access to) all Attributes, Pipes and Commands defined by its Device Class.
+* The Device SHALL have all Attributes, Pipes and Commands defined by its Device Class.
  
 ### Device Interface
 
