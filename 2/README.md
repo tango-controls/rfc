@@ -186,8 +186,8 @@ The State Attribute represents Device State.
 ### State Machine
 * By default State Attribute value SHALL be `UNKNOWN`. 
  
-* If at a given time the Device State is `ON` and at least one of Device Attributes has the *quality* set to `ALARM`,
-  the State Attribute SHOULD be set to `ALARM`. 
+* By default the Device State SHOULD be in ALARM if at a given time the Device State is ON and at least one of Device 
+  Attribute has the quality set to ALARM. 
 
 Value of Device's State Attribute MAY impact how the Device responds to:
 
