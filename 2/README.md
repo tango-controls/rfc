@@ -200,7 +200,7 @@ The Device MAY not execute (block) the Attribute or Pipe read or write operation
 for individual States. In such a case the Device object SHALL respond with throwing a `DevFailed` exception.
 The way how a Device object responds to the above calls define a State Machine.
 
-* A Device MAY use a Stat Machine.
+* A Device MAY use a State Machine.
 
 ### Reserved Device Names
 
