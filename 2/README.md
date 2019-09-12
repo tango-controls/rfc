@@ -137,8 +137,12 @@ The Device Interface is a list of Attributes, Pipes and Commands provided by a D
 * The Device MAY expose Attributes and/or Commands not defined by its Class. These are called 
   Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
 
-* The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or 
-  Device Operation phase. 
+* Dynamic Attributes and/or Dynamic Commands MAY be added to the Device Interface during transition from the phase 
+  Not Exported to the phase Exported.
+
+* In the Exported phase, Dynamic Attributes and/or Dynamic Commands MAY be added to the Device Interface.  
+
+* In the Exported phase, Dynamic Attributes and/or Dynamic Commands MAY be removed from the Device Interface.
 
 ### Device lifecycle
 
