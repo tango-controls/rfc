@@ -84,7 +84,7 @@ Its model can be represented as a defined tree which each element are from a def
 Attribute, Pipe, Command following the rules below:
 
 * The Device is a distributed object which SHALL be accessible locally or via the network.
-* The Device SHALL be an instance of one Device Class, see [Device Class section](#device-class).
+* The Device SHALL be an instance of one Class, see [Device Class section](#device-class).
 * The Device MAY have one or several Property, called Device Property, see [RFC 5/Property](/5).
 * The Device MAY have one or several Attribute, see [RFC 4/Attribute](/4).
 * The Device MAY have one or several Pipe, see [RFC 7/Pipe](/7).
@@ -115,26 +115,26 @@ member = 1*VCHAR
 
 ### Device Class
 
-A Device Class is an association of a list of Device Class Properties, a list of Attributes, a list of Pipes, 
+A Class is an association of a list of Class Properties, a list of Attributes, a list of Pipes, 
 a list of Commands, a list of Device Properties with a Device Class Name.  
 
-* The Device Class Name SHOULD reflect its instances application context. 
-* The Device Class Name SHALL use the following convention:
+* The Class Name SHOULD reflect its instances application context. 
+* The Class Name SHALL use the following convention:
 
 ``` ABNF
-device-class-name = 1*VCHAR
+class-name = 1*VCHAR
 ```
 
-* The Device Class MAY have one or more Device instance.
-* The Device Class MAY have one or several Property, called Class Property.
+* The Class MAY have one or more Device instance.
+* The Class MAY have one or several Property, called Class Property.
 
-* The Device SHALL have all Attributes, Pipes and Commands defined by its Device Class.
+* The Device SHALL have all Attributes, Pipes and Commands defined by its Class.
  
 ### Device Interface
 
 The Device Interface is a list of Attributes, Pipes and Commands provided by a Device.
 
-* The Device MAY expose Attributes and/or Commands not defined by its Device Class. These are called 
+* The Device MAY expose Attributes and/or Commands not defined by its Class. These are called 
   Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
 
 * The Dynamic Attributes and Dynamic Commands MAY be added to the interface during Device Initialisation phase and/or 
@@ -217,10 +217,10 @@ member = 1*VCHAR
 
 `admin-device-name` MUST not be used for Devices of other than `DServer` Device Class.  
 
-### Reserved Device Class Names
+### Reserved Class Names
 
-Devices of some of Device Classes are used to provide standard Tango Controls System services. 
-These Device Classes' Names SHOULD not be used for other purposes. Below is a list of reserved Device Class Names:
+Devices of some of Classes are used to provide standard Tango Controls System services. 
+These Classes' Names SHOULD not be used for other purposes. Below is a list of reserved Class Names:
 
 * `%i"DataBaseds"`, see [RFC 6/Database](/6)
 * `%i"TangoAccessControl"`
