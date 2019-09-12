@@ -130,39 +130,35 @@ class-name = 1*VCHAR
 
 * The Device SHALL have all Attributes, Pipes and Commands defined by its Class.
  
-### Device Interface
-
-The Device Interface is a list of Attributes, Pipes and Commands provided by a Device.
-
 * The Device MAY expose Attributes and/or Commands not defined by its Class. These are called 
   Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
 
-* Dynamic Attributes and/or Dynamic Commands MAY be added to the Device Interface during transition from the phase 
+* Dynamic Attributes and/or Dynamic Commands MAY be added to the Device during transition from the phase 
   Not Exported to the phase Exported.
 
-* In the Exported phase, Dynamic Attributes and/or Dynamic Commands MAY be added to the Device Interface.  
+* In the Exported phase, Dynamic Attributes and/or Dynamic Commands MAY be added to the Device.  
 
-* In the Exported phase, Dynamic Attributes and/or Dynamic Commands MAY be removed from the Device Interface.
+* In the Exported phase, Dynamic Attributes and/or Dynamic Commands MAY be removed from the Device.
 
 ### Device lifecycle
 
 The Device lifecycle is:
 * Device MUST be in one of two phases: Exported or Not Exported.
-* In the Exported phase, Device Interface MUST be accessible to actors of the Tango Controls System.
-* In the Not Exported phase, Device Interface MUST NOT be accessible to actors of the Tango Controls System.
+* In the Exported phase, Device MUST be accessible to actors of the Tango Controls System.
+* In the Not Exported phase, Device MUST NOT be accessible to actors of the Tango Controls System.
 * At the transition from the phase Not Exported to the phase Exported the Device MUST be initialised as if its 
   Init Command was executed.
 * At the transition from the phase Exported to the phase Not Exported the Device SHOULD gracefully be uninitialised. 
 
-The device lifecycle MUST be implemented by a Device Server.
+* The Device Server MUST manage Device lifecycle.
 
 ### Init Command
 
 The Init Command purpose is to re-initialise the Device.
 
 * The Init Command, when called, SHALL in a sequence:
-  * gracefully un-initialise the Device (free any dynamic resources allocated to the Device)
-  * initialise the Device
+  * gracefully un-initialise the Device returning to a state before its first initialisation,
+  * initialise the Device using the values of its Properties.
 
 ### Device State and Status
 
