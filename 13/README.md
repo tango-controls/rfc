@@ -42,6 +42,8 @@ The Tango Event System API consists of the following components:
 *Subscriber* -- client side implementation of pub-sub protocol [RFC-12]
 *Publisher* -- server side implementation of pub-sub protocol [RFC-12]
 
+![](images/sub-pub_architecture.png)
+
 
 #### Definitions
 
