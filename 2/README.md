@@ -198,10 +198,9 @@ Value of Device's State attribute MAY impact how the Device object responds to:
 
 The Device MAY not execute (block) the Attribute or Pipe read or write operation or the command execution code 
 for individual States. In such a case the Device object SHALL respond with throwing a `DevFailed` exception.
-The way how a Device object responds to the above calls define a Device State Machine.
+The way how a Device object responds to the above calls define a State Machine.
 
-**NOTE**: Current implementation allows a Device object to block the operations irrespectively to the Device's State
-attribute value. 
+* A Device MAY use a Stat Machine.
 
 ### Reserved Device Names
 
