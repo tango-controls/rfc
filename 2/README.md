@@ -162,6 +162,8 @@ The Init command purpose is to re-initialise the Device.
 
 ### Device State and Status
 
+The State Attribute represents Device State. 
+
 * The *data type* of State Attribute MUST be `DevState`. The *read value* of Status attribute MUST be 
   of `DevState` data type.
 * The State attribute's *writable* metadata MUST be `READ`.
