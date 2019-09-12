@@ -188,8 +188,9 @@ The Init command purpose is to re-initialise the Device.
 * If not implemented explicitly by the Device Server, State Attribute *read value* SHALL be set to `UNKNOWN`. 
   It is RECOMMENDED to override this behaviour by an adequate implementation of the Device Server.
 
-* If at least one of Device Attribute has the *quality* set to `ALARM` the *read value* of Device State attribute 
-  MUST be `ALARM`.
+* If at a given time the Device State is ON and at least one of Device Attribute has the *quality* set to ALARM,
+  the Device State *read value* SHALL be set to ALARM. However, this behaviour MAY be overridden by user code 
+  in a Device Server implementation.
 
 Value of Device's State attribute MAY impact how the Device object responds to:
 
