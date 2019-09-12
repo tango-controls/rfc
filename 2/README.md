@@ -176,28 +176,24 @@ The State Attribute represents Device State.
 * The Status Attribute's `writable` metadata MUST be `READ`. 
 * The `data format` of the Status Attribute MUST be `SCALAR`.
 
-* A *read value* of Status Attribute SHOULD provide status information related to the Device. 
-* Default implementation SHOULD set Status Attribute's  *read value* to indicate the Device State. 
-* The Status default behaviour MAY be re-implemented with a user-code in Device Server to provide 
-  more or other information. 
+* The Status Attribute SHOULD provide status information related to the Device. 
+* By default Status Attribute SHOULD indicate the Device State. 
 
 * The State Command MUST return the same value as would be read from the State Attribute at the time 
   of the command execution.
 * The Status Command MUST return the same value as would be read from the Status Attribute at the time of the command execution.
 
 ### State Machine
-
-* If not implemented explicitly by the Device Server, State Attribute *read value* SHALL be set to `UNKNOWN`. 
-  It is RECOMMENDED to override this behaviour by an adequate implementation of the Device Server.
-
-* If at a given time the Device State is ON and at least one of Device Attributes has the *quality* set to ALARM,
-  the Device State *read value* SHALL be set to ALARM. However, this behaviour MAY be overridden by user code 
+* By default State Attribute value SHALL be `UNKNOWN`. 
+ 
+* If at a given time the Device State is `ON` and at least one of Device Attributes has the *quality* set to `ALARM`,
+  the Device State *read value* SHOULD be set to `ALARM`. However, this behaviour MAY be overridden by user code 
   in a Device Server implementation.
 
 Value of Device's State Attribute MAY impact how the Device object responds to:
 
-* Reading and writing of its Attribute or Pipe  
-* Calling a Command
+* Reading and writing of its Attribute or Pipe,  
+* Calling a Command.
 
 The Device MAY not execute (block) the Attribute or Pipe read or write operation or the command execution code 
 for individual States. In such a case the Device object SHALL respond with throwing a `DevFailed` exception.
