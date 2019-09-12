@@ -39,7 +39,7 @@ the original implementation (https://github.com/tango-controls/tango-idl)
 
 The Tango Device represents the fundamental interface for all TANGO objects. Directly inspired by object-oriented programming, a Device object has data and actions. It allows users of the Tango Controls System to access 
 (read and/or write) information (data) stored in or processed by hardware or virtual devices and call actions which
-may influence hardware state and behaviour.  Typically, access to data is provided via Device's Attributes, and Pipes
+may influence hardware state and behaviour.  Typically, access to data is provided via Device's Attributes and Pipes
 and actions are initiated by calling Device's Commands.  
 
 Additionally, it aims to:
@@ -90,15 +90,15 @@ Attribute, Pipe, Command following the rules below:
 * The Device MAY have one or several Pipe, see [RFC 7/Pipe](/7).
 * The Device MAY have one or several Command, see [RFC 3/Command](/3).
 
-* The Device SHALL have one Init command.
+* The Device SHALL have one Init Command.
 
-* The Device SHALL have one State attribute. 
-* The Device SHALL have one Status attribute.
-* The Device SHALL have one State command.
-* The Device SHALL have one Status command.
+* The Device SHALL have one State Attribute. 
+* The Device SHALL have one Status Attribute.
+* The Device SHALL have one State Command.
+* The Device SHALL have one Status Command.
 
 
-**Note**: Future specification may remove 'SHALL have' requirements for State and Status commands.
+**Note**: Future specification may remove 'SHALL have' requirements for State and Status Commands.
 
 * The Device SHALL have one unique identifier which represents its Device Name.
 
@@ -156,11 +156,11 @@ The Device lifecycle is:
 
 The device lifecycle MUST be implemented by a Device Server.
 
-### Init command
+### Init Command
 
-The Init command purpose is to re-initialise the Device.
+The Init Command purpose is to re-initialise the Device.
 
-* The Init command, when called, SHALL in a sequence:
+* The Init Command, when called, SHALL in a sequence:
   * gracefully un-initialise the Device (free any dynamic resources allocated to the Device)
   * initialise the Device
 
@@ -168,17 +168,17 @@ The Init command purpose is to re-initialise the Device.
 
 The State Attribute represents Device State. 
 
-* The *data type* of State Attribute MUST be `DevState`. The *read value* of Status attribute MUST be 
+* The *data type* of State Attribute MUST be `DevState`. The *read value* of Status Attribute MUST be 
   of `DevState` data type.
-* The State attribute's *writable* metadata MUST be `READ`.
+* The State Attribute's *writable* metadata MUST be `READ`.
 * The *data format* of State Attribute MUST be `SCALAR`.
 * The *read value* of State Attribute SHOULD reflect the context of a running Device. If Device is related to hardware
-  or a virtual entity or some process, the value of State attribute SHOULD reflect the state of the entity or process.
+  or a virtual entity or some process, the value of State Attribute SHOULD reflect the state of the entity or process.
 
-* The *data type* of Status attribute MUST `DevString`. The *read value* of Status attribute MUST be 
+* The *data type* of Status Attribute MUST `DevString`. The *read value* of Status Attribute MUST be 
   of `DevString` data type.
-* The Status attribute's `writable` metadata MUST be `READ`. 
-* The `data format` of the Status attribute MUST be `SCALAR`.
+* The Status Attribute's `writable` metadata MUST be `READ`. 
+* The `data format` of the Status Attribute MUST be `SCALAR`.
 
 * A *read value* of Status Attribute SHOULD provide status information related to the Device. 
 * Default implementation SHOULD set Status Attribute's  *read value* to indicate the Device State. 
@@ -198,7 +198,7 @@ The State Attribute represents Device State.
   the Device State *read value* SHALL be set to ALARM. However, this behaviour MAY be overridden by user code 
   in a Device Server implementation.
 
-Value of Device's State attribute MAY impact how the Device object responds to:
+Value of Device's State Attribute MAY impact how the Device object responds to:
 
 * Reading and writing of its Attribute or Pipe  
 * Calling a Command
