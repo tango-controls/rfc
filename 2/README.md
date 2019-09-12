@@ -187,10 +187,9 @@ The State Attribute represents Device State.
 * By default State Attribute value SHALL be `UNKNOWN`. 
  
 * If at a given time the Device State is `ON` and at least one of Device Attributes has the *quality* set to `ALARM`,
-  the Device State *read value* SHOULD be set to `ALARM`. However, this behaviour MAY be overridden by user code 
-  in a Device Server implementation.
+  the State Attribute SHOULD be set to `ALARM`. 
 
-Value of Device's State Attribute MAY impact how the Device object responds to:
+Value of Device's State Attribute MAY impact how the Device responds to:
 
 * Reading and writing of its Attribute or Pipe,  
 * Calling a Command.
