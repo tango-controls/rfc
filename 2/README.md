@@ -128,9 +128,9 @@ class-name = 1*VCHAR
 * The Class MAY have one or more Device instance.
 * The Class MAY have one or several Property, called Class Property.
 
-* The Device SHALL have all Attributes, Pipes and Commands defined by its Class.
+* The Device SHALL have at least all Attributes, Pipes and Commands defined by its Class.
  
-* The Device MAY expose Attributes and/or Commands not defined by its Class. These are called 
+* The Device MAY have Attributes and/or Commands not defined by its Class. These are called 
   Dynamic Attributes and/or Dynamic Commands respectively, see [RFC-XX]().
 
 * Dynamic Attributes and/or Dynamic Commands MAY be added to the Device during transition from the phase 
@@ -219,6 +219,6 @@ member = 1*VCHAR
 Devices of some of Classes are used to provide standard Tango Controls System services. 
 These Classes' Names SHOULD not be used for other purposes. Below is a list of reserved Class Names:
 
-* `%i"DataBaseds"`, see [RFC 6/Database](/6)
+* `%i"DataBase"`, see [RFC 6/Database](/6)
 * `%i"TangoAccessControl"`
 * `%i"DServer"`
