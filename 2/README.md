@@ -102,7 +102,7 @@ Attribute, Pipe, Command following the rules below:
 
 * The Device SHALL have one unique identifier which represents its Device Name.
 
-###Naming convention
+### Naming convention
 
 * The Device Name SHALL use the following convention:
 
