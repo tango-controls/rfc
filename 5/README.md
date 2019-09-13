@@ -12,7 +12,7 @@ contributors:
 
 This document describes the Property, a Tango concept representing one or more values to configure one of the following Tango elements namely Tango Device, Class, Attribute, System or a not associated to any Tango element, so called free properties. This document describes version 1.0 of the Property.
 
-See also: 2/Device, 6/Database, 4/Attribute, 9/Class
+See also: 2/Device, 6/Database, 4/Attribute
 
 ## Preamble
 
