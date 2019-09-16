@@ -16,7 +16,7 @@ See also: 2/Device, 6/Database, 4/Attribute
 
 ## Preamble
 
-Copyright (c) 2019 MAX IV Laboratory.
+Copyright (c) 2019 Tango Controls
 
 This Specification is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. This Specification is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses>.
 
@@ -28,10 +28,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
  A Property is a persisted item of Tango that is mainly used for configuration purposes. 4 types of properties exist:
 
- *  Class property: a property that is attached to a Device Class (cf RFC-9). This property is accessible from all devices of the class
- *  Device property: a property that is attached to a Device (RFC-2). This property is accessible from only one device
- *  Attribute property: a property that is attached to an Attribute (RFC-4).
- *  Free property: a property to persist data that is not related to any Tango class, device or attribute.
+ *  Class Property: a Property related to a Device Class (cf RFC-2).
+ *  Device Property: a Property related to a Device (RFC-2).
+ *  Attribute Property: a Property related to an Attribute (RFC-4).
+ *  Free Property: a Property defined for the entire Control System (RFC-1) i.e not related to any Class, Device or Attribute.
 
 ### Goals
 
@@ -41,7 +41,7 @@ Additionally, it aims to:
 
 * Provide the initial information when one starts a Tango Device
 
-* Be usable as keeping global variable in the Tango control system
+* Be usable as keeping global variable in the Tango Control System
 
 * Provide meta data complementing any data in Tango
 
@@ -54,27 +54,26 @@ There are many use cases for the usage of a Property:
 
 * To change the representation of an information in order to be more user friendly a Property can define a new data format for the graphical user interface to convert the raw data.
 
-* To configure some alarms on attribute's value.
+* To configure some alarms on Attribute value.
 
-* To memorize the attribute value each time it changes.
+* To memorize the Attribute value each time it changes.
 
 ## Specification
 
 A Tango Property is a strict definition of a pair of key/value
 * The Property SHALL have one key, called Property Name
 * The Property SHALL have one value, which could be empty, called Property Value
-* If the device is started upon a Tango Database, Class, Device, Attribute and Free Properties MAY be persisted into the Tango Database (RFC6)
-* If the device is started without a Tango Database, the device and class properties MAY be persisted in a file (but no support for the attribute properties). 
-* All device and class properties MAY be directly modified and accessed through the database device or its file
-* Attribute properties SHOULD be modified and accessed at any time through the device object (RFC-2)
-* All default attribute and device properties are OPTIONAL
-* The attribute, class and device properties MAY be defined in the device code and they MAY be OPTIONAL OR REQUIRED (also called mandatory properties).
-* TODO: system properties
-* If the device is started upon a Tango Database, the class and device properties changes are historized in the Tango Database (RFC-6)
-* When a error occurs (i.e. network issue, Tango Database timeout...), a DevFailed exception MUST be thrown (RFC-x for DevFailed?)
-* All device and class properties MUST be loaded at init command or device start-up (RFC-8)
-* A device or class property MAY have an OPTIONAL default value. 
-	* The device property value loading flow in pseudo-code is:
+* If the Device is started upon a Tango Database, Class, Device, Attribute and Free Properties MAY be persisted into the Tango Database (RFC6)
+* If the Device is started without a Tango Database, the device and class properties MAY be persisted in a file (but no support for the attribute properties). 
+* All Device and Class Properties MAY be directly modified and accessed through the database device or its file (TODO: to be moved to Request/Reply RFC)
+* Attribute Properties SHOULD be modified and accessed at any time through the Device object (RFC-2) (TODO: to be moved to Request/Reply RFC)
+* A Property Value MAY have a default value
+* A Mandatory Property is a Property for which the Property Value SHALL NOT be null and SHALL not have a default value
+* If the Device is started upon a Tango Database, the Class and Device Properties changes are historized in the Tango Database (RFC-6) (TODO: To be moved to Tango Database RFC)
+* When a error occurs (i.e. network issue, Tango Database timeout...), a DevFailed exception MUST be thrown (RFC-x for DevFailed/Common types?) (TODO: To be moved to Request-Reply RFC)
+* All Device and Class Properties MAY be loaded at init command or device start-up (RFC-8)
+* A Device or Class Property MAY have a default value. 
+* The Device Property Value loading flow in pseudo-code is (TODO to be moved to RFC-8):
 	```
 	property-value = getDevicePropertyFromTangoDBorFile(device-name, property-name)
 	if(property-value is empty)
@@ -82,27 +81,43 @@ A Tango Property is a strict definition of a pair of key/value
 	if(property-value is empty && default-value is not empty)
   		property-value = default-value
   	```
-	* The class property valueloading flow is:
+	* The Class property value loading flow is:
 	```
 	property-value = getClassPropertyFromTangoDBorFile(class-name, property-name)
 	if(property-value is empty && default-value is not empty)
   		property-value = default-value
   	```
-* All device and class properties MAY be modified and accessed through the database device when using a Tango Database (RFC-6)
-* A Tango device MUST manage the following default device properties, see RFC-cache and RFC-logging:
+* The precedence of Property Value for a given Property Name SHALL follow this order of preference:
+  1) the last Device Property Value
+  2) the last Class Property Value
+  3) the default Device Property Value
+  4) the default Class Property Value
+  
+  Meaning that:
+  * The last Property Value has precedence over the default Property Value
+  * The Device Property Value has precedence over the Class Property
+* All Device and Class Properties MAY be modified and accessed through the database device when using a Tango Database (RFC-6)
+* A Tango Device MUST manage the following default Device Properties, which are called System Properties, see RFC-cache:
 
 | Name | Default value |  Description |
 | --- | --- | --- |
-| poll_ring_depth | "" | ? |
+| poll_ring_depth | 10 |  	Polling buffer depth |
+| cmd_poll_ring_depth | "" | List of command polling history depth |
+| attr_poll_ring_depth | "" | List of attribute polling history depth |
+| poll_old_factor | 4 | Data too old factor |
 | min_poll_period | "" | Minimum polling period for attributes and commands |
 | cmd_min_poll_period | "" | List of command minimum polling periods |
-| cmd_poll_ring_depth | "" | List of command polling history depth |
 | attr_min_poll_period | "" | List of attribute minimum polling periods |
-| attr_poll_ring_depth | "" | List of attribute polling history depth |
-| polled_attr | "" | List of polled attribute's names|
-| logging_target | "" | Device logging target, a file or a device. ex: "file:/tmp/file.log", "device:log/device/logger.1" |
-| logging_level | "" | Device logging level (FATAL, ERROR, WARN, INFO, DEBUG, OFF) |
-| logging_rft | "" | ? |
+| polled_attr | "" | List of polled attribute's names |
+
+* A Tango Device MUST manage the following default Device Properties, which are called Logging Properties, see RFC-logging:
+
+| Name | Default value |  Description |
+| --- | --- | --- |
+| logging_level | WARN | initial Device logging level (FATAL, ERROR, WARN, INFO, DEBUG, OFF) |
+| logging_path | "/tmp/tango-<logging name>" or "C:/tango-<logging name> (Windows)" | Logging file path |
+| logging_rft | 20480 (20 Mega bytes) | Logging rolling file threshold in bytes |
+| logging_target | "" | Initial Device logging target, a file or a device. ex: "file:/tmp/file.log", "device:log/device/logger.1" |
 
 * An attribute MUST manage the following default attribute properties (TODO: move this to specifics RFCs: Attribute Configuration properties / Attribute Event properties / Attribute Properties?):
 	* Attribute Configuration properties :
@@ -152,18 +167,25 @@ class_property_name = 1*1ALPHA 0*254(alphanum / underscore)
 free_property_name = 1*1ALPHA 0*254(alphanum / underscore)
 attribute_property_name = 1*1(ALPHA / underscore) 0*254(alphanum / underscore)
 ```
-* The Property value MUST use the following convention:
+* The Property Value MUST use the following convention:
 ``` ABNF
- propery-value = CHAR / 1*CHAR CR / "NaN" / "inf"
+ property-value = CHAR / 1*CHAR CR
  ```
 
-### Properties for device without database
+TODO: Fix property value which depends on property Tango type, it can be empty and can contain several lines in case of
+properties with array types.
 
-* A device started without a Tango Database MAY use a file to persits its properties. Here is an example file content that must be provided	
+### Properties for Device without Database
+
+* A Device started without a Tango Database MAY use a file to persist its Properties. Here is an example file content to show the syntax that must be used in this file:	
 ```
-# --- 1/1/1 properties
-1/1/1->myProp:value
+# --- my/tango/device properties
+my/tango/device->myProp:value
 
+# This is a comment
 
 CLASS/MyClass->myClassProp: 10
 ```
+
+TODO: Specify the supported Tango types for Properties (DevBoolean, DevShort, DevUShort, ..., array of DevShort,...)
+TODO: Add some precisions about special words like "NaN" and "Inf" and their meaning when using some DevDouble or DevFloat Properties
