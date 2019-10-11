@@ -12,7 +12,7 @@ The process to add or change an RFC is the following:
 Short Name             | Title                                                         | Type     | Status     | Editor
 -----------------------|---------------------------------------------------------------|----------|------------|-------
 [RFC-1](1/README.md)   | The Tango control system                                      | Standard | Raw          | Lorenzo Pivetta
-[RFC-2](2/README.md)   | The device object model                                       | Standard | Raw          | Vincent Hardion
+[RFC-2](2/README.md)   | The device object model                                       | Standard | Draft        | Vincent Hardion
 [RFC-3](3/README.md)   | The command model                                             | Standard | Draft      | Sergi Blanchi-Torné
 [RFC-4](4/README.md)   | The attribute model                                           | Standard | Draft        | Sergi Blanchi-Torné
 [RFC-5](5/README.md)   | The property model                                            | Standard | Raw          | Gwenaelle Abeillé
