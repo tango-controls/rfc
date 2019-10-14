@@ -63,7 +63,7 @@ An Attribute MUST have associated following static metadata:
 * *name*, a string identifying the Attribute.
   It MUST be unique [^1] among all Attributes of a particular device.
   See `<attribute-name>` specification below,
-* *data type*, an enumeration describing the type of the data (X/DataTypes),
+* *data type*, an enumeration describing the type of the data ([RFC 9/Data Types](/9)),
 * *data format*, an enumeration describing the dimension of the data
   (one of *SCALAR*, *SPECTRUM*, *IMAGE*),
 * *writable*, an enumeration describing the write access to the Attribute
