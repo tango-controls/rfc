@@ -23,8 +23,8 @@ Short Name             | Title                                                  
 [RFC-11](11/README.md) | The Request-Reply protocol - CORBA implementation             | Standard | Raw          | 
 [RFC-12](12/README.md) | The Publisher-Subscriber protocol                             | Standard | Raw          | Vincent Hardion 
 [RFC-13](13/README.md) | The Publisher-Subscriber protocol - ZeroMQ implementation     | Standard | Raw          | 
+[RFC-14](XX/README.md) | Logging service                                               | Standard | Raw          | Sergi Blanchi-Torné
 [RFC-XX](XX/README.md) | The dynamic attribute and command                             | Standard | Raw          | 
-[RFC-XX](XX/README.md) | Logging service                                               | Standard | Raw          | 
 [RFC-XX](XX/README.md) | Cache system                                                  | Standard | Raw          | 
 [RFC-XX](XX/README.md) | Memorised attribute service                                   | Standard | Raw          | 
 [RFC-XX](XX/README.md) | Authorisation system                                          | Standard | Raw          | 
