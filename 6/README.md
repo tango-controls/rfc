@@ -33,15 +33,15 @@ Runtime implementations of the Database in conforming Tango implementations MUST
 ### Goals of the Database
 * provide a means of defining and querying devices.
 * provide means for device servers to be configured from central control
-* serves as nameserver such that such that the Devices are accessible by name
+* serve as nameserver such that the Devices are accessible by name
 
 ### Features of the Database
 
-* stores configuration data (properties) used at startup of a device server 
-* acts as nameserver by storing the dynamic network addresses
-* acts as permanent store of dynamic settings which need to be memorized
-* ensures the uniqueness of device name and of aliases
-* keeps list of controlled servers which are to be started and run on a particular host
+* store configuration data (properties) used at startup of a device server 
+* act as nameserver by storing the dynamic network addresses
+* act as permanent store of dynamic settings which need to be memorized
+* ensure the uniqueness of device name and of aliases
+* keep list of controlled servers which are to be started and run on a particular host
 * limited set functionality provide by file as alternative to network database
 
 ### Use Cases of the Database
@@ -59,7 +59,7 @@ Runtime implementations of the Database in conforming Tango implementations MUST
 * a monitor tool wants the Info of a not running detector Device (exported, host, server)
 * a boot-up process wants to get Starter Level configuration for a list of Devices
 
-## General Specification
+## Specification
 The database SHALL provide a means of defining and querying devices.
 
 The database service SHALL be implemented as a Tango Device Server.
@@ -68,11 +68,11 @@ The Database Device SHALL have no Class Properties or Device Properties.
 
 In the Tango Control System, its database service SHALL be available on a pre-known network address.
 
-Clients and subscribers MUST access the database service via TANGO commands requested on the database device.
+Clients and subscribers SHOULD access the database service via TANGO commands requested on the database device.
 
 As a Tango Device Server, the database SHALL provide State and Status.
 
-A limited set of the database functionality to support Tango Device Server configuration shall be avaliable as a read-only file.
+A limited set of the database functionality to support Tango Device Server configuration SHALL be available as a read-only file.
 This is an option for use in the absence of a network service.
 
 The database SHALL enforce uniqueness of device names and aliases.
@@ -173,7 +173,7 @@ The database SHALL implement the following property-related commands:
 
 
 ### Attributes
-The database SHALL provide a means of setting and getting attribute values for a class or device.
+The database SHALL provide for the persistent storage of Attributes of classes and devices.
 
 The database SHALL implement the following attribute-related commands:
 
@@ -230,7 +230,7 @@ The database SHALL implement the following commands:
 - DbPutServerInfo
 
 ### Pipes
-The database SHALL provide a means of querying and deleting pipes.
+The database SHALL provide a means of managing information about pipes.
 
 The database SHALL implement the following pipe-related commands:
 
@@ -1053,7 +1053,7 @@ The ’’ characters around the property value are mandatory due to the ’/’
 ## Related documentation
 [Tango Controls Documentation 9.3.3](https://buildmedia.readthedocs.org/media/pdf/tango-controls/latest/tango-controls.pdf)
 
-[PyTango Documentation Release 8.1.6](http://www.esrf.eu/computing/cs/tango/pytango/v818/PyTango.pdf)
+[PyTango Documentation Release 9.3.1](https://readthedocs.org/projects/pytango/downloads/pdf/stable/pytango.pdf)
 
 [DataBase Tango Cpp Class](http://www.esrf.eu/computing/cs/tango/tango_doc/ds_doc/tango-ds/System/dbase/FullDocument.html)
 
