@@ -132,7 +132,9 @@ The example just given is for the DEBUG log level.  There SHALL BE equivalent ma
 
 ### Log Consumer
 When a Device Target is specified as "device", this SHALL designate a Device Server which is implementing the Log Consumer interface.
-To be a Log Consumer, a Tango Device SHALL implement just one Tango Command: ```void log (Tango::DevVarStringArray details)```.
+To be a Log Consumer, a Tango Device SHALL implement just one Tango Command:   
+```void log (Tango::DevVarStringArray details)```.   
+
 The array of strings composing the argument SHALL be interpreted with the following meanings:
 - details[0] : the timestamp in millisecond since epoch (01.01.1970)
 - details[1] : the log level
@@ -152,9 +154,9 @@ The LogViewer SHALL have the following abilities:
 
 LogViewer SHALL have two modes: static and dynamic.   
 
-static: LogViewer SHALL be started with the name of the Log Consumer Device name and it SHALL receive all messages from Devices who have this name as their target.
+- static: LogViewer SHALL be started with the name of the Log Consumer Device name and it SHALL receive all messages from Devices who have this name as their target.
 
-dynamic: LogViewer SHALL let the user use the GUI to specify which devices LogViewer will monitor.
+- dynamic: LogViewer SHALL let the user use the GUI to specify which devices LogViewer will monitor.
 
 
 ## References
