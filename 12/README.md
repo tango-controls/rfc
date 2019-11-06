@@ -24,6 +24,8 @@ This document describes the Tango Publisher-Subscriber protocol. It is a relatio
 
 ## Basic Concepts
 
+> This probably should go into RFC-1 and just referenced here
+
 This documents refers to other Tango Controls RFCs, corresponding link is always given in this case. Here is given a brief description of the main concepts. This document targets arbitrary software developer(s) who are to implement *Tango Client Library* and *Tango Server Library*.
 
 *Tango Server* (server) - a process that runs on a machine.
@@ -32,7 +34,7 @@ This documents refers to other Tango Controls RFCs, corresponding link is always
 
 *Tango Admin Device* (admin) - a pre-defined *Tango Device* i.e. a *Tango Device* with fixed number *Tango Commands, Attributes, Pipes* [RFC-3, RFC-4,RFC-?]  etc.
 
-For more details see [RFC-2](https://github.com/tango-controls/rfc/tree/draft/2)
+For more details see [RFC-2](https://github.com/tango-controls/rfc/blob/draft/2/README.md)
 
 *Tango Client* (client) - a process that instantiates communication with *Tango Server* using Request-Reply protocol [RFC-10].
 
@@ -62,17 +64,47 @@ This section offers a number of ABNF formal definitions for entities repeatedly 
 
 > **NOTE**: in the below ABNF some basic definitions are used as rules, spaces are replaced with '_' 
 
-```ABNF  
-SUBSCRIBER_INFO = [(upstream_device) (attribute_name) (action) EVENT_TYPE (client_idl_ver)]
+> **NOTE**: in the below ABNF data types sometimes embeded into the rule e.g. bool:isExcept is equivalent to isExcept = true / false
+
+```ABNF    
+endpoint = URL ; usually with port
+
+SUBSCRIBER_INFO = upstream_device attribute_name action EVENT_TYPE client_idl_ver                                                                                                 
                                                                 
-SUBSCRIPTION_INFO = [(server library release ver) (upstream device idl ver) (zmq_sub_event_hwm) (rate) (ivl) (zmq release ver) (heartbeat_endpoint) (event_endpoint) n*(alternate_heartbeat_endpoint) n*(alternate_event_endpoint) (heartbeat_channel) (event_channel)]
+SUBSCRIPTION_INFO = server_library_release_ver upstream_device_idl_ver zmq_sub_event_hwm rate ivl zmq_release_ver heartbeat_endpoint event_endpoint 1*alternate_heartbeat_endpoint 1*alternate_event_endpoint HEARTBEAT_CHANNEL EVENT_CHANNEL
+              
+EVENT_INFO = EVENT_DATA/1*EVENT_ERROR bool:isExcept  ; see below
+
+EVENT_DATA = ATT_CONF_DATA/PIPE_DATA/DATA_READY_DATA/INTERFACE_CHANGE_DATA/ATTRIBUTE_DATA 
+             
+ATT_CONF_DATA = ATTRIBUTE_PROPERTIES ; Attribute properties from RFC-4, see link below
+
+PIPE_DATA =  int:size name timeVal PIPE_BLOB ; Pipe blob must be defined in RFC-7
+
+DATA_READY_DATA = attribute_name data_type int:counter
+
+INTERFACE_CHANGE_DATA = *ATTRIBUTE_PROPERTIES *COMMAND_META_INFO bool:deviceStarted
+
+ATTRIBUTE_DATA = ATTRIBUTE_DEFINITION ; Attribute definition from RFC-4 
+
+EVENT_ERROR = reason severity desc origin
 
 EVENT_TYPE = "QUALITY_EVENT"/"INTERFACE_CHANGE"/"PIPE"/"ATTR_CONF_EVENT"/"CHANGE_EVENT"/"PERIODIC_EVENT"/"ARCHIVE_EVENT"/"USER_EVENT"/"HEARTBEAT"
 
 EVENT_CHANNEL = channel
 
 HEARTBEAT_CHANNEL = channel
+
+channel = string ; impementation specific
 ```
+
+> **NOTE:** pipeBlob should be referenced to RFC-7 Pipes
+
+[RFC-4 Attribute model, attribute properties](https://github.com/tango-controls/rfc/tree/draft/4#attribute-properties)
+[RFC-3 Command model](https://github.com/tango-controls/rfc/blob/draft/3/README.md#specification)
+[RFC-4 Attribute model, attribute definition](https://github.com/tango-controls/rfc/blob/draft/4/README.md#attribute-definition)
+
+> **NOTE**: In Tango V9 EVENT_DATA MAY include source idl version, event type  
 
 ## Runtime requirements
 
