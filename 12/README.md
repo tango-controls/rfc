@@ -100,8 +100,10 @@ channel = string ; impementation specific
 
 > **NOTE:** pipeBlob should be referenced to RFC-7 Pipes
 
-[RFC-4 Attribute model, attribute properties](https://github.com/tango-controls/rfc/tree/draft/4#attribute-properties)
 [RFC-3 Command model](https://github.com/tango-controls/rfc/blob/draft/3/README.md#specification)
+
+[RFC-4 Attribute model, attribute properties](https://github.com/tango-controls/rfc/tree/draft/4#attribute-properties)
+
 [RFC-4 Attribute model, attribute definition](https://github.com/tango-controls/rfc/blob/draft/4/README.md#attribute-definition)
 
 > **NOTE**: In Tango V9 EVENT_DATA MAY include source idl version, event type  
