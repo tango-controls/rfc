@@ -1,18 +1,24 @@
 ---
 domain: rfc.tango-controls.org
 shortname: 5/PROPERTY
-name:Property
+name: Property
 status: raw
-editor: Vincent Hardion (vincent.hardion@maxiv.lu.se)
+editor: Gwenaëlle Abeillé <gwenaelle.abeille@synchrotron-soleil.fr>
+contributors:
+  - Reynald Bourtembourg <reynald.bourtembourg@esrf.fr>
+  - Thomas Braun <thomas.braun@byte-physics.de>
+  - Andy Gotz <andy.gotz@esrf.fr>
+  - Vincent Hardion <vincent.hardion@maxiv.lu.se> 
+  - Lorenzo Pivetta <lorenzo.pivetta@elettra.eu>
 ---
 
-This document describes the Property,  a Tango concept representing an element of configuration in order to customise a Tango element. This document describes version 1.0 of the Property.
+This document describes the Tango Property model.
 
-See also: Y/OtherTemplate
+See also: 1/TANGO, 2/Device, 4/Attribute, 6/Database, 9/DataTypes
 
 ## Preamble
 
-Copyright (c) 2019 MAX IV Laboratory.
+Copyright (c) 2019 Tango Controls
 
 This Specification is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. This Specification is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses>.
 
@@ -22,46 +28,76 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Tango Property Specification
 
- A Property is designed to represent any information of configuration in Tango.
+This specification is intended to formally document the Tango Property model.
+Runtime representation of Property in conforming Tango implementations MUST follow this specification.
 
 ### Goals
 
- The specification of Property aims to define a standard structure and type to use in any implementation of Tango.
+A Property represents a configuration parameter in Tango.
 
-Additionally, it aims to:
+There are 4 kinds of Tango Properties:
 
-* Provide the initial information when one starts a Tango Device
-
-* Be usable as keeping global variable in the Tango control system
-
-* Provide meta data complementing any data in Tango
-
+ *  Class Property: a Property related to a Device Class (cf RFC-2).
+ *  Device Property: a Property related to a Device (RFC-2).
+ *  Attribute Property: a Property related to an Attribute (RFC-4).
+ *  Free Property: a Property defined for the entire Control System (RFC-1) i.e not related to any Class, Device or Attribute.
 
 ### Use Cases
 
-There are many use cases for the usage of a Property:
+Here are some Tango Property use cases:
 
-* To connect a real network equipment a Property can define the target IP address
-
-* To change the representation of an information in order to be more user friendly a Property can define a new data format for the graphical user interface to convert the raw data.
-
+* To connect a real network equipment a Property can define the target IP address or hostname
+* To change the representation of an information in order to be more user friendly a Property can define a new data format for the graphical user interface to convert the raw data
+* To configure some alarms on Attribute Value (See RFC-4)
+* To store the Attribute value of a Memorized Attribute (See RFC-4)
+* To configure the labels associated to a Tango:DevEnum attribute values
+* ...
 
 ## Specification
 
-A Tango Property is a strict definition of a pair of key/value
-* configuration are represented in the form of properties.
-* data are represented in the form of attributes.
-* actions are represented in the form of commands.
+A Tango Property is a strict definition of a pair of key/value:
+  * The Property SHALL have one key, called Property Name
+  * The Property SHALL have one value, which could be empty, called Property Value
 
-Its model can be represented as a defined tree which each elements are from a defined types: Class, Device, Property, Attribute, Command following the rules below:
+A Tango Property MAY be persisted in the Tango Database of the concerned Tango Control System (See RFC-1 and RFC-6) or into a file if no Tango Database is used.
 
+Tango Device Properties and Tango Class Properties have a Type metadata.
+The following Types SHALL be supported by Device Properties and Class Properties (See RFC-9):
+  * DevBoolean
+  * DevShort
+  * DevUShort
+  * DevLong
+  * DevULong
+  * DevLong64
+  * DevULong64
+  * DevFloat
+  * DevDouble
+  * DevString
+  * DevVarShortArray
+  * DevVarLongArray
+  * DevVarLong64Array
+  * DevVarFloatArray
+  * DevVarDoubleArray
+  * DevVarStringArray
 
-A Tango Property is a strict definition of a pair of key/value
-* The Property SHALL have one key, called Property Name
-* The Property SHALL have one value
+A conforming Tango implementation SHALL provide a way to retrieve a persisted Property Value and to convert it to the above types at least.
+
+Tango Device Properties and Tango Class Properties MAY have a _Default Value_ which can be used if the Property Value has 
+not been persisted.
+
+A Tango Device Property MAY be defined as _Mandatory in Database_. 
+This metadata can be used when the device server programmer requires this Property to be persisted.
+A Device Property defined as _Mandatory in Database_ SHALL not have a Default Value.
+
+It is RECOMMENDED to support _Not a Number (NaN)_ as well as _-infinity (-inf)_ and _+infinity (+inf)_ DevFloat and DevDouble values.
 
 ### Naming convention
 * The Property's Name SHALL use the following convention:
 ``` ABNF
-property-name = 1*VCHAR
+alphanum = ALPHA / DIGIT 
+underscore = %x5F
+device_property_name = 1*1ALPHA 0*254(alphanum / underscore)
+class_property_name = 1*1ALPHA 0*254(alphanum / underscore)
+free_property_name = 1*1ALPHA 0*254(alphanum / underscore)
+attribute_property_name = 1*1(ALPHA / underscore) 0*254(alphanum / underscore)
 ```
