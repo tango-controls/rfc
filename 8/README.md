@@ -11,6 +11,7 @@ This document provides the specification of the Device Server.
 
 See also: 2/Device
 
+
 ## Preamble
 
 Copyright (c) 2019 Tango Community.
@@ -21,17 +22,18 @@ This Specification is a [free and open standard](http://www.digistan.org/open-st
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 
+
 ## Tango Device Server specification
 
- The specication of '''Device Server''' aims to define a standard Device representing a process of Device management.
+ The specication of '''Device Server''' aims the process of Device management, being it self a Device.
 
 ### Goals
 
- A Device Server in a Tango Controls aims to control the process of communication and lifecycle of the Device.
+ A Device Server in a Tango Controls System aims to control the process of communication and lifecycle of one or several Device.
 
 Additionally, it aims to:
 
-* Provide a blackbox that register the operation on a Device
+* Provide a blackbox that register the operation executed on every Device
 
 * Be usable as a Device
 
@@ -45,21 +47,82 @@ There are X main use cases for Device Server:
 
 * to serialise the operation per Device
 
+
 ## Specification
-The Device Server can manage the communication with one or several Device.  Additionally it enforces the behaviour compatibility with the Tango Control System and offer different meta service.
+
+The Device Server manage the communication with one or several Device.  Additionally it enforces the behaviour compatibility with the Tango Control System and offer different meta service.
 
 The Device Server SHALL follow these specification below in order to  control and monitor this communication:
 
-* The Device Server MUST be a Device it self.
+* A Device Server represents/interfaces the process which manage one or several Device
 
-Additionally,
-* A Device Server MAY be call DServer or Admin Device but the term Device Server is RECOMMENDED
+* A Device Server is a also a Device itself.
+
+* A Device MUST NOT be managed by more than one Device Server
+
+The name of the Device Server SHALL follow this convention:
+```ABNF
+device-server-name = dserver "/" server "/" instance
+dserver = "dserver" ; dserver is a reserved domain following the device-name convention.
+server = family
+instance = member
+```
+
+The specification introduces as well the definition of the process which are used for the Device Server Name:
+
+* A Server is a type of process managed by a Device Server
+
+* An Instance is an unique identifier as several processes of the same Server MAY exist in a Tango Control System
+
+* A Server Instance is finally what identify the actual process in the Tango Control Sytem
+
+* A Server Instance CAN be interfaced by only one Device Server
+
+
+Additionally:
+* A Device Server MAY be call DServer or Admin Device but the terminology Device Server is RECOMMENDED
 
 #### Device Server interface
 
-* Attribute read and write
-* Command Call
-* Device State handling
+
+| Property Name | description |
+|---|---|
+| polling_threads_pool_conf | TODO |
+
+| Command Name | description |
+|---|---|
+| AddLoggingTarget | DevVarStringArray | DevVoid |
+| AddObjPolling | DevVarLongStringArray | DevVoid |
+| DevLockStatus | DevString | DevVarLongStringArray |
+| DevPollStatus | DevString | DevVarStringArray |
+| DevRestart | DevString | DevVoid |
+| EventConfirmSubscription | DevVarStringArray | DevVoid |
+| EventSubscriptionChange | DevVarStringArray | DevLong |
+| GetLoggingLevel | DevVarStringArray | DevVarLongStringArray |
+| GetLoggingTarget | DevString | DevVarStringArray |
+| Init | DevVoid | DevVoid |
+| Kill | DevVoid | DevVoid |
+| LockDevice | DevVarLongStringArray | DevVoid |
+| PolledDevice | DevVoid | DevVarStringArray |
+| QueryClass | DevVoid | DevVarStringArray |
+| QueryDevice | DevVoid | DevVarStringArray |
+| QuerySubDevice | DevVoid | DevVarStringArray |
+| QueryWizardClassProperty | DevString | DevVarStringArray |
+| QueryWizardDevProperty | DevString | DevVarStringArray |
+| ReLockDevices | DevVarStringArray | DevVoid |
+| RemObjPolling | DevVarStringArray | DevVoid |
+| RemoveLoggingTarget | DevVarStringArray | DevVoid |
+| RestartServer | DevVoid | DevVoid |
+| SetLoggingLevel | DevVarLongStringArray | DevVoid |
+| StartLogging | DevVoid | DevVoid |
+| StartPolling | DevVoid | DevVoid |
+| State | DevVoid | DevState |
+| Status | DevVoid | DevString |
+| StopLogging | DevVoid | DevVoid |
+| StopPolling | DevVoid | DevVoid |
+| UnLockDevice | DevVarLongStringArray | DevLong |
+| UpdObjPollingPeriod | DevVarLongStringArray | DevVoid |
+| ZmqEventSubscriptionChange | DevVarStringArray | DevVarLongStringArray |
 
 #### The Device Export sequence
 
