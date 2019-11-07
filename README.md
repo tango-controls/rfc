@@ -22,14 +22,15 @@ Short Name             | Title                                                  
 [RFC-4](4/README.md)   | The attribute model                                           | Standard | Draft        | Sergi Blanchi-Torné
 [RFC-5](5/README.md)   | The property model                                            | Standard | Raw          | Gwenaelle Abeillé
 [RFC-6](6/README.md)   | The database system                                           | Standard | Raw          | Gwenaelle Abeillé
+[RFC-7](7/README.md)   | The pipe model                                                | Standard | Raw          |
 [RFC-8](8/README.md)   | The server model                                              | Standard | Raw          | Lorenzo Pivetta
 [RFC-9](9/README.md)   | Data types                                                    | Standard | Raw          | 
 [RFC-10](10/README.md) | The Request-Reply protocol                                    | Standard | Raw          | Reynald Bourtembourg
 [RFC-11](11/README.md) | The Request-Reply protocol - CORBA implementation             | Standard | Raw          | 
 [RFC-12](12/README.md) | The Publisher-Subscriber protocol                             | Standard | Raw          | Vincent Hardion 
 [RFC-13](13/README.md) | The Publisher-Subscriber protocol - ZeroMQ implementation     | Standard | Raw          | 
-[RFC-14](XX/README.md) | Logging service                                               | Standard | Raw          | Sergi Blanchi-Torné
-[RFC-XX](XX/README.md) | The dynamic attribute and command                             | Standard | Raw          | 
+[RFC-14](14/README.md) | Logging service                                               | Standard | Raw          | Sergi Blanchi-Torné
+[RFC-15](15/README.md) | The dynamic attribute and command                             | Standard | Raw          | 
 [RFC-XX](XX/README.md) | Cache system                                                  | Standard | Raw          | 
 [RFC-XX](XX/README.md) | Memorised attribute service                                   | Standard | Raw          | 
 [RFC-XX](XX/README.md) | Authorisation system                                          | Standard | Raw          | 
