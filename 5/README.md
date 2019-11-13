@@ -37,10 +37,10 @@ A Property represents a configuration parameter in Tango.
 
 There are 4 kinds of Tango Properties:
 
- *  Class Property: a Property related to a Device Class (cf RFC-2).
+ *  Class Property: a Property related to a Device Class (RFC-2).
  *  Device Property: a Property related to a Device (RFC-2).
  *  Attribute Property: a Property related to an Attribute (RFC-4).
- *  Free Property: a Property defined for the entire Control System (RFC-1) i.e not related to any Class, Device or Attribute.
+ *  Free Property: a Property defined for the entire Control System (RFC-1) i.e not related to a specific Class, Device or Attribute.
 
 ### Use Cases
 
@@ -59,7 +59,7 @@ A Tango Property is a strict definition of a pair of key/value:
   * The Property SHALL have one key, called Property Name
   * The Property SHALL have one value, which could be empty, called Property Value
 
-A Tango Property MAY be persisted in the Tango Database of the concerned Tango Control System (See RFC-1 and RFC-6) or into a file if no Tango Database is used.
+A Tango Property MAY be persisted in the Tango Database (See RFC-1 and RFC-6) or into a file if no Tango Database is used.
 
 Tango Device Properties and Tango Class Properties have a Type metadata.
 The following Types SHALL be supported by Device Properties and Class Properties (See RFC-9):
@@ -80,7 +80,7 @@ The following Types SHALL be supported by Device Properties and Class Properties
   * DevVarDoubleArray
   * DevVarStringArray
 
-A conforming Tango implementation SHALL provide a way to retrieve a persisted Property Value and to convert it to the above types at least.
+A conforming Tango implementation SHALL provide a way to retrieve a persisted Property Value and to convert it to the above types.
 
 Tango Device Properties and Tango Class Properties MAY have a _Default Value_ which can be used if the Property Value has 
 not been persisted.
