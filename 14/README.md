@@ -161,13 +161,13 @@ LogViewer SHALL have two modes: static and dynamic.
 
 ## References
 The TANGO Control System: Reference Section A.1.5: The device logging
-http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/ds_prog/node11.html#SECTION001115000000000000000
+https://tango-controls.readthedocs.io/en/latest/development/advanced/reference.html#the-device-logging
 
 The TANGO Control System: Reference Section 8.3 The Tango Logging Service
-http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/ds_prog/node9.html#SECTION00930000000000000000
+https://tango-controls.readthedocs.io/en/latest/development/device-api/device-server-writing.html#the-tango-logging-service
 
 A.8 Tango log consumer
-http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/ds_prog/node11.html#sec:Tango-log-consumer
+https://tango-controls.readthedocs.io/en/latest/development/advanced/reference.html#tango-log-consumer
 
 LogViewer Extension
 https://tango-controls.readthedocs.io/en/latest/tools-and-extensions/built-in/logviewer/logviewer.html
