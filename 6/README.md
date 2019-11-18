@@ -51,7 +51,7 @@ Runtime implementations of the Database in conforming Tango implementations MUST
 * define persistent configuration properties to be used by a camera every time it starts up
 * allow a subscriber or client to get connect to a stepper motor
 * define properties for all instances of a class of vaccuum pump
-* check if a electrometer is online or not
+* provide the network ID of a device such as an electrometer, so a user can check if it is online or not 
 * a user would like to rollback the configuration of a Device when its initialization is failing
 * remove "empty" Devices from Database to clean it up
 * get all Devices of a given class of temperature gauges
@@ -62,7 +62,15 @@ Runtime implementations of the Database in conforming Tango implementations MUST
 ## Specification
 The database SHALL provide a means of defining and querying devices.
 
+As the Tango database service is a central service of the Tango control system, 
+it SHALL be designed to be highly available and support a high level of client requests 
+(e.g we have peaks of 3500 SQL requests/ s at SOLEIL on the accelerators control system).
+
 The database service SHALL be implemented as a Tango Device Server.
+
+The database service SHALL be implemented with:
+- a frontend: as Tango Device Server
+- a backend: a query and persistency engine (i.e. SQL or NoSQL engine), or a lighter ( i.e. reduced set of functionalities) engine with a single file per device server.
 
 The Database Device SHALL have no Class Properties or Device Properties.
 
@@ -1021,28 +1029,28 @@ The following set of limitations exist:
 * in case of several Device servers running on the same host, the user must manually manage a list of already used network ports
 
 ### File syntax
-The file is an ASCII file and SHALL follow a well-defined syntax with predefined keywords.
+The file is an ASCII file.  It syntax is defined completely in .
 
 Generally, comment starts with the ’#’ character and a blank line is ignored.
 
-#### Devices definition.
+#### File syntax: Devices definition.
 DEVICE is the keyword to declare a device(s) definition sequence. The general syntax SHALL be   
 ```<DS name>/<inst name>/DEVICE/<Class name>: dev1,dev2,dev3  ```
 Device(s) name can follow on next line if the last line character is ’\’
 
-#### Device property definition. 
+#### File syntax: Device property definition. 
 The general device property SHALL be  
 ```<device name>-><property name>: <property value>```  
 In case of array, the array element delimiter is the character ’,’. Array definition can be splitted on several lines if the last line character is ’\’. Allowed characters after the ’:’ delimiter are space, tabulation or nothing.
 
 A device string property with special characters (spaces). The ’’ character is used to delimit the string
 
-#### Device attribute property definition. 
+#### File syntax: Device attribute property definition. 
 The general device attribute property syntax SHALL be   
 ```<device name>/<attribute name>-><property name>: <property value>```  
 Allowed characters after the ’:’ delimiter are space, tabulation or nothing.
 
-#### Class property definition. 
+#### File syntax: Class property definition. 
 The general class property syntax SHALL be  
 ```CLASS/<class name>-><property name>: <property value>```  
 
@@ -1051,9 +1059,9 @@ The ’’ characters around the property value are mandatory due to the ’/’
 
 
 ## Related documentation
-[Tango Controls Documentation 9.3.3](https://buildmedia.readthedocs.org/media/pdf/tango-controls/latest/tango-controls.pdf)
+[Tango Controls Documentation](https://buildmedia.readthedocs.org/media/pdf/tango-controls/latest/tango-controls.pdf)
 
-[PyTango Documentation Release 9.3.1](https://readthedocs.org/projects/pytango/downloads/pdf/stable/pytango.pdf)
+[PyTango Documentation Release](https://readthedocs.org/projects/pytango/downloads/pdf/stable/pytango.pdf)
 
 [DataBase Tango Cpp Class](http://www.esrf.eu/computing/cs/tango/tango_doc/ds_doc/tango-ds/System/dbase/FullDocument.html)
 
