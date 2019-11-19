@@ -61,6 +61,12 @@ There are 4 kinds of Properties:
 
 A Property MAY be persisted in the Tango Database (See RFC-1 and RFC-6) or into a file if no Tango Database is used.
 
+Device Properties and Class Properties MAY have a _Default Value_ which is used if the Property Value has not been persisted.
+
+A Tango Device Property MAY be defined as _Mandatory in Database_. 
+This metadata can be used when the device server programmer requires this Property to be persisted.
+A Device Property defined as _Mandatory in Database_ SHALL not have a Default Value.
+
 Device Property and Class Property have a Type metadata.
 The following Types SHALL be supported by Device Properties and Class Properties (See RFC-9):
   * DevBoolean
@@ -81,13 +87,6 @@ The following Types SHALL be supported by Device Properties and Class Properties
   * DevVarStringArray
 
 A conforming Tango implementation SHALL provide a way to retrieve a persisted Property Value and to convert it to the above types.
-
-Device Properties and Class Properties MAY have a _Default Value_ which can be used if the Property Value has 
-not been persisted.
-
-A Tango Device Property MAY be defined as _Mandatory in Database_. 
-This metadata can be used when the device server programmer requires this Property to be persisted.
-A Device Property defined as _Mandatory in Database_ SHALL not have a Default Value.
 
 It is RECOMMENDED to support _Not a Number (NaN)_ as well as _-infinity (-inf)_ and _+infinity (+inf)_ DevFloat and DevDouble values.
 
