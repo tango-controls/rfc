@@ -35,33 +35,33 @@ Runtime representation of Property in conforming Tango implementations MUST foll
 
 A Property represents a configuration parameter in Tango.
 
-There are 4 kinds of Tango Properties:
+### Use Cases
+
+Here are some Property use cases:
+
+* To connect a real network equipment a Property can define the target IP address or hostname
+* To change the representation of an information in order to be more user friendly a Property can define a new data format for the graphical user interface to convert the raw data
+* To configure some alarms on Attribute Value (See RFC-4)
+* To store the Attribute value of a Memorized Attribute (See RFC-4)
+* To configure the labels associated to the possible values of a DevEnum Attribute
+* ...
+
+## Specification
+
+A Property is a strict definition of a pair of key/value:
+  * The Property SHALL have one key, called Property Name
+  * The Property SHALL have one value, which could be empty, called Property Value
+
+There are 4 kinds of Properties:
 
  *  Class Property: a Property related to a Device Class (RFC-2).
  *  Device Property: a Property related to a Device (RFC-2).
  *  Attribute Property: a Property related to an Attribute (RFC-4).
  *  Free Property: a Property defined for the entire Control System (RFC-1) i.e not related to a specific Class, Device or Attribute.
 
-### Use Cases
+A Property MAY be persisted in the Tango Database (See RFC-1 and RFC-6) or into a file if no Tango Database is used.
 
-Here are some Tango Property use cases:
-
-* To connect a real network equipment a Property can define the target IP address or hostname
-* To change the representation of an information in order to be more user friendly a Property can define a new data format for the graphical user interface to convert the raw data
-* To configure some alarms on Attribute Value (See RFC-4)
-* To store the Attribute value of a Memorized Attribute (See RFC-4)
-* To configure the labels associated to a Tango:DevEnum attribute values
-* ...
-
-## Specification
-
-A Tango Property is a strict definition of a pair of key/value:
-  * The Property SHALL have one key, called Property Name
-  * The Property SHALL have one value, which could be empty, called Property Value
-
-A Tango Property MAY be persisted in the Tango Database (See RFC-1 and RFC-6) or into a file if no Tango Database is used.
-
-Tango Device Properties and Tango Class Properties have a Type metadata.
+Device Property and Class Property have a Type metadata.
 The following Types SHALL be supported by Device Properties and Class Properties (See RFC-9):
   * DevBoolean
   * DevShort
@@ -82,7 +82,7 @@ The following Types SHALL be supported by Device Properties and Class Properties
 
 A conforming Tango implementation SHALL provide a way to retrieve a persisted Property Value and to convert it to the above types.
 
-Tango Device Properties and Tango Class Properties MAY have a _Default Value_ which can be used if the Property Value has 
+Device Properties and Class Properties MAY have a _Default Value_ which can be used if the Property Value has 
 not been persisted.
 
 A Tango Device Property MAY be defined as _Mandatory in Database_. 
