@@ -177,8 +177,22 @@ Where \<element\> follows specification of value of the matching \<DataType\>
 * Sequence DataType SHALL provide an interface to determine number of its elements.
 * Sequence DataType SHALL provide an interface to index its elements.
 
+#### Custom Encoded data
 
-  
+Value of the DevEncoded type are binary data with application and context specific meaning. 
+
+* Name of DevEncoded type SHALL be as follows:
+```abnf
+ DevEncoded = "DEVENCODED" / "DevEncoded"
+```
+
+* Value of \<DevEncoded\> SHALL be according to the \<encoded-value\> rule:
+```abnf
+ encoded-value = encoded_format encoded_data
+```
+where \<encoded_format\> has type DevString and \<encoded_data\> has type DevVarCharArray. 
+
+ 
 
 
 
