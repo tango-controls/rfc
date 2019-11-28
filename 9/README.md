@@ -61,12 +61,17 @@ There are many use cases for Data Types. Some of them are listed below:
 
 ```abnf
  DataType = DevVoid 
+
  DataType =/ DevBoolean 
- DataType =/ DevFloat / DevDouble 
+ 
  DataType =/ DevShort / DevLong / DevLong64
  DataType =/ DevUChar / DevUShort / DevULong / DevULong64
+ 
+ DataType =/ DevFloat / DevDouble
+
+ DataType =/ DevString  
+ 
  DataType =/ DevVarBooleanArray / DevVarDoubleArray / DevVarFloatArray
- DataType =/ DevString 
  DataType =/ DevVarShortArray / DevVarLongArray / DevVarLong64Array / DevVarCharArray
  DataType =/ DevVarStringArray
  DataType =/ DevVarUShortArray / DevVarULongArray / DevVarULong64Array
@@ -138,6 +143,22 @@ DevFloat and DevDouble represent floating point values.
 
 * Values of DevFloat type SHALL be of IEEE 754 single precision floating-point format and MAY be encoded in 32 bits.
 * Values of DevDouble type SHALL be of IEEE 754 double precision floating-point format and MAY be encoded in 64 bits.
+
+#### String data type
+
+DevString values represents strings (sequence of characters).
+
+* DevString SHALL use the following names:
+
+```abnf
+ DevString = "DEVSTRING" / "DevString"
+```
+
+* Values of DevString SHALL be according to the string-value rule defined as follows:
+
+```abnf
+ string-value = *CHAR
+``` 
 
 
 
