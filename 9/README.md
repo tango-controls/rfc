@@ -125,6 +125,19 @@ unsigned values.
 | DevULong | 0 to (2^32)-1 | 32 |
 | DevULong64 | 0 to (2^64)-1 | 64 |
 
+#### Floating point data types
+
+DevFloat and DevDouble represent floating point values.
+
+* DevFloat and DevDouble SHALL use the following names:
+
+```abnf
+ DevFloat = "DEVFLOAT" | "DevFloat"
+ DevDouble = "DEVDOUBLE" | "DevDouble"
+```
+
+* Values of DevFloat type SHALL be of IEEE 754 single precision floating-point format and MAY be encoded in 32 bits.
+* Values of DevDouble type SHALL be of IEEE 754 double precision floating-point format and MAY be encoded in 64 bits.
 
 
 
