@@ -59,7 +59,7 @@ There are many use cases for Data Types. Some of them are listed below:
   
 * DataType SHALL be as follows: 
 
-``` ABNF
+```abnf
  DataType = DevVoid 
  DataType =/ DevBoolean 
  DataType =/ DevFloat / DevDouble 
@@ -89,50 +89,42 @@ DevBoolean is a data type which values represents logical state of true or false
 
 * DevBoolean SHALL be defined as follows:
 
-```ABNF
+```abnf
 DevBoolean = "DEVBOOLEAN" | "DevBoolean"
 ```
 
-* Values which DataType is DevBoolean SHALL be mapped to dev-boolean-value specification:
-
-```abnf
-dev-boolen-value = BIT
-```
+* Values which DataType is DevBoolean SHALL carry one bit of information.
 
 #### Integer data types
 
-DevShort, DevLong, DevLong64 represents singed integer values. DevUChar, DevUShort, DevULong and DevULong64 represents 
+DevShort, DevLong, DevLong64 represent singed integer values. DevUChar, DevUShort, DevULong and DevULong64 represent
 unsigned values.
+
+* Integer DataType SHALL have the following names:
 
 ```abnf
  DevShort = "DEVSHORT" | "DevShort"
  DevLong = "DEVLONG" | "DevLong"
  DevLong64 = "DEVLONG64" | "DevLong64"
+ DevUChar = "DEVUCHAR" | "DevUChar"
+ DevUShort = "DEVUSHORT" | "DevUShort"
+ DevULong = "DEVULONG" | "DevULong"
+ DevULong64 = "DEVULONG64" | "DevULong64"
 ```
 
-* Values of DevShort, DevLong, DevLong64, DevUChar, DevUShort, DevULong and DevULong64 types SHALL have a text 
- representation dev-short-value, dev-long-value, dev-long64-value, dev-uchar-value, dev-ushort-value, dev-ulong-value, 
- dev-ulong64-value respectively as follows:
-  
-```abnf
- dev-short-value = ["-"] DIGIT* ; In the range of "(2^15) - 1" to "-(2^15)".
- dev-long-value = ["-"] DIGIT* ; In the range of "(2^31) - 1" to "-(2^31)".
- dev-long64-value = ["-"] DIGIT* ; In the range of "(2^63) - 1" to "-(2^63)".
- ...
-```
-
-* Values of integer types are sumaDevShort typ
+* Values of integer data types SHALL be in defined ranges and the information it cary SHALL have number of bits
+  specified in the table below:
 
 | DataType | Range | Bits of information |
 -----------|-------|---------------------|
-| DevShort | -32768 to 32767 |         16 |
-| DevLong  | -2147483648 to -2147483647 | 32 |
-| DevLong64  | -18446744073709551616 to 18446744073709551615 | 64 |
+| DevShort | -(2^15) to (2^15)-1 |         16 |
+| DevLong  | -(2^31) to (2^31)-1 | 32 |
+| DevLong64  | -(2^63) to (2^63)-1 | 64 |
+| DevUChar | 0 to 255 | 8 |
+| DevUShort | 0 to (2^16)-1 | 16 |
+| DevULong | 0 to (2^32)-1 | 32 |
+| DevULong64 | 0 to (2^64)-1 | 64 |
 
-
-#### Floating point data types
-
-Values of types DevFloat and DevDouble are  
 
 
 
