@@ -95,7 +95,7 @@ DevBoolean is a data type which values represents logical state of true or false
 * DevBoolean SHALL be defined as follows:
 
 ```abnf
-DevBoolean = "DEVBOOLEAN" | "DevBoolean"
+DevBoolean = "DEVBOOLEAN" / "DevBoolean"
 ```
 
 * Values which DataType is DevBoolean SHALL carry one bit of information.
@@ -108,13 +108,13 @@ unsigned values.
 * Integer DataType SHALL have the following names:
 
 ```abnf
- DevShort = "DEVSHORT" | "DevShort"
- DevLong = "DEVLONG" | "DevLong"
- DevLong64 = "DEVLONG64" | "DevLong64"
- DevUChar = "DEVUCHAR" | "DevUChar"
- DevUShort = "DEVUSHORT" | "DevUShort"
- DevULong = "DEVULONG" | "DevULong"
- DevULong64 = "DEVULONG64" | "DevULong64"
+ DevShort = "DEVSHORT" / "DevShort"
+ DevLong = "DEVLONG" / "DevLong"
+ DevLong64 = "DEVLONG64" / "DevLong64"
+ DevUChar = "DEVUCHAR" / "DevUChar"
+ DevUShort = "DEVUSHORT" / "DevUShort"
+ DevULong = "DEVULONG" / "DevULong"
+ DevULong64 = "DEVULONG64" / "DevULong64"
 ```
 
 * Values of integer data types SHALL be in defined ranges and the information it cary SHALL have number of bits
@@ -137,8 +137,8 @@ DevFloat and DevDouble represent floating point values.
 * DevFloat and DevDouble SHALL use the following names:
 
 ```abnf
- DevFloat = "DEVFLOAT" | "DevFloat"
- DevDouble = "DEVDOUBLE" | "DevDouble"
+ DevFloat = "DEVFLOAT" / "DevFloat"
+ DevDouble = "DEVDOUBLE" / "DevDouble"
 ```
 
 * Values of DevFloat type SHALL be of IEEE 754 single precision floating-point format and MAY be encoded in 32 bits.
