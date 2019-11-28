@@ -160,6 +160,26 @@ DevString values represents strings (sequence of characters).
  string-value = *CHAR
 ``` 
 
+#### Sequence data types
+
+DevVarBooleanArray,  DevVarShortArray, DevVarLongArray, DevVarLong64Array,
+DevVarCharArray, DevVarUShortArray, DevVarULongArray, DevVarULong64Array, DevVarFloatArray, DevVarDoubleArray, 
+DevVarStringArray, DevVarEncoded are Sequence DataTypes. Sequence data types are sequences (arrays) of 
+values (elements) of matching DataType, which are respectively, DevBoolean,  DevShort, DevLong, DevLong64, DevUChar, 
+DevUShort, DevULong, DevULong64, DevFloat, DevDouble, DevString, DevEncoded.
+
+* Value of sequence DataType SHALL follow <sequence-value> rule:
+```abnf
+ sequence-value = *element
+```
+Where \<element\> follows specification of value of the matching \<DataType\>
+
+* Sequence DataType SHALL provide an interface to determine number of its elements.
+* Sequence DataType SHALL provide an interface to index its elements.
+
+
+  
+
 
 
 
