@@ -177,7 +177,7 @@ Where \<element\> follows specification of value of the matching \<DataType\>
 * Sequence DataType SHALL provide an interface to determine number of its elements.
 * Sequence DataType SHALL provide an interface to index its elements.
 
-#### Custom Encoded data
+#### Encoded data type
 
 Value of the DevEncoded type are binary data with application and context specific meaning. 
 
