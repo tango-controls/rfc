@@ -177,9 +177,9 @@ Where \<element\> follows specification of value of the matching \<DataType\>
 * Sequence DataType SHALL provide an interface to determine number of its elements.
 * Sequence DataType SHALL provide an interface to index its elements.
 
-#### Encoded data type
+#### Structures
 
-Value of the DevEncoded type are binary data with application and context specific meaning. 
+Value of the DevEncoded type is a structure to carry binary data with application and context specific meaning. 
 
 * Name of DevEncoded type SHALL be as follows:
 ```abnf
@@ -190,9 +190,25 @@ Value of the DevEncoded type are binary data with application and context specif
 ```abnf
  encoded-value = encoded_format encoded_data
 ```
-where \<encoded_format\> has type DevString and \<encoded_data\> has type DevVarCharArray. 
+;where \<encoded_format\> has type DevString and \<encoded_data\> has type DevVarCharArray. 
 
- 
+DevVarLongStringArray and DevVarDoubleStringArray values are structures to carry sequences of numbers 
+(integer or double precision floating point, respectively) along with sequences of text/string data.
+
+* Names DevVarLongStringArray and DevVarDoubleStringArray SHALL follow the following rules:
+```abnf
+ DevVarLongStringArray = "DEVVARLONGSTRINGARRAY" / "DevVarLongStringArray"
+ DevVarDoubleStringArray = "DEVVARDOUBLESTRINGARRAY" / "DevVarDoubleStringArray"
+```
+
+* Values of DevVarLongStringArray and DevVarDoubleStringArray SHALL follow rules \<long-string-value\> 
+and \<double-string-value\>, respectively:
+```abnf
+ long-string-value = lvalue svalue
+ double-string-value = dvalue svalue
+```
+;where \<lvalue\> has type DevVarLongArray, \<dvalue\> has type DevVarDoubleArray and \<svalue\> has type 
+DevVarStringArray.
 
 
 
