@@ -67,8 +67,8 @@ A Tango Device Property MAY be defined as _Mandatory in Database_.
 This metadata can be used when the device server programmer requires this Property to be persisted.
 A Device Property defined as _Mandatory in Database_ SHALL not have a Default Value.
 
-Device Property and Class Property have a Type metadata.
-The following Types SHALL be supported by Device Properties and Class Properties (See RFC-9):
+Device Property and Class Property MAY have a Type metadata.
+It is RECOMMENDED to support the following Types for Device Properties and Class Properties (See RFC-9):
   * DevBoolean
   * DevShort
   * DevUShort
@@ -86,7 +86,7 @@ The following Types SHALL be supported by Device Properties and Class Properties
   * DevVarDoubleArray
   * DevVarStringArray
 
-A conforming Tango implementation SHALL provide a way to retrieve a persisted Property Value and to convert it to the above types.
+It is RECOMMENDED to provide a way to retrieve a persisted Property Value and to convert it to the above types.
 
 It is RECOMMENDED to support _Not a Number (NaN)_ as well as _-infinity (-inf)_ and _+infinity (+inf)_ DevFloat and DevDouble values.
 
