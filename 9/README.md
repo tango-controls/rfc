@@ -210,6 +210,19 @@ and \<double-string-value\>, respectively:
 ;where \<lvalue\> has type DevVarLongArray, \<dvalue\> has type DevVarDoubleArray and \<svalue\> has type 
 DevVarStringArray.
 
+#### State
 
+DavState type standardize a way of describing state of Device. Its values are from predefined set of 14 names.   
 
+* DevState name SHALL be according to the following rule:
+```abnf
+ DevState = "DEVSTATE" / "DevState
+```
+
+* Value of DevState type SHALL follow rule \<dev-state-value\>:
+```abnf
+ dev-state-value = "ALARM" / "INSERT" / "STANDBY" / "CLOSE" / "MOVING" / "UNKNOWN" / "DISABLE" / "OFF"
+ dev-state-value =/ "EXTRACT" / "ON" / "FAULT" / "OPEN" / "INIT" / "RUNNING"
+```
+dev-boolean-array = dev-boolean-array-type  WSP dev-boolean-array-value
 
