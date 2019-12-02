@@ -219,7 +219,7 @@ DavState type standardize a way of describing state of Device. Its values are fr
  DevState = "DEVSTATE" / "DevState
 ```
 
-* Value of DevState type SHALL follow rule \<dev-state-value\>:
+* Value of DevState type SHALL follow the rule \<dev-state-value\>:
 ```abnf
  dev-state-value = "ALARM" / "INSERT" / "STANDBY" / "CLOSE" / "MOVING" / "UNKNOWN" / "DISABLE" / "OFF"
  dev-state-value =/ "EXTRACT" / "ON" / "FAULT" / "OPEN" / "INIT" / "RUNNING"
