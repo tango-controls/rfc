@@ -224,5 +224,4 @@ DavState type standardize a way of describing state of Device. Its values are fr
  dev-state-value = "ALARM" / "INSERT" / "STANDBY" / "CLOSE" / "MOVING" / "UNKNOWN" / "DISABLE" / "OFF"
  dev-state-value =/ "EXTRACT" / "ON" / "FAULT" / "OPEN" / "INIT" / "RUNNING"
 ```
-dev-boolean-array = dev-boolean-array-type  WSP dev-boolean-array-value
 
