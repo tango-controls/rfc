@@ -225,3 +225,28 @@ DavState type standardize a way of describing state of Device. Its values are fr
  dev-state-value =/ "EXTRACT" / "ON" / "FAULT" / "OPEN" / "INIT" / "RUNNING"
 ```
 
+#### Enumeration
+
+DevEnum data type allows to assign string Labels to DevShort values. It is valid only for Attributes. 
+
+* DevEnum name SHALL follow the following rule:
+```abnf
+ DevEnum = "DEVENUM" / "DevEnum"
+```
+
+* Label values of DevEnum SHALL follow the rule \<devenum-label\>:
+```abnf
+ devenum-label = 1*CHAR
+```  
+
+* DevEnum labels SHALL be unique in the context of an Attribute.
+* Each of DevEnum labels SHALL correspond to one and unique DevShort value. 
+* Related DevShort values SHALL be consecutive and SHALL start with 0. 
+* Values of DevEnum DataType SHALL be transported as values of DevShort.
+
+* For any of Attribute of DevEnum data type, list of Labels SHALL be available as `enum_labels` Attribute property.
+
+* Tango Controls SHALL allow a Tango Client to retrieve labels associated with the DevShort value.
+
+
+
