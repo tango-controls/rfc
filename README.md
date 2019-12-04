@@ -31,9 +31,9 @@ RFC-12 | The Publisher-Subscriber protocol                              | Raw   
 RFC-13 | The Publisher-Subscriber protocol - ZeroMQ implementation      | Raw          | 
 RFC-14 | Logging service                                                | Raw          | Sergi Blanchi-Torné
 RFC-15 | The dynamic attribute and command                              | Raw          | 
-RFC-XX | Cache system                                                   | Raw          | 
-RFC-XX | Memorised attribute service                                    | Raw          | 
-RFC-XX | Authorisation system                                           | Raw          | 
+RFC-16 | Cache system                                                   | Raw          | 
+RFC-17 | Memorised attribute service                                    | Raw          | 
+RFC-18 | Authorisation system                                           | Raw          | 
 RFC-XX | High Level API                                                 | Raw          | 
 RFC-XX | High Level API - Python implementation                         | Raw          | 
 RFC-XX | High Level API - Java   implementation                         | Raw          | 
