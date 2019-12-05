@@ -80,7 +80,9 @@ There are many use cases for Data Types. Some of them are listed below:
  
  DataType =/ DevVarLongStringArray / DevVarDoubleStringArray
  
- DataType =/ DevState
+ DataType =/ DevState / DevVarStateArray
+
+ DataType =/ DevEnum
   
 ``` 
 
@@ -164,9 +166,9 @@ DevString values represents strings (sequence of characters).
 
 DevVarBooleanArray,  DevVarShortArray, DevVarLongArray, DevVarLong64Array,
 DevVarCharArray, DevVarUShortArray, DevVarULongArray, DevVarULong64Array, DevVarFloatArray, DevVarDoubleArray, 
-DevVarStringArray, DevVarEncoded are Sequence DataTypes. Sequence data types are sequences (arrays) of 
+DevVarStringArray, DevVarEncodedArray, DevVarStateArray are Sequence DataTypes. Sequence data types are sequences (arrays) of 
 values (elements) of matching DataType, which are respectively, DevBoolean,  DevShort, DevLong, DevLong64, DevUChar, 
-DevUShort, DevULong, DevULong64, DevFloat, DevDouble, DevString, DevEncoded.
+DevUShort, DevULong, DevULong64, DevFloat, DevDouble, DevString, DevEncoded, DevState.
 
 * Value of sequence DataType SHALL follow <sequence-value> rule:
 ```abnf
