@@ -84,6 +84,8 @@ There are many use cases for Data Types. Some of them are listed below:
 
  DataType =/ DevEnum
   
+ DataType =/ DevPipeBlob
+ 
 ``` 
 
 
@@ -191,6 +193,7 @@ Value of the DevEncoded type is a structure to carry binary data with applicatio
 * Value of \<DevEncoded\> SHALL be according to the \<encoded-value\> rule:
 ```abnf
  encoded-value = encoded_format encoded_data
+                 ; elements order implied by the above rule MAY be ignored
 ```
 ;where \<encoded_format\> has type DevString and \<encoded_data\> has type DevVarCharArray. 
 
@@ -206,8 +209,9 @@ DevVarLongStringArray and DevVarDoubleStringArray values are structures to carry
 * Values of DevVarLongStringArray and DevVarDoubleStringArray SHALL follow rules \<long-string-value\> 
 and \<double-string-value\>, respectively:
 ```abnf
- long-string-value = lvalue svalue
+ long-string-value = lvalue svalue 
  double-string-value = dvalue svalue
+                       ; elements order implied by the above rules MAY be ignored
 ```
 ;where \<lvalue\> has type DevVarLongArray, \<dvalue\> has type DevVarDoubleArray and \<svalue\> has type 
 DevVarStringArray.
@@ -250,5 +254,28 @@ DevEnum data type allows to assign string Labels to DevShort values. It is valid
 
 * Tango Controls SHALL allow a Tango Client to retrieve labels associated with the DevShort value.
 
+#### Pipe
 
+DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
+
+* DevPipeBlob SHALL have the following name:
+```abnf
+ DevPipeBlob = "DEVPIPEBLOB" / "DevPipeBlob"
+```
+
+* A value of DevPipeBlob type SHALL follow the \<pipe-blob-value\> rule:
+
+```abnf
+ pipe-blob-value = name blob-data
+                   ; elements order implied by the above rule MAY be ignored
+
+ name = 1*VCHAR 
+
+ blob-data = *blob-data-element
+ 
+ blob-data-element = name value inner-blob inner-blob-name 
+                     ; elements order implied by the above rule MAY be ignored    
+
+ inner-blob = blob-data  
+```
 
