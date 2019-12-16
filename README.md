@@ -17,11 +17,11 @@ check either PRs or [Wiki](https://github.com/tango-controls/rfc/wiki/Work-in-Pr
 Short Name             | Title                                                         | Status     | Editor
 -----------------------|---------------------------------------------------------------|------------|-------
 RFC-1   | The Tango control system                                       | Raw          | Lorenzo Pivetta
-[RFC-2](2/README.md)   | The device object model                                        | Draft        | Vincent Hardion
-[RFC-3](3/README.md)   | The command model                                              | Draft      | Sergi Blanchi-Torné
-[RFC-4](4/README.md)   | The attribute model                                            | Draft        | Sergi Blanchi-Torné
+[RFC-2](2/device.md)   | The device object model                                        | Draft        | Vincent Hardion
+[RFC-3](3/command.md)   | The command model                                              | Draft      | Sergi Blanchi-Torné
+[RFC-4](4/attribute.md)   | The attribute model                                            | Draft        | Sergi Blanchi-Torné
 RFC-5   | The property model                                             | Raw          | Gwenaelle Abeillé
-[RFC-6](6/README.md)   | The database system                                            | Draft          | Gwenaelle Abeillé
+[RFC-6](6/database.md)   | The database system                                            | Draft          | Gwenaelle Abeillé
 RFC-7   | The pipe model                                                 | Raw          |
 RFC-8   | The server model                                               | Raw          | Lorenzo Pivetta
 RFC-9   | Data types                                                     | Raw          | Gwenaelle Abeillé
