@@ -4,6 +4,7 @@ shortname: 1/TANGO
 name: Tango Control System
 status: raw
 editor: Lorenzo Pivetta (lorenzo.pivetta@elettra.eu)
+contributor: Andy Götz (andy.gotz@esrf.fr)
 ---
 
 This document describes Tango, a control system framework. This RFC define the specification of a control system implementing the philosophy of Tango.
