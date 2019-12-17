@@ -172,6 +172,25 @@ DevVarStringArray, DevVarEncodedArray, DevVarStateArray are Sequence DataTypes. 
 values (elements) of matching DataType, which are respectively, DevBoolean,  DevShort, DevLong, DevLong64, DevUChar, 
 DevUShort, DevULong, DevULong64, DevFloat, DevDouble, DevString, DevEncoded, DevState.
 
+* Names of the sequence data types SHALL be as follows:
+```abnf
+ DevVarBooleanArray = "DevVarBooleanArray"
+ DevVarShortArray = "DevVarShortArray"
+ DevVarLongArray = "DevVarLongArray"
+ DevVarLong64Array = "DevVarLong64Array"
+ DevVarCharArray = "DevVarCharArray"
+ DevVarUShortArray = "DevVarUShortArray"
+ DevVarULongArray = "DevVarULongArray"
+ DevVarULong64Array = "DevVarULong64Array"
+ DevVarFloatArray = "DevVarFloatArray"
+ DevVarDoubleArray = "DevVarDoubleArray"
+ DevVarStringArray = "DevVarStringArray"
+ DevVarEncodedArray = "DevVarEncodedArray"
+ DevVarStateArray = "DevVarStateArray"
+```
+
+
+
 * Value of sequence DataType SHALL follow <sequence-value> rule:
 ```abnf
  sequence-value = *element
