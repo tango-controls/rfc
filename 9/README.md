@@ -10,7 +10,8 @@ contributors: [Piotr Goryl](mailto:piotr.goryl@s2innovation.com)
 
 This document describes Tango Controls Data Types specification version 5.0.
 
-See also: Y/OtherTemplate
+See also: [1/TANGO](/1), [3/Command](/3), [4/Attribute](/4), [5/Property](/5), [6/Database](/6), [7/Pipe](/7), 
+          
 
 ## Preamble
 
