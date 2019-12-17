@@ -87,6 +87,7 @@ There are many use cases for Data Types. Some of them are listed below:
   
  DataType =/ DevPipeBlob
  
+ DataTpe =/ DevFailed
 ``` 
 
 
@@ -299,3 +300,23 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
  inner-blob = blob-data  
 ```
 
+#### Exceptions 
+
+Results of failed operations (exceptions) within the Tango Controls are send as values/messages of DevFailed data type.
+
+* DevFailed type name is as follows:
+```abnf
+ DevFailed = "DevFailed"
+```
+
+* Any value of DevFiled type SHALL follow \<dev-failed-value\> rule:
+```abnf
+ dev-failed-value = 1*error 
+
+ error = reason severity desc origin
+
+ reason = *VCHAR ; SHALL be the reason of the failur
+ severity = "WARN" | "ERR" | "PANIC"
+ desc = *VCHAR ; SHOULD describe the failur in more details, eg. call stack
+ origin = *VCHAR ; SHALL identify the operation or the tango object which caused the failure  
+```
