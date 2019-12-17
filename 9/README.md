@@ -99,7 +99,7 @@ DevBoolean is a data type which values represents logical state of true or false
 * DevBoolean SHALL be defined as follows:
 
 ```abnf
-DevBoolean = "DEVBOOLEAN" / "DevBoolean"
+DevBoolean = "DevBoolean"
 ```
 
 * Values which DataType is DevBoolean SHALL carry one bit of information.
@@ -112,13 +112,13 @@ unsigned values.
 * Integer DataType SHALL have the following names:
 
 ```abnf
- DevShort = "DEVSHORT" / "DevShort"
- DevLong = "DEVLONG" / "DevLong"
- DevLong64 = "DEVLONG64" / "DevLong64"
- DevUChar = "DEVUCHAR" / "DevUChar"
- DevUShort = "DEVUSHORT" / "DevUShort"
- DevULong = "DEVULONG" / "DevULong"
- DevULong64 = "DEVULONG64" / "DevULong64"
+ DevShort = "DevShort"
+ DevLong = "DevLong"
+ DevLong64 = "DevLong64"
+ DevUChar = "DevUChar"
+ DevUShort = "DevUShort"
+ DevULong = "DevULong"
+ DevULong64 = "DevULong64"
 ```
 
 * Values of integer data types SHALL be in defined ranges and the information it cary SHALL have number of bits
@@ -141,8 +141,8 @@ DevFloat and DevDouble represent floating point values.
 * DevFloat and DevDouble SHALL use the following names:
 
 ```abnf
- DevFloat = "DEVFLOAT" / "DevFloat"
- DevDouble = "DEVDOUBLE" / "DevDouble"
+ DevFloat = "DevFloat"
+ DevDouble = "DevDouble"
 ```
 
 * Values of DevFloat type SHALL be of IEEE 754 single precision floating-point format and MAY be encoded in 32 bits.
@@ -155,7 +155,7 @@ DevString values represents strings (sequence of characters).
 * DevString SHALL use the following names:
 
 ```abnf
- DevString = "DEVSTRING" / "DevString"
+ DevString = "DevString"
 ```
 
 * Values of DevString SHALL be according to the string-value rule defined as follows:
@@ -187,7 +187,7 @@ Value of the DevEncoded type is a structure to carry binary data with applicatio
 
 * Name of DevEncoded type SHALL be as follows:
 ```abnf
- DevEncoded = "DEVENCODED" / "DevEncoded"
+ DevEncoded = "DevEncoded"
 ```
 
 * Value of \<DevEncoded\> SHALL be according to the \<encoded-value\> rule:
@@ -202,8 +202,8 @@ DevVarLongStringArray and DevVarDoubleStringArray values are structures to carry
 
 * Names DevVarLongStringArray and DevVarDoubleStringArray SHALL follow the following rules:
 ```abnf
- DevVarLongStringArray = "DEVVARLONGSTRINGARRAY" / "DevVarLongStringArray"
- DevVarDoubleStringArray = "DEVVARDOUBLESTRINGARRAY" / "DevVarDoubleStringArray"
+ DevVarLongStringArray = "DevVarLongStringArray"
+ DevVarDoubleStringArray = "DevVarDoubleStringArray"
 ```
 
 * Values of DevVarLongStringArray and DevVarDoubleStringArray SHALL follow rules \<long-string-value\> 
@@ -222,7 +222,7 @@ DavState type standardize a way of describing state of Device. Its values are fr
 
 * DevState name SHALL be according to the following rule:
 ```abnf
- DevState = "DEVSTATE" / "DevState
+ DevState = "DevState
 ```
 
 * Value of DevState type SHALL follow the rule \<dev-state-value\>:
@@ -237,12 +237,12 @@ DevEnum data type allows to assign string Labels to DevShort values. It is valid
 
 * DevEnum name SHALL follow the following rule:
 ```abnf
- DevEnum = "DEVENUM" / "DevEnum"
+ DevEnum = "DevEnum"
 ```
 
 * Label values of DevEnum SHALL follow the rule \<devenum-label\>:
 ```abnf
- devenum-label = 1*CHAR
+ devenum-label = 1*VCHAR
 ```  
 
 * DevEnum labels SHALL be unique in the context of an Attribute.
@@ -260,7 +260,7 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
 
 * DevPipeBlob SHALL have the following name:
 ```abnf
- DevPipeBlob = "DEVPIPEBLOB" / "DevPipeBlob"
+ DevPipeBlob = "DevPipeBlob"
 ```
 
 * A value of DevPipeBlob type SHALL follow the \<pipe-blob-value\> rule:
