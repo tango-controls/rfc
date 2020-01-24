@@ -7,27 +7,33 @@ The process to add or change an RFC is the following:
 - An RFC is created and modified by pull requests according to the Collective Code Construction Contract [(C4)](https://github.com/unprotocols/rfc/blob/master/1/README.md).
 - The RFC life-cycle SHOULD follow the life-cycle defined in the Consensus-Oriented Specification System [(COSS)](https://github.com/unprotocols/rfc/blob/master/2/README.md).
 
-## Current RFCs
+Read more [here](https://github.com/tango-controls/rfc/wiki).
 
-Short Name   | Title                                                         | Type     | Status     | Editor
--------------|---------------------------------------------------------------|----------|------------|-------
-[RFC-1](1)   | The Tango control system                                      | Standard | Draft      | 
-[RFC-2](2)   | The device object model                                       | Standard | Draft      | 
-[RFC-3](3)   | The command model                                             | Standard | Draft      | 
-[RFC-4](4)   | The attribute model                                           | Standard | Draft      | 
-[RFC-5](5)   | The property model                                            | Standard | Draft      | 
-[RFC-6](6)   | The database system                                           | Standard | Draft      | 
-[RFC-8](8)   | The server model                                              | Standard | Draft      | 
-[RFC-9](9)   | The class model                                               | Standard | Draft      | 
-[RFC-10](10) | The Request-Reply protocol                                    | Standard | Draft      | 
-[RFC-11](11) | The Request-Reply protocol - CORBA implementation             | Standard | Draft      | 
-[RFC-12](12) | The Publisher-Subscriber protocol                             | Standard | Draft      | 
-[RFC-13](13) | The Publisher-Subscriber protocol - ZeroMQ implementation     | Standard | Draft      | 
-[RFC-XX](XX) | The dynamic attribute and command                             | Standard | Draft      | 
-[RFC-XX](XX) | Logging service                                               | Standard | Draft      | 
-[RFC-XX](XX) | Cache system                                                  | Standard | Draft      | 
-[RFC-XX](XX) | Memorised attribute service                                   | Standard | Draft      | 
-[RFC-XX](XX) | Authorisation system                                          | Standard | Draft      | 
-[RFC-XX](XX) | High Level API                                                | Standard | Draft      | 
-[RFC-XX](XX) | High Level API - Python implementation                        | Standard | Draft      | 
-[RFC-XX](XX) | High Level API - Java   implementation                        | Standard | Draft      | 
+## RFCs
+
+The table below summarises all available or expected specifications. For the current "work in progress status", please 
+check either PRs or [Wiki](https://github.com/tango-controls/rfc/wiki/Work-in-Progress-RFCs).  
+
+Short Name             | Title                                                         | Status     | Editor
+-----------------------|---------------------------------------------------------------|------------|-------
+RFC-1   | The Tango control system                                       | Raw          | Lorenzo Pivetta
+[RFC-2](2/README.md)   | The device object model                                        | Draft        | Vincent Hardion
+[RFC-3](3/README.md)   | The command model                                              | Draft      | Sergi Blanchi-Torné
+[RFC-4](4/README.md)   | The attribute model                                            | Draft        | Sergi Blanchi-Torné
+[RFC-5](5/README.md)   | The property model                                             | Draft          | Gwenaelle Abeillé
+[RFC-6](6/README.md)   | The database system                                            | Draft          | Gwenaelle Abeillé
+RFC-7   | The pipe model                                                 | Raw          |
+RFC-8   | The server model                                               | Raw          | Lorenzo Pivetta
+RFC-9   | Data types                                                     | Raw          | Gwenaelle Abeillé
+RFC-10 | The Request-Reply protocol                                     | Raw          | Reynald Bourtembourg
+RFC-11 | The Request-Reply protocol - CORBA implementation              | Raw          | 
+RFC-12 | The Publisher-Subscriber protocol                              | Raw          | Vincent Hardion 
+RFC-13 | The Publisher-Subscriber protocol - ZeroMQ implementation      | Raw          | 
+RFC-14 | Logging service                                                | Raw          | Sergi Blanchi-Torné
+RFC-15 | The dynamic attribute and command                              | Raw          | Reynald Bourtembourg
+RFC-16 | Cache system                                                   | Raw          | 
+RFC-17 | Memorised attribute service                                    | Raw          | 
+RFC-18 | Authorisation system                                           | Raw          | 
+RFC-XX | High Level API                                                 | Raw          | 
+RFC-XX | High Level API - Python implementation                         | Raw          | 
+RFC-XX | High Level API - Java   implementation                         | Raw          | 
