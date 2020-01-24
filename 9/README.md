@@ -239,11 +239,11 @@ DevVarStringArray.
 
 #### State
 
-DavState type standardize a way of describing state of Device. Its values are from predefined set of 14 names.   
+DevState type standardize a way of describing state of Device. Its values are from predefined set of 14 names.   
 
 * DevState name SHALL be according to the following rule:
 ```abnf
- DevState = "DevState
+ DevState = "DevState"
 ```
 
 * Value of DevState type SHALL follow the rule \<dev-state-value\>:
