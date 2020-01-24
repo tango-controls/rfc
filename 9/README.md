@@ -315,7 +315,7 @@ Results of failed operations (exceptions) within the Tango Controls are send as 
 
  error = reason severity desc origin
 
- reason = *VCHAR ; SHALL be the reason of the failur
+ reason = *VCHAR ; SHALL be the reason of the failure
  severity = "WARN" | "ERR" | "PANIC"
  desc = *VCHAR ; SHOULD describe the failur in more details, eg. call stack
  origin = *VCHAR ; SHALL identify the operation or the tango object which caused the failure  
