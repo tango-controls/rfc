@@ -271,7 +271,7 @@ DevEnum data type allows to assign string Labels to DevShort values. It is valid
 * Related DevShort values SHALL be consecutive and SHALL start with 0. 
 * Values of DevEnum DataType SHALL be transported as values of DevShort.
 
-* For any of Attribute of DevEnum data type, list of Labels SHALL be available as `enum_labels` Attribute property.
+* * For any of Attribute of DevEnum data type, list of Labels SHALL be available as `enum_labels` Attribute property (see [4/Attribute](/4)).
 
 * Tango Controls SHALL allow a Tango Client to retrieve labels associated with the DevShort value.
 
