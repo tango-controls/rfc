@@ -47,16 +47,18 @@ Additionally, it aims to:
 
 * Define a rules for transparent reconnection,
 
-* Allow for initiation of other communication protocols (lik S.
+* Allow for initiation and management of other communication protocols (like Publishe-Subsciber protocol) .
 
 ### Use Cases
 
 There are few main use cases for The Request-Reply protocol:
 
-* ...
+* Calling Commands on Devies,
+* Reading Attributes' and a Pipes' values and meta-data,
+* Writing Attributes' and Pipe's data,
+* Setting-up Publisher-Subscriber communication,
 
-* ...
+### Connection management
 
-### Messages
 
 ###
