@@ -315,8 +315,8 @@ Results of failed operations (exceptions) within the Tango Controls are send as 
 
  error = reason severity desc origin
 
- reason = *VCHAR ; SHALL be the reason of the failure
+ reason = *VCHAR ; SHOULD be a symbolic name, without whitespace, which points the reason for the failure and is standardized for some errors thrown by the API. Examples: "API_AttrOptProp", "API_AttrNotPolled","API_CmdNotPolled", "API_CommandNotFound"
  severity = "WARN" | "ERR" | "PANIC"
- desc = *VCHAR ; SHOULD describe the failur in more details, eg. call stack
- origin = *VCHAR ; SHALL identify the operation or the tango object which caused the failure  
+ desc = *VCHAR ; SHOULD describe the failure in more details
+ origin = *VCHAR ; SHALL identify the operation or the tango object which caused the failure, eg. function name
 ```
