@@ -46,7 +46,7 @@ There are many use cases for Data Types. Some of them are listed below:
 
 * To specify expected data format for attributes, commands and pipes.
 
-* To display in the same way a numeric values read from a devices when some of them are using big-endian encoding and 
+* To display in the same way a numeric values read from a device when some of them are using big-endian encoding and 
   other use little-endian encoding.
 
 * To limit information processed to a practical level by choosing a Data Type of certain precision.
