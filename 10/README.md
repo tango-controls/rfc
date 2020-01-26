@@ -60,5 +60,14 @@ There are few main use cases for The Request-Reply protocol:
 
 ### Connection management
 
+* The Reqest-Reply protocol SHALL manage client connection.
 
-###
+#### Connection establishement
+
+#### Serving multiple devices 
+
+#### Serving for multiple client connections
+
+#### Staled connections
+
+#### Transparent reconnection on client side
