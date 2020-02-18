@@ -172,6 +172,38 @@ pointed by *__root_att* MUST be reflected in the forwarded Attribute.
 An Attribute MAY have associated dynamic metadata in form of
 Properties (see [RFC 5/Property](/5)).
 
+Below table summarizes common attribute properties used by Tango.
+Detailed description is provided later in this section.
+
+| Property             | Name in database     | Type   | Default value                                                                                         |
+|----------------------|----------------------|--------|-------------------------------------------------------------------------------------------------------|
+| *description*        | `description`        | string | Not specified / No description                                                                        |
+| *label*              | `label`              | string | Not specified / No label                                                                              |
+| *unit*               | `unit`               | string | Not specified / No unit / *empty*                                                                     |
+| *standard unit*      | `standard_unit`      | number | Not specified / No standard unit                                                                      |
+| *display unit*       | `display_unit`       | number | Not specified / No display unit                                                                       |
+| *format*             | `format`             | string | %6.2f (float),<br/> %d (integer),<br/> %s(string, enum),<br/> Not specified (state, encoded, boolean) |
+| *min value*          | `min_value`          | number | Not specified                                                                                         |
+| *max value*          | `max_value`          | number | Not specified                                                                                         |
+| *min alarm*          | `min_alarm`          | number | Not specified                                                                                         |
+| *max alarm*          | `max_alarm`          | number | Not specified                                                                                         |
+| *min warning*        | `min_warning`        | number | Not specified                                                                                         |
+| *max warning*        | `max_warning`        | number | Not specified                                                                                         |
+| *delta val*          | `delta_val`          | number | Not specified                                                                                         |
+| *delta t*            | `delta_t`            | number | Not specified / 0                                                                                     |
+| *rel change*         | `rel_change`         | number | Not specified                                                                                         |
+| *abs change*         | `abs_change`         | number | Not specified                                                                                         |
+| *archive rel change* | `archive_rel_change` | number | Not specified                                                                                         |
+| *archive abs change* | `archive_abs_change` | number | Not specified                                                                                         |
+| *period*             | `period`             | number | 1000                                                                                                  |
+| *archive period*     | `archive_period`     | number | Not specified                                                                                         |
+| *__value*            | `__value`            | string | Not used yet                                                                                          |
+| *__root_att*         | `__root_att`         | string | Not defined                                                                                           |
+
+> **Note:**
+> Both `delta_val` and `delta_t` MUST be set to non-default values
+> in order for RDS (*read different than set*) alarms to work.
+
 General properties:
 * *description*, providing textual information about the Attribute,
 * *label*, providing textual label to use as Attribute's name,
