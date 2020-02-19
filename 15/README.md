@@ -3,7 +3,7 @@ domain: rfc.tango-controls.org
 shortname: 15/Dynamic-attr-cmd 
 name: The dynamic attribute and command 
 status: raw 
-editor:  
+editor: Reynald Bourtembourg `<at esrf.fr - reynald.bourtembourg>` 
 contributors: Olga Merkulova `<at ingvord.ru - olga>`, Igor Khokhriakov `<at ingvord.ru - mail>`
 ---
 
@@ -26,14 +26,17 @@ This specification describes the Tango kernel dynamic Attribute and Command API.
 
 ## Use Cases
 
-The primary use case is to allow server client code to create Attributes and/or Commands in runtime.
+The primary use case is to allow Tango Device Server programmers to create Attributes and/or Commands in runtime.
 
 Reasons for that:
 - create Attributes/Commands based on underlying library;
-- create generic Tango device classes which interfaces entirely/partly unknown at the moment of creation.
+- create generic Tango device classes which interfaces are entirely/partly unknown at the moment of creation.
 
 Consider a Tango device class that represents a serie of detectors. Each detector differs a bit in terms of supported features, while the most part of the code could be the same for each detector. These small differentiations may be implemented as dynamic Attributes or Commands. 
 
+Consider a Tango Device Class that represents a residual gaz analyzer. The device will provide measurement results for many different masses. The results can be presented as a Tango spectrum attribute showing the measurements for all the masses but it can be also very interesting to create an attribute for each different mass, then the user could monitor this specific mass or define some alarm thresholds or configure archiving events for this specific mass. Dynamic attributes may be used to create easily these numerous attributes whose behaviour is almost identical.
+
+Consider a Tango Device my/simu/device simulating the interface of another Tango Device my/original/device, for tests purposes. my/simu/device could query the interface of my/original/device at runtime and create dynamically the same attributes and commands as my/original/device. The simulated device could then be used to test high level client applications which would then talk to the simulated device instead of the original device.
 
 
 ## Definitions
@@ -56,7 +59,7 @@ Accepted configuration MUST be the same as described in RFC-3 (The command model
 
 As the result of the call, API creates corresponding Attribute/Command fully compliant to RFC-4/RFC-3.
 
-Implementation of the API MAY send an Event (INTERFACE_CHANGE, see RFC-12) in response to a new Attribute/Command creation.
+Implementation of the API MAY send an Event (INTERFACE_CHANGE, see RFC-12) in response to a new Attribute/Command creation/removal.
 
 
 
