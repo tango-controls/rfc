@@ -19,13 +19,14 @@ Organization's [Consensus-Oriented Specification System](http://www.digistan.org
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 
 
-# Tango Pipe specificatiom
+# Tango Pipe specification
 
 This specification describes the Tango Pipe feature of a Device. 
 
 ## Goals
 
-Tango Pipe is an Attribute [RFC-4] with custom data structure.
+Tango Pipe is an Attribute [RFC-4] with custom data structure - the pipe name and pipe description.
+But in contrary of Commands or Attributes, a pipe does not have a pre-defined data type: it may be of any basic Tango data type (or array of) and this may change every time a pipe is read or written.
 
 ## Use Case
 
@@ -72,6 +73,9 @@ Key = DevString [link to RFC-9 Data Types]
 
 Value = An Arary of Any Tango compliant type or Pipe [link to RFC-9 Data Types]
 ```
+
+![](pipe.png)
+
 
 > **V10 NOTE:** Attribute being a corner case of a Pipe MUST be implemented as a derivative of a Pipe.
 
