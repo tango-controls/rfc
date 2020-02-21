@@ -9,7 +9,7 @@ contributors:
   - Thomas Braun <thomas.braun@byte-physics.de>
   - Andy Gotz <andy.gotz@esrf.fr>
   - Vincent Hardion <vincent.hardion@maxiv.lu.se> 
-  - Lorenzo Pivetta <lorenzo.pivetta@elettra.eu>git sgit 
+  - Lorenzo Pivetta <lorenzo.pivetta@elettra.eu>
 ---
 
 This document describes the Tango Property model.
