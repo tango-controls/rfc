@@ -1,10 +1,12 @@
+---
 domain: rfc.tango-controls.org  
-shortname: XX/Logging  
+shortname: 14/Logging  
 name: The Tango Logging Service  
-status: raw  
-editor:   
+status: draft
+editor: [Sergi Blanchi-Torné](mailto:sblanch@cells.es)  
 contributors:  
   - David Erb `<at maxiv.lu.se - david.erb>`
+---
 
 ## Introduction
 This document describes the Tango Logging Service (TLS).
