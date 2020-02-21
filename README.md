@@ -29,7 +29,7 @@ RFC-10 | The Request-Reply protocol                                     | Raw   
 RFC-11 | The Request-Reply protocol - CORBA implementation              | Raw          | 
 RFC-12 | The Publisher-Subscriber protocol                              | Raw          | Vincent Hardion 
 RFC-13 | The Publisher-Subscriber protocol - ZeroMQ implementation      | Raw          | 
-[RFC-14](14/Logging.md) | Logging service                                                | Raw          | Sergi Blanchi-Torné
+[RFC-14](14/Logging.md) | Logging service                                                | Draft       | Sergi Blanchi-Torné
 RFC-15 | The dynamic attribute and command                              | Raw          | Reynald Bourtembourg
 RFC-16 | Cache system                                                   | Raw          | 
 RFC-17 | Memorised attribute service                                    | Raw          | 
