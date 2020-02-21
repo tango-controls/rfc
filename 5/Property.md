@@ -2,7 +2,7 @@
 domain: rfc.tango-controls.org
 shortname: 5/PROPERTY
 name: Property
-status: raw
+status: draft
 editor: Gwenaëlle Abeillé <gwenaelle.abeille@synchrotron-soleil.fr>
 contributors:
   - Reynald Bourtembourg <reynald.bourtembourg@esrf.fr>
