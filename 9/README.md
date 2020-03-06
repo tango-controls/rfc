@@ -36,9 +36,9 @@ Data Types are specifying format and limits of pieces of information exchanged b
 
 ### Goals
 
-Data Types aims to standardise a way how different kind of information is entered, displayed and processed within
-a Tango Controls systems irrespectively to its encoding in a transport protocol or computers' CPU architecture.
-It also allows to distinguish different kind of numeric data, string data, enumerations or multi-values data. 
+Data Types specification aims to standardise a way how different kind of information is entered, displayed and processed within
+a Tango Controls system irrespectively to its encoding in a transport protocol or computers' CPU architecture.
+It also allows to distinguish different kinds of numeric data, string data, enumerations or multi-values data. 
 
 ### Use Cases
 
@@ -46,8 +46,8 @@ There are many use cases for Data Types. Some of them are listed below:
 
 * To specify expected data format for attributes, commands and pipes.
 
-* To display in the same way a numeric values read from a device when some of them are using big-endian encoding and 
-  other use little-endian encoding.
+* To display in the same way a numeric value read from a device when some of them are using big-endian encoding and 
+  others use little-endian encoding.
 
 * To limit information processed to a practical level by choosing a Data Type of certain precision.
   For example, a value of Data Type DevShort typically provides less precise information and consumes less computing 
@@ -98,7 +98,7 @@ There are many use cases for Data Types. Some of them are listed below:
 
 DevBoolean is a data type which values represents logical state of true or false.
 
-* DevBoolean SHALL be defined as follows:
+* DevBoolean SHALL use the following name:
 
 ```abnf
 DevBoolean = "DevBoolean"
@@ -108,7 +108,7 @@ DevBoolean = "DevBoolean"
 
 #### Integer data types
 
-DevShort, DevLong, DevLong64 represent singed integer values. DevUChar, DevUShort, DevULong and DevULong64 represent
+DevShort, DevLong, DevLong64 represent signed integer values. DevUChar, DevUShort, DevULong and DevULong64 represent
 unsigned values.
 
 * Integer DataType SHALL have the following names:
@@ -123,8 +123,8 @@ unsigned values.
  DevULong64 = "DevULong64"
 ```
 
-* Values of integer data types SHALL be in defined ranges and the information it cary SHALL have number of bits
-  specified in the table below:
+* Values of integer data types SHALL be in defined ranges and the information they carry SHALL have number of bits
+  as specified in the table below:
 
 | DataType | Range | Bits of information |
 -----------|-------|---------------------|
@@ -239,7 +239,7 @@ DevVarStringArray.
 
 #### State
 
-DevState type standardize a way of describing state of Device. Its values are from predefined set of 14 names.   
+DevState type standardizes a way of describing state of Device. Its values are from predefined set of 14 names.   
 
 * DevState name SHALL be according to the following rule:
 ```abnf
@@ -271,7 +271,7 @@ DevEnum data type allows to assign string Labels to DevShort values. It is valid
 * Related DevShort values SHALL be consecutive and SHALL start with 0. 
 * Values of DevEnum DataType SHALL be transported as values of DevShort.
 
-* * For any of Attribute of DevEnum data type, list of Labels SHALL be available as `enum_labels` Attribute property (see [4/Attribute](/4)).
+* For any Attribute of DevEnum data type, list of Labels SHALL be available as `enum_labels` Attribute property (see [4/Attribute](/4)).
 
 * Tango Controls SHALL allow a Tango Client to retrieve labels associated with the DevShort value.
 
@@ -302,7 +302,7 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
 
 #### Exceptions 
 
-Results of failed operations (exceptions) within the Tango Controls are send as values/messages of DevFailed data type.
+Results of failed operations (exceptions) within the Tango Controls are sent as values/messages of DevFailed data type.
 
 * DevFailed type name is as follows:
 ```abnf
