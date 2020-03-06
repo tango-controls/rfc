@@ -298,6 +298,8 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
                      ; elements order implied by the above rule MAY be ignored    
 
  inner-blob = blob-data  
+
+ inner-blob-name = name
 ```
 
 #### Exceptions 
