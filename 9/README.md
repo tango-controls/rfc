@@ -246,10 +246,11 @@ DevState type standardizes a way of describing state of Device. Its values are f
  DevState = "DevState"
 ```
 
-* Value of DevState type SHALL follow the rule \<dev-state-value\>:
+* DevState type SHALL be an enumeration type with labels following the rule \<dev-state-label\>:
+
 ```abnf
- dev-state-value = "ALARM" / "INSERT" / "STANDBY" / "CLOSE" / "MOVING" / "UNKNOWN" / "DISABLE" / "OFF"
- dev-state-value =/ "EXTRACT" / "ON" / "FAULT" / "OPEN" / "INIT" / "RUNNING"
+ dev-state-label = "ALARM" / "INSERT" / "STANDBY" / "CLOSE" / "MOVING" / "UNKNOWN" / "DISABLE" / "OFF"
+ dev-state-label =/ "EXTRACT" / "ON" / "FAULT" / "OPEN" / "INIT" / "RUNNING"
 ```
 
 #### Enumeration
