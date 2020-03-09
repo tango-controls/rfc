@@ -2,6 +2,23 @@
 
 This repository is the home of all Tango Open Specification.
 
+## Mission
+
+The goal of this RFC project is to provide a formal specification of the current Tango Controls system. This specification shall include:
+
+1. concepts
+2. terminology, 
+3. protocol behaviour,
+4. conventions,
+5. common APIs,
+6. common utilities,
+
+each on a sufficient level for preparation of specification of a new vesrion of Tango Controls (Tango v10). In that respect concepts are more important than details.
+
+When the time comes to write v10, we will make a copy the v9 RFC and start discussing what to keep, what to remove and what to add.
+
+## Contribution
+
 The process to add or change an RFC is the following:
 
 - An RFC is created and modified by pull requests according to the Collective Code Construction Contract [(C4)](https://github.com/unprotocols/rfc/blob/master/1/README.md).
