@@ -25,15 +25,15 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Tango Device Server specification
 
- The specication of '''Device Server''' aims the process of Device management, being it self a Device.
+ The specication of '''Device Server''' aims to define the process of Device management, being it self a Device.
 
 ### Goals
 
- A Device Server in a Tango Controls System aims to control the process of communication and lifecycle of one or several Device.
+ In a Tango Control System a Device Server is in charge of managing the life cycle and the communication protocol of one or several Tango Devices.
 
 Additionally, it aims to:
 
-* Provide a blackbox that register the operation executed on every Device
+* Provide a blackbox that registers the operations executed on every Device
 
 * Be usable as a Device
 
@@ -50,13 +50,13 @@ There are X main use cases for Device Server:
 
 ## Specification
 
-The Device Server manage the communication with one or several Device.  Additionally it enforces the behaviour compatibility with the Tango Control System and offer different meta service.
+The Device Server manages the communication with one or several Device.  Additionally it enforces the compatibility of behaviour with the Tango Control System and offer different meta service.
 
-The Device Server SHALL follow these specification below in order to  control and monitor this communication:
+The Device Server SHALL implement the following specifications to control and monitor the Device:
 
-* A Device Server represents/interfaces the process which manage one or several Device
+* A Device Server represents the process which manage one or several Device
 
-* A Device Server is a also a Device itself.
+* A Device Server is a Tango Device itself.
 
 * A Device MUST NOT be managed by more than one Device Server
 
@@ -74,9 +74,9 @@ The specification introduces as well the definition of the process which are use
 
 * An Instance is an unique identifier as several processes of the same Server MAY exist in a Tango Control System
 
-* A Server Instance is finally what identify the actual process in the Tango Control Sytem
+* A Server Instance is finally what identify the actual process in the Tango Control System
 
-* A Server Instance CAN be interfaced by only one Device Server
+* A Server Instance CAN be managed by only one Device Server
 
 
 Additionally:
@@ -126,14 +126,24 @@ Additionally:
 
 #### The Device Export sequence
 
-The phase called Device Export is intended to prepare the Device for its operation and accessibility in the Tango Control System by the Device Server:
+The phase called Device Export is intended to prepare all the managed Device for operation and accessibility in the Tango Control System by the Device Server:
 
 * The Device Server MUST take in charge of the Device Export
 
 * The Device Export SHOULD bring the Device at the same State than after an Init Command.
-* The Device Export SHOULD execute the Device Registration of the Database([RFC-6]()), in order to be accessible locally and via network.
+
+* The Device Export SHOULD execute the Device Sign up of the Database([RFC-6]()), in order to be accessible locally and via network.
 
 
 #### The Device Unexport sequence
 
-...
+The phase called Device Unexport is intended to prepare the all Device for stopping operate.
+
+* The Device Server MUST take in charge of the Device Unexport
+
+* The Device Unexport SHALL gracefully stop the Device operation, even if there are requests in progress.
+
+* The Device Unexport SHALL gracefully stop the communication with any Tango Client 
+
+* The Device Unexport SHOULD unregister from the Tango Control system by executing the Device Sign Out of the Database([RFC-6]()), in order to notify that all managed Device are not accessible
+
