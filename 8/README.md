@@ -25,11 +25,13 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Tango Device Server specification
 
- The specication of '''Device Server''' aims to define the process of Device management, being it self a Device.
+ This spefication formally document the Tango Device Server model. 
+ Runtime implementation of the Device Server model in conforming Tango implementations MUST follow this specification.
 
 ### Goals
 
  In a Tango Control System a Device Server is in charge of managing the life cycle and the communication protocol of one or several Tango Devices.
+ The Device Server can also offer different services to the clients as well as for the Device.
 
 Additionally, it aims to:
 
@@ -39,13 +41,20 @@ Additionally, it aims to:
 
 ### Use Cases
 
-There are X main use cases for Device Server:
+The main use cases for Device Server are:
 
-* to manage several Device in the same process
+* to manage several Device in the same process. 
 
 * to share the same channel of communication
 
+* to provide the connection protocols for accessing the managed Device
+
+* to provide different services like logging
+
 * to serialise the operation per Device
+
+* to sign up or sign out to the central registry 
+
 
 
 ## Specification
@@ -56,9 +65,15 @@ The Device Server SHALL implement the following specifications to control and mo
 
 * A Device Server represents the process which manage one or several Device
 
-* A Device Server is a Tango Device itself.
+* A Device Server SHALL managed at least one Device. 
+
+* A Device Server MAY manage Devices belonging to different Classes
 
 * A Device MUST NOT be managed by more than one Device Server
+
+* A Device Server instance reference SHALL be unique in a Tango Control system
+
+* A Device Server SHALL be a Tango Device itself.
 
 The name of the Device Server SHALL follow this convention:
 ```ABNF
