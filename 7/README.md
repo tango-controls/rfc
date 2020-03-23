@@ -71,10 +71,12 @@ Pipe data structure MUST be:
 ```abnf
 Key = DevString [link to RFC-9 Data Types]
 
-Value = An Arary of Any Tango compliant type or Pipe [link to RFC-9 Data Types]
+Value = An Array of Any Tango compliant type or Pipe [link to RFC-9 Data Types]
 ```
 
-![](pipe.png)
+In Tango 9 "DevPipeBlob" is used to describe Value (see image below).
+
+![](pipe_Tango_9.png)
 
 
 > **V10 NOTE:** Attribute being a corner case of a Pipe MUST be implemented as a derivative of a Pipe.
