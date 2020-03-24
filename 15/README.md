@@ -64,7 +64,7 @@ Implementation of the API MAY send an Event (INTERFACE_CHANGE, see RFC-12) in re
 
 
 > In Tango V10
-All Commands and Attributes MUST be defined as dynamic i.e. use this API  
+All Commands and Attributes MUST be defined as dynamic i.e. use this API. High level API MAY provide sense of static entities.   
 
 
 
