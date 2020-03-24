@@ -3,7 +3,7 @@ domain: rfc.tango-controls.org
 shortname: 7/PIPE 
 name: The pipe 
 status: raw 
-editor:  
+editor: Reynald Bourtembourg `<at esrf.fr - reynald.bourtembourg>`
 contributors: Olga Merkulova `<at ingvord.ru - olga>`, Igor Khokhriakov `<at ingvord.ru - mail>`
 ---
 
@@ -71,7 +71,7 @@ Pipe data structure MUST be:
 ```abnf
 Key = DevString [link to RFC-9 Data Types]
 
-Value = An Array of Any Tango compliant type or Pipe [link to RFC-9 Data Types]
+Value = Scalar or Array of Any Tango compliant type or Pipe [link to RFC-9 Data Types]
 ```
 
 In Tango 9 "DevPipeBlob" is used to describe Value (see image below).
@@ -79,7 +79,7 @@ In Tango 9 "DevPipeBlob" is used to describe Value (see image below).
 ![](pipe_Tango_9.png)
 
 
-> **V10 NOTE:** Attribute being a corner case of a Pipe MUST be implemented as a derivative of a Pipe.
+> **V10 NOTE:** Attribute being a corner case of a Pipe can be considered as a derivative of a Pipe.
 
 ### Pipe events
 
