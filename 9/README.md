@@ -152,7 +152,7 @@ DevFloat and DevDouble represent floating point values.
 
 #### String data type
 
-DevString values represents strings (sequence of characters).
+DevString values represent strings (sequence of characters).
 
 * DevString SHALL use the following names:
 
@@ -312,7 +312,7 @@ Results of failed operations (exceptions) within the Tango Controls are sent as 
  DevFailed = "DevFailed"
 ```
 
-* Any value of DevFiled type SHALL follow \<dev-failed-value\> rule:
+* Any value of DevFailed type SHALL follow \<dev-failed-value\> rule:
 ```abnf
  dev-failed-value = 1*error 
 
