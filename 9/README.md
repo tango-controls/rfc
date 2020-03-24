@@ -303,6 +303,10 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
  inner-blob-name = name
 ```
 
+Where \<value\> SHALL be a value of one of the following data types: DevVarBooleanArray, DevVarShortArray, DevVarLongArray,			
+DevVarLong64Array, DevVarFloatArray, DevVarDoubleArray, DevVarCharArray, DevVarUShortArray,	DevVarULongArray,		
+DevVarULong64Array, DevVarStringArray, DevVarStateArray, DevState, DevVarEncodedArray, DevBoolean.
+
 #### Exceptions 
 
 Results of failed operations (exceptions) within the Tango Controls are sent as values/messages of DevFailed data type.
