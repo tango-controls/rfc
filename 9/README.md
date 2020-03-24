@@ -303,9 +303,12 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
  inner-blob-name = name
 ```
 
-Where \<value\> SHALL be a value of one of the following data types: DevVarBooleanArray, DevVarShortArray, DevVarLongArray,			
-DevVarLong64Array, DevVarFloatArray, DevVarDoubleArray, DevVarCharArray, DevVarUShortArray,	DevVarULongArray,		
-DevVarULong64Array, DevVarStringArray, DevVarStateArray, DevState, DevVarEncodedArray, DevBoolean.
+Where \<value\> SHALL be a value of one of the following data types: 
+DevVoid, DevBoolean, DevShort, DevLong, DevLong64, DevFloat, DevDouble, DevChar, DevUShort,	DevULong,		
+DevULong64, DevString, DevState, DevState, DevEncoded,
+DevVarBooleanArray, DevVarShortArray, DevVarLongArray, DevVarLong64Array, DevVarFloatArray, 
+DevVarDoubleArray, DevVarCharArray, DevVarUShortArray,	DevVarULongArray,	DevVarULong64Array, 
+DevVarStringArray, DevVarStateArray, DevState, DevVarEncodedArray.
 
 #### Exceptions 
 
