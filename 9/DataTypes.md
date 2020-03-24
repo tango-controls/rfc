@@ -295,7 +295,7 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
 
  blob-data = *blob-data-element
  
- blob-data-element = name value / blob-data 
+ blob-data-element = name (value / blob-data) 
                      ; elements order implied by the above rule MAY be ignored     
 ```
 
