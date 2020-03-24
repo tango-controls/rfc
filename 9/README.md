@@ -295,16 +295,12 @@ DevPipeBlob is a Data Type to transfer data related to Pipes (see 7/Pipe).
 
  blob-data = *blob-data-element
  
- blob-data-element = name value inner-blob inner-blob-name 
-                     ; elements order implied by the above rule MAY be ignored    
-
- inner-blob = blob-data  
-
- inner-blob-name = name
+ blob-data-element = name value / blob-data 
+                     ; elements order implied by the above rule MAY be ignored     
 ```
 
 Where \<value\> SHALL be a value of one of the following data types: 
-DevVoid, DevBoolean, DevShort, DevLong, DevLong64, DevFloat, DevDouble, DevChar, DevUShort,	DevULong,		
+DevBoolean, DevShort, DevLong, DevLong64, DevFloat, DevDouble, DevChar, DevUShort,	DevULong,		
 DevULong64, DevString, DevState, DevState, DevEncoded,
 DevVarBooleanArray, DevVarShortArray, DevVarLongArray, DevVarLong64Array, DevVarFloatArray, 
 DevVarDoubleArray, DevVarCharArray, DevVarUShortArray,	DevVarULongArray,	DevVarULong64Array, 
