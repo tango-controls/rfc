@@ -18,25 +18,24 @@ Organization's [Consensus-Oriented Specification System](http://www.digistan.org
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 
-## Introduction
+## Publisher-Subscriber protocol Specification
 
-This document describes the Tango Publisher-Subscriber protocol. It is a relationship between Tango client (client) and Tango server (server). Based on criteria negotiated as part of a subscription, Tango client will receive updates. Beyond a set of basic requirements, various refinements are addressed. These refinements include: periodicity of updates, filtering out updates based on Tango server configuration and fault tolerance. 
+ It is a relationship between Tango client (Client) and Tango server (Server). Based on criteria negotiated as part of a subscription, Tango client will receive updates. Beyond a set of basic requirements, various refinements are addressed. These refinements include: periodicity of updates, filtering out updates based on Tango server configuration and fault tolerance. 
+
 
 ## Basic Concepts
 
-> This probably should go into RFC-1 and just referenced here
-
 This documents refers to other Tango Controls RFCs, corresponding link is always given in this case. Here is given a brief description of the main concepts. This document targets arbitrary software developer(s) who are to implement *Tango Client Library* and *Tango Server Library*.
 
-*Tango Server* (server) - a process that runs on a machine.
+*Tango Server* (Server) - a process that runs on a machine.
 
-*Tango Device* (device) - a thread within a *Tango Server* that implements *Tango Class* i.e. has *Tango Commands, Attributes, Pipes, Properties*  etc.
+*Tango Device* (Device) - a thread within a *Tango Server* that implements *Tango Class* i.e. has *Tango Commands, Attributes, Pipes, Properties*  etc.
 
-*Tango Admin Device* (admin) - a pre-defined *Tango Device* i.e. a *Tango Device* with fixed number *Tango Commands, Attributes, Pipes* [RFC-3, RFC-4,RFC-?]  etc.
+*Tango Admin Device* (Admin) - a pre-defined *Tango Device* i.e. a *Tango Device* with fixed number *Tango Commands, Attributes, Pipes* [RFC-3, RFC-4,RFC-?]  etc.
 
 For more details see [RFC-2](https://github.com/tango-controls/rfc/blob/draft/2/README.md)
 
-*Tango Client* (client) - a process that instantiates communication with *Tango Server* using Request-Reply protocol [RFC-10].
+*Tango Client* (Client) - a process that instantiates communication with *Tango Server* using Request-Reply protocol [RFC-10].
 
 *Tango Client Library* (client kernel library) - library that encapsulates communication with *Tango Server* and provides *Tango Client API* to a user.
 
@@ -116,7 +115,7 @@ Client and server are up and running. Server is reachable from client i.e. may c
 
 ![Subscription_1.png](images/Subscription_1.png)
 
-The main goal of the this protocol implementation is to allow client receive events from server:
+The main goal of the this protocol implementation is to allow a Client receive events from a Server:
 
 * Server MUST publish events of EVENT_TYPE
 
@@ -181,9 +180,9 @@ Tango Pub-Sub protocol implies a number of fault tolerance techniques:
 
 * Server MAY cancel client's subscription if it does not confirm its interest
 
-* Client/Server SHOULD implement (in/out)coming events buffer to prevent overload 
+* Client/Server SHOULD buffer the (in/out)coming events to prevent overload and overflow 
 
-* Client/Server MUST prevent crash in case events overflow
+* Clients SHOULD be notified in case of events overflow
 
 * Client SHOULD be notified in case of missing events 
 
