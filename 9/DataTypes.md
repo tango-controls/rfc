@@ -2,9 +2,9 @@
 domain: rfc.tango-controls.org
 shortname: 9/DataTypes
 name: Data types
-status: raw
+status: draft
 editor: [Gwenaëlle Abeillé](mailto:gwenaelle.abeille@synchrotron-soleil.fr) 
-contributors: [Piotr Goryl](mailto:piotr.goryl@s2innovation.com)
+contributors: [Piotr Goryl](mailto:piotr.goryl@s2innovation.com), Reynald Bourtembourg (mailto:reynald.bourtembourg@esrf.fr), Vincent Hardion (mailto:vincent.hardion@maxiv.lu.se) 
 
 ---
 
