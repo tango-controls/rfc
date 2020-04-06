@@ -10,11 +10,9 @@ The goal of this RFC project is to provide a formal specification of the current
 2. terminology, 
 3. protocol behaviour,
 4. conventions,
-5. common utilities,
 
-each on a sufficient level for future evolution of Tango Controls. In that respect, concepts are more important than details.
+each on a sufficient level for future evolution of Tango Controls and/or implementation in other languages. In that respect, concepts are more important than implmentation details.
 
-When the time comes to write v10, we will make a copy the v9 RFC and start discussing what to keep, what to remove and what to add.
 
 ## Contribution
 
