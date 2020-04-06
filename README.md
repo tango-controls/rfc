@@ -10,7 +10,7 @@ The goal of this RFC project is to provide a formal specification of the current
 2. terminology, 
 3. protocol behaviour,
 4. conventions,
-6. common utilities,
+5. common utilities,
 
 each on a sufficient level for preparation of specification of a new vesrion of Tango Controls (Tango v10). In that respect concepts are more important than details.
 
