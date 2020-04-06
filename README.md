@@ -6,7 +6,7 @@ This repository is the home of all Tango Open Specification.
 
 The goal of this RFC project is to provide a formal specification of the current Tango Controls system. This specification shall include:
 
-1. concepts
+1. concepts,
 2. terminology, 
 3. protocol behaviour,
 4. conventions,
