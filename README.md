@@ -11,7 +11,7 @@ The goal of this RFC project is to provide a formal specification of the current
 3. protocol behaviour,
 4. conventions,
 
-each on a sufficient level for future evolution of Tango Controls and/or implementation in other languages. In that respect, concepts are more important than implmentation details.
+each on a sufficient level for future evolution of Tango Controls and/or implementation in other languages. In that respect, concepts are more important than implementation details.
 
 
 ## Contribution
