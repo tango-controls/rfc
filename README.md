@@ -4,7 +4,7 @@ This repository is the home of all Tango Open Specification.
 
 ## Mission
 
-The goal of this RFC project is to provide a formal specification of the current Tango Controls system. This specification shall include:
+The goal of this RFC project is to provide a formal specification of the current (v9.3 lts) Tango Controls system. This specification shall include:
 
 1. concepts,
 2. terminology, 
