@@ -58,6 +58,49 @@ There are few main use cases for The Request-Reply protocol:
 * Writing Attributes' and Pipe's data,
 * Setting-up Publisher-Subscriber communication,
 
+## Specification
+### Blackbox
+A blackbox system should record every REQUEST on the Device especially:
+
+Attribute case
+* Read Attribute request,
+  Should register the attribute name, the id of the client (often the pid), the version of TANGO and the Source (DevSource)
+* Write or WriteRead Attribute request,
+  Should register the attribute name, attribute value (only for writing?) (AttributeValueList_4), the id of the client (often the pid) and the version of TANGO
+* reading an Attribute configuration # (Op_Get_Attr_Config);
+* changing an Attribute Configuration # (Op_Set_Attr_Config);
+* Read the Attribute History 
+
+Pipe case
+* Read Pipe request,
+  Should register the pipe name, the id of the client (often the pid), the version of TANGO and the Source (DevSource)
+* Write Pipe request,
+  Should register the pipe name, attribute value, the id of the client (often the pid) and 0?, the version of TANGO_PIPE? 
+* WriteRead Pipe request,
+  Should register the pipe name, attribute value, the id of the client (often the pid) and 1?, the version of TANGO_PIPE? 
+* reading an Pipe configuration # (Op_Get_Pipe_Config_5);
+* changing an Pipe Configuration # (Op_Set_Pipe_Config_5);
+* Read the Pipe History 
+
+Command case
+* listing the list of Command Name [//]: #  (Op_Command_list);
+* execute a Command Name
+Should register the command name, the id of the client (often the pid), the version of TANGO and the Source (DevSource)
+
+* any operation like reading the request of Command History [//]: #   Op_Command_inout_history_4,
+
+Operations case:
+* reading the BlackBox itself #  (Op_BlackBox);
+* reading the device (Attribute?) name # (Attr_Name)
+* request the adm_name attribute # (Attr_AdmName);
+* request thedescription attribute # (Attr_Description);
+* read the information of a device command  # (Op_Command);
+* read the information of a device # (Op_Info);
+* executing Ping # (Op_Ping);
+
+
+NOTE All GROUPED REQUESTS should be logged once with the same information as the unique request
+
 ### Connection management
 
 * The Reqest-Reply protocol SHALL manage client connection.
@@ -71,3 +114,4 @@ There are few main use cases for The Request-Reply protocol:
 #### Staled connections
 
 #### Transparent reconnection on client side
+
