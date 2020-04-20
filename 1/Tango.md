@@ -32,13 +32,13 @@ The goal of Tango is to provide a way of representing all physical and software 
 
 Devices are software components which have Commands (methods), Attributes (data) and Properties (configuration) and are accessible on the network or locally.
 
-A Tango control system consists of a collection of Tango Devices, an (optional) Database and a set of applications for configuring and controlling the Devices via well defined Application Programmers Interfaces (APIs). Tango defines and maintains official APIs for C++, Python, Java, JavaScript and REST.
+A Tango control system consists of a collection of Tango Devices, a Tango Database and a set of applications for configuring and controlling the Devices via well defined Application Programmers Interfaces (APIs). Tango defines and maintains official APIs for C++, Python, Java, JavaScript and REST.
 
-The Tango Database serves the purpose of defining and declaring all Devices in the control system and their configuration parameters. The Database also stores the network address of each Device and serves as Naming Service for clients who need to establish a connection to any or all Devices.
+The Tango Database serves the purpose of defining and declaring all Devices in the control system and their configuration parameters. The Database also stores Naming Service for clients who need to establish a connection to any or all Devices.
 
 The software used in large facilities can be compared with the software for stock markets – huge amount of data must be displayed on the monitor in a real time and being processed and being saved in databases for post processing.
 
-The Tango toolkit was mainly developed for research facilities needs, but the idea and concept (philosophy) behind was to create a framework for control systems in general. The concept is based on the idea that the concept of an object or component is ideally suited to designing and implementing control systems. TANGO was based on this concept and can be described as an object oriented control system. A number of concepts were defined as being necessary to implement a TANGO control system (ref "TANGO - AN OBJECT ORIENTED CONTROL SYSTEM BASED ON CORBA" by Chaize et. al., ICALEPCS 1999). These are:
+The Tango toolkit was mainly developed for research facilities needs, but the idea and concept (philosophy) behind was to create a framework for control systems in general. It is based on the idea that distributed objects are really suited to design and implement control systems. TANGO was based on this concept, and can be described as an Object Oriented distributed control system. A number of requirements were defined in the original design [1] :
 
 1. Device network object with the minimum of functionality necessary for a distributed control object
 2. Use CORBA communication protocol while hiding details
@@ -46,21 +46,22 @@ The Tango toolkit was mainly developed for research facilities needs, but the id
 4. Support the implementation of new devices by sub-classing Device and by composing new types of Devices from existing types of Devices
 5. Support modern programming patterns like multi-threading
 6. A naming database which stores configuration information
-7. A generic set of Data Types
-8. Monitors
-9. Device caching
-10. Scripting
-11. Multi-platform
+7. A generic, but finite, set of Data Types
+8. Device Monitors for polling devices
+9. Device Attribute caching
+10. Support for scripting 
+11. Support for multiple platforms
 
-
+[1] "TANGO - AN OBJECT ORIENTED CONTROL SYSTEM BASED ON CORBA" by Chaize et. al., ICALEPCS 1999 
+https://www.elettra.trieste.it/ICALEPCS99/proceedings/papers/wa2i01.pdf
 
 Additionally, it aims to:
 
-* Provide ...
+* Provide ... 
 
-* Be usable as ...
+* Be usable as ... 
 
-* Be compatible ...
+* Be compatible ... 
 
 ### Use Cases
 
