@@ -2,7 +2,7 @@
 domain: rfc.tango-controls.org 
 shortname: 7/PIPE 
 name: The pipe 
-status: raw 
+status: draft 
 editor: Reynald Bourtembourg `<at esrf.fr - reynald.bourtembourg>`
 contributors: Olga Merkulova `<at ingvord.ru - olga>`, Igor Khokhriakov `<at ingvord.ru - mail>`
 ---
