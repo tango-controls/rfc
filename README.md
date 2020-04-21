@@ -22,15 +22,15 @@ RFC-1                    | The Tango control system                             
 [RFC-4](4/Attribute.md)  | The attribute model                                           | Draft      | Sergi Blanchi-Torné
 [RFC-5](5/Property.md)   | The property model                                            | Draft      | Gwenaelle Abeillé
 [RFC-6](6/Database.md)   | The database system                                           | Draft      | Gwenaelle Abeillé
-RFC-7                    | The pipe model                                                | Raw        | Reynald Bourtembourg
+[RFC-7](7/Pipe.md)       | The pipe model                                                | Draft      | Reynald Bourtembourg
 RFC-8  | The server model                                               | Raw          | Lorenzo Pivetta
 RFC-9  | Data types                                                     | Draft          | Gwenaelle Abeillé
 RFC-10 | The Request-Reply protocol                                     | Raw          | Reynald Bourtembourg
 RFC-11 | The Request-Reply protocol - CORBA implementation              | Raw          | 
 RFC-12 | The Publisher-Subscriber protocol                              | Raw          | Vincent Hardion 
 RFC-13 | The Publisher-Subscriber protocol - ZeroMQ implementation      | Raw          | 
-[RFC-14](14/Logging.md) | Logging service                                                | Raw          | Sergi Blanchi-Torné
-[RFC-15](15/Dynamic-Attr-Cmd.md) | The dynamic attribute and command    | Raw          | Reynald Bourtembourg
+[RFC-14](14/Logging.md) | Logging service                               | Raw          | Sergi Blanchi-Torné
+[RFC-15](15/Dynamic-Attr-Cmd.md) | The dynamic attribute and command    | Draft        | Reynald Bourtembourg
 RFC-16 | Cache system                                                   | Raw          | 
 RFC-17 | Memorised attribute service                                    | Raw          | 
 RFC-18 | Authorisation system                                           | Raw          | 
