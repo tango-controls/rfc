@@ -163,4 +163,4 @@ The phase called Device Unexport is intended to prepare the all Device for stopp
 
 * The Device Unexport SHALL gracefully stop the communication with any Tango Client 
 
-* The Device Unexport SHOULD unregister from the Tango Control system by executing the Device Sign Out of the Database([RFC-6]()), in order to notify that all managed Device are not accessible
+* The Device Unexport SHOULD unregister from the Tango Control system by executing the Device Sign Out of the Database([RFC-6]()), in order to notify that all managed Device are no longer accessible
