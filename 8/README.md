@@ -63,7 +63,7 @@ The Device Server manages the communication with one or several Devices.  Additi
 
 The Device Server SHALL implement the following specifications to control and monitor the Device:
 
-* A Device Server represents the process which manage one or several Device
+* A Device Server represents the process which manages one or several Devices
 
 * A Device Server SHALL managed at least one Device. 
 
