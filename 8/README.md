@@ -65,7 +65,7 @@ The Device Server SHALL implement the following specifications to control and mo
 
 * A Device Server represents the process which manages one or several Devices
 
-* A Device Server SHALL managed at least one Device. 
+* A Device Server SHALL manage at least one Device. 
 
 * A Device Server MAY manage Devices belonging to different Classes
 
