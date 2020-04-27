@@ -43,7 +43,7 @@ Additionally, it aims to:
 
 The main use cases for Device Server are:
 
-* to manage several Device in the same process. 
+* to manage several Devices in the same process. 
 
 * to share the same channel of communication
 
