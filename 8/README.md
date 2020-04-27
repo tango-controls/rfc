@@ -76,7 +76,7 @@ The Device Server SHALL implement the following specifications to control and mo
 * The communication to the Device Server SHALL be done through a Tango Device so called Administration Device or Admin Device .
 
 
-The specification introduces as well the definition of the process which are used for the Admnistration Device Name:
+The specification introduces as well the definition of the processes which are used for the Administration Device Name:
 
 * A Server is a type of program which execute a Device Server
 
