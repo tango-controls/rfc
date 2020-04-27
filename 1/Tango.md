@@ -57,7 +57,7 @@ https://www.elettra.trieste.it/ICALEPCS99/proceedings/papers/wa2i01.pdf
 
 Additionally, it aims to:
 
-* Provide an Open Source software toolkit for building distirbuted object oriented control systems. It should be freely available for all applications including industry. Tango Controls is sufficiently complete to control any small or large installation. Provide the necessary libraries for 3 programming languages which allow hardware to be interfaced and modelled in a device object model. Provide the tools for configuring, managing, monitoring and archiving large numbers of control points implemented as device attributes. Provide naming, browsing and hierarchies of devices and groups of devices.
+* Provide an Open Source software toolkit for building distirbuted object oriented control systems. It should be freely available for all applications including industry. Tango Controls is sufficiently complete to control any small or large installation. Provide the necessary libraries in a programming language which allow hardware to be interfaced and modelled in a device object model. Provide the tools for configuring, managing, monitoring and archiving large numbers of control points implemented as device attributes. Provide naming, browsing and hierarchies of devices and groups of devices.
 
 * Be usable for building large and small control systems. There should be no limit on the number of hardware and software devices the control system can control. Be usable to replace proprietary industrial control systems.
 
