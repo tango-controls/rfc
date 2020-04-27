@@ -73,29 +73,32 @@ The Device Server SHALL implement the following specifications to control and mo
 
 * A Device Server instance reference SHALL be unique in a Tango Control system
 
-* A Device Server SHALL be a Tango Device itself.
+* The communication to the Device Server SHALL be done through a Tango Device so called Administration Device or Admin Device .
 
-The name of the Device Server SHALL follow this convention:
-```ABNF
-device-server-name = dserver "/" server "/" instance
-dserver = "dserver" ; dserver is a reserved domain following the device-name convention.
-server = family
-instance = member
-```
 
-The specification introduces as well the definition of the process which are used for the Device Server Name:
+The specification introduces as well the definition of the process which are used for the Admnistration Device Name:
 
-* A Server is a type of process managed by a Device Server
+* A Server is a type of program which execute a Device Server
 
 * An Instance is an unique identifier as several processes of the same Server MAY exist in a Tango Control System
 
 * A Server Instance is finally what identify the actual process in the Tango Control System
 
-* A Server Instance CAN be managed by only one Device Server
+* A Server Instance CAN only execute one Device Server
 
 
-Additionally:
-* A Device Server MAY be call DServer or Admin Device but the terminology Device Server is RECOMMENDED
+The name of the Administration Device SHALL follow this convention:
+```ABNF
+administration-device-name = dserver "/" server "/" instance
+dserver = "dserver" ; dserver is a reserved domain following the device-name convention.
+server = family
+instance = member
+```
+
+* The member part of the Administration Device Name SHALL be the Instance
+
+* The family part of the Administration Device Name SHALL be the Server name
+
 
 #### Device Server interface
 
