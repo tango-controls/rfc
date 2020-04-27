@@ -9,7 +9,7 @@ contributor: Andy Götz (andy.gotz@esrf.fr)
 
 This document describes Tango, a control system framework. This RFC define the specification of a control system implementing the philosophy of Tango.
 
-See also: Y/OtherTemplate
+See also: All Tango RFC's 
 
 ## Preamble
 
@@ -57,18 +57,16 @@ https://www.elettra.trieste.it/ICALEPCS99/proceedings/papers/wa2i01.pdf
 
 Additionally, it aims to:
 
-* Provide ... 
+* Provide an Open Source software toolkit for building distirbuted object oriented control systems. It should be freely available for all applications including industry. Tango Controls is sufficiently complete to control any small or large installation. Provide the necessary libraries for 3 programming languages which allow hardware to be interfaced and modelled in a device object model. Provide the tools for configuring, managing, monitoring and archiving large numbers of control points implemented as device attributes. Provide naming, browsing and hierarchies of devices and groups of devices.
 
-* Be usable as ... 
+* Be usable for building large and small control systems. There should be no limit on the number of hardware and software devices the control system can control. Be usable to replace proprietary industrial control systems.
 
-* Be compatible ... 
+* Be compatible with all open communication protocols and industrial hardware standards. 
 
 ### Use Cases
 
-There are X main use cases for Template:
+There are 3 main use cases for Tango Controls:
 
-* To reduce the entry cost of RFC submission.
-
-* To make coherent the RFC
-
-...
+1. Large scientific instruments e.g. synchrotron, laser facility, telescope, wind tunnel, etc. Tango Controls can be used to control the entire facility or only parts of it e.g. source or experiment and data acquisition or both. Tango controls can be interface to other control systems or sequencing frameworks as needed.
+2. Small scientific instruments like a small lab of a few devices down to a single device e.g. a camera.
+3. Industrial control system e.g. a factory plant or an industrially built turn key device.
