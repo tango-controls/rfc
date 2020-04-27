@@ -7,7 +7,8 @@ editor: Lorenzo Pivetta (lorenzo.pivetta@elettra.eu)
 contributor: Andy Götz (andy.gotz@esrf.fr)
 ---
 
-This document describes Tango, a control system framework. This RFC define the specification of a control system implementing the philosophy of Tango.
+This document describes the philosophy of Tango, a control system framework. 
+This RFC specifies a control system implementing the philosophy of Tango.
 
 See also: All Tango RFC's 
 
@@ -28,20 +29,21 @@ The TANGO control system is a toolkit for building distributed control systems w
 
 **Tango** aims to be extremely flexible and can be used to interface any kind of hardware or software system which can be accessed via one of the software languages supported by Tango (C++, Python, Java and JavaScript).
 
-The **goal of Tango** is to provide a way of representing all physical and software systems which need to be controlled by a control system as Tango Devices.
+The **goal of Tango** is to provide a way of representing all physical and software systems which need to be controlled by a control system as Tango Devices (see [RFC 2/Device](/2)).
 
-**Tango Devices** are software components which have *Commands* (methods), *Attributes* (data) and *Properties* (configuration) and are accessible on the network or locally.
+**Tango Devices** are software components which have *[Commands](/3)* (methods), *[Attributes](/4)* (data),
+*[Properties](/5)* (configuration) and *[Pipes](/6)* (data streaming) and are accessible on the network or locally.
 
-A **Tango control system** consists of a collection of Tango Devices, a Tango Database and a set of applications for configuring and controlling the Devices via well defined Application Programmers Interfaces (APIs). Tango defines and maintains official APIs for *C++, Python, Java, JavaScript and REST*.
+A **Tango control system** consists of a collection of Tango Devices, a Tango Database and a set of applications for configuring and controlling the Devices via well defined Application Programmers Interfaces (APIs). Tango defines and maintains official APIs for *C++, Python, Java, JavaScript and REST* but could be implemented in any programming language which is Turing complete.
 
-The *Tango Database* serves the purpose of defining and declaring all Devices in the control system and their configuration parameters. The Database also stores Naming Service for clients who need to establish a connection to any or all Devices.
+The *Tango Database* serves the purpose of defining and declaring all Devices in the control system and their configuration parameters. The Database also stores Naming Service for clients who need to establish a connection to any or all Devices (see [RFC 6/Database](/6)).
 
-The software used in large facilities can be compared with the software for stock markets – huge amount of data must be displayed on the monitor in a real time and being processed and being saved in databases for post processing.
+The software used in large facilities can be compared with the software for stock markets – huge amounts of data must be displayed on the monitor in a real time and being processed and being saved in databases for post processing.
 
-The *Tango toolkit* was mainly developed for research facilities needs, but the idea and concept (philosophy) behind was to create a framework for control systems in general. It is based on the idea that distributed objects are really suited to design and implement control systems. TANGO was based on this concept, and can be described as an Object Oriented distributed control system. A number of requirements were defined in the original design [1] :
+The *Tango toolkit* was initially developed for research facilities needs, but the idea and concept (philosophy) behind was to create a framework for control systems in general. It is based on the idea that distributed objects are ideally suited to design and implement control systems. TANGO is based on this concept, and can be described as an Object Oriented distributed control system. A number of requirements were defined in the original design [1] :
 
 1. *Device* network object with the minimum of functionality necessary for a distributed control object
-2. Use *CORBA* communication protocol while hiding details
+2. Use *CORBA* communication protocol while hiding details [2] 
 3. Support following communication paradigms - *synchronous, asynchronous and event driven*
 4. Support *Device hierarchies* by sub-classing Device and by composing new types of Devices from existing types of Devices
 5. Support modern programming patterns like *multi-threading*
@@ -55,9 +57,11 @@ The *Tango toolkit* was mainly developed for research facilities needs, but the 
 [1] "**TANGO - AN OBJECT ORIENTED CONTROL SYSTEM BASED ON CORBA**" by Chaize et. al., ICALEPCS 1999 
 https://www.elettra.trieste.it/ICALEPCS99/proceedings/papers/wa2i01.pdf
 
+[2] even if current implementations of Tango still use CORBA  this requirement is considered obsolete for the future.
+
 Additionally, it aims to:
 
-* **Provide** an *Open Source Software toolkit* for building distributed object oriented control systems. It should be freely available for all applications including industry. Tango Controls is sufficiently complete to control any small or large installation. Provide the necessary libraries in a programming language which allow hardware to be interfaced and modelled in a device object model. Provide the tools for configuring, managing, monitoring and archiving large numbers of control points implemented as device attributes. Provide naming, browsing and hierarchies of devices and groups of devices.
+* **Provide** an *Open Source Software toolkit* for building distributed object oriented control systems. It should be freely available for all applications including industry. Tango Controls is sufficiently complete to control any installation small or large. Provide the necessary libraries in a programming language which allow hardware to be interfaced and modeled in a device object model. Provide the tools for configuring, managing, monitoring and archiving large numbers of control points implemented as device attributes. Provide naming, browsing and hierarchies of devices and groups of devices.
 
 * **Be usable** for *building large and small control systems*. There should be no limit on the number of hardware and software devices the control system can control. Be usable to replace proprietary industrial control systems.
 
