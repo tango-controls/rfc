@@ -59,7 +59,7 @@ The main use cases for Device Server are:
 
 ## Specification
 
-The Device Server manages the communication with one or several Devices.  Additionally it enforces the compatibility of behaviour with the Tango Control System and offer different meta service.
+The Device Server manages the communication with one or several Devices.  Additionally it enforces the compatibility of behaviour with the Tango Control System and offers different meta services.
 
 The Device Server SHALL implement the following specifications to control and monitor the Device:
 
