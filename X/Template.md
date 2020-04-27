@@ -1,6 +1,6 @@
 ---
 domain: rfc.tango-controls.org
-shortname: X/TEMPLATE
+shortname: X/Template
 name: Template
 status: raw
 editor: Bob Foo (bob.foo@tango-controls.org)
