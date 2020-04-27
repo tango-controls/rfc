@@ -23,6 +23,8 @@ The process to add or change an RFC is the following:
 
 Read more [here](https://github.com/tango-controls/rfc/wiki).
 
+Here is [the list of contributors](https://github.com/tango-controls/rfc/wiki/Contributors).
+
 ## RFCs
 
 The table below summarises all available or expected specifications. For the current "work in progress status", please 
