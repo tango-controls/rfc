@@ -51,7 +51,7 @@ The main use cases for Device Server are:
 
 * to provide different services like logging
 
-* to serialise the operation per Device
+* to serialise the operations per Device
 
 * to sign up or sign out to the central registry 
 
