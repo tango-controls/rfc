@@ -25,7 +25,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Tango Device Server specification
 
- This spefication formally document the Tango Device Server model. 
+ This specification formally document the Tango Device Server model. 
  Runtime implementation of the Device Server model in conforming Tango implementations MUST follow this specification.
 
 ### Goals
@@ -161,4 +161,3 @@ The phase called Device Unexport is intended to prepare the all Device for stopp
 * The Device Unexport SHALL gracefully stop the communication with any Tango Client 
 
 * The Device Unexport SHOULD unregister from the Tango Control system by executing the Device Sign Out of the Database([RFC-6]()), in order to notify that all managed Device are not accessible
-
