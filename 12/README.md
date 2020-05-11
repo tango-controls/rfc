@@ -29,11 +29,9 @@ This documents refers to other Tango Controls RFCs, corresponding link is always
 
 *Tango Server* (Server) - a process that runs on a machine.
 
-*Tango Device* (Device) - a thread within a *Tango Server* that implements *Tango Class* i.e. has *Tango Commands, Attributes, Pipes, Properties*  etc.
+*Tango Device* (Device) - for more details see [RFC-2](https://github.com/tango-controls/rfc/blob/draft/2/Device.md)
 
-*Tango Admin Device* (Admin) - a pre-defined *Tango Device* i.e. a *Tango Device* with fixed number *Tango Commands, Attributes, Pipes* [RFC-3, RFC-4,RFC-?]  etc.
-
-For more details see [RFC-2](https://github.com/tango-controls/rfc/blob/draft/2/README.md)
+*Tango Admin Device* (Admin) - for more details see [RFC-8]
 
 *Tango Client* (Client) - a process that instantiates communication with *Tango Server* using Request-Reply protocol [RFC-10].
 
@@ -49,7 +47,7 @@ For more details see [RFC-2](https://github.com/tango-controls/rfc/blob/draft/2/
 
 *Polling thread* (polling thread) - a thread within *Tango Server* that polls periodically defined *Tango Device*'s attributes/sometimes commands.
 
-*Tango Publish-Subscriber protocol* (pub-sub) - is a sub-set of *Tango Client-Server protocol* [RFC-?] that defines a relationship between *client* and *server* established via a negotiation phase and lasts till explicitly broken. During this relationship client receives updates published by *upstream server*. Updates are sourced from server's *polling thread* or directly through *server API*. Updates are filtered according to *device*'s configuration.
+*Tango Publish-Subscriber protocol* (pub-sub) - is a sub-set of *Tango Request-Reply protocol* [RFC-10] that defines a relationship between *client* and *server* established via a negotiation phase and lasts till explicitly broken. During this relationship client receives updates published by *upstream server*. Updates are sourced from server's *polling thread* or directly through *server API*. Updates are filtered according to *device*'s configuration.
 
 *Tango Event* (event) - an update sent by *server*.
 
@@ -76,34 +74,26 @@ EVENT_INFO = EVENT_DATA/1*EVENT_ERROR bool:isExcept  ; see below
 
 EVENT_DATA = ATT_CONF_DATA/PIPE_DATA/DATA_READY_DATA/INTERFACE_CHANGE_DATA/ATTRIBUTE_DATA 
              
-ATT_CONF_DATA = ATTRIBUTE_PROPERTIES ; Attribute properties from RFC-4, see link below
+ATT_CONF_DATA = ATTRIBUTE_PROPERTIES ; Attribute properties from [RFC-4](https://github.com/tango-controls/rfc/blob/draft/4/Attribute.md#attribute-properties)
 
-PIPE_DATA =  int:size name timeVal PIPE_BLOB ; Pipe blob must be defined in RFC-7
+PIPE_DATA =  int:size name timeVal PIPE_BLOB ; pipeBlob must be defined in [RFC-7](https://github.com/tango-controls/rfc/blob/draft/7/Pipe.md)
 
 DATA_READY_DATA = attribute_name data_type int:counter
 
 INTERFACE_CHANGE_DATA = *ATTRIBUTE_PROPERTIES *COMMAND_META_INFO bool:deviceStarted
 
-ATTRIBUTE_DATA = ATTRIBUTE_DEFINITION ; Attribute definition from RFC-4 
+ATTRIBUTE_DATA = ATTRIBUTE_DEFINITION ; Attribute definition from [RFC-4](https://github.com/tango-controls/rfc/blob/draft/4/Attribute.md#attribute-definition) 
 
 EVENT_ERROR = reason severity desc origin
 
-EVENT_TYPE = "QUALITY_EVENT"/"INTERFACE_CHANGE"/"PIPE"/"ATTR_CONF_EVENT"/"CHANGE_EVENT"/"PERIODIC_EVENT"/"ARCHIVE_EVENT"/"USER_EVENT"/"HEARTBEAT"
+EVENT_TYPE = "INTERFACE_CHANGE"/"PIPE_EVENT"/"ATTR_CONF_EVENT"/"CHANGE_EVENT"/"PERIODIC_EVENT"/"ARCHIVE_EVENT"/"USER_EVENT"
 
 EVENT_CHANNEL = channel
 
 HEARTBEAT_CHANNEL = channel
 
-channel = string ; impementation specific
+channel = string ; implementation specific
 ```
-
-> **NOTE:** pipeBlob should be referenced to RFC-7 Pipes
-
-[RFC-3 Command model](https://github.com/tango-controls/rfc/blob/draft/3/README.md#specification)
-
-[RFC-4 Attribute model, attribute properties](https://github.com/tango-controls/rfc/tree/draft/4#attribute-properties)
-
-[RFC-4 Attribute model, attribute definition](https://github.com/tango-controls/rfc/blob/draft/4/README.md#attribute-definition)
 
 > **NOTE**: In Tango V9 EVENT_DATA MAY include source idl version, event type  
 
@@ -115,7 +105,7 @@ Client and server are up and running. Server is reachable from client i.e. may c
 
 ![Subscription_1.png](images/Subscription_1.png)
 
-The main goal of the this protocol implementation is to allow a Client receive events from a Server:
+The main goal of this protocol implementation is to allow a Client receive events from a Server:
 
 * Server MUST publish events of EVENT_TYPE
 
@@ -129,7 +119,7 @@ The main goal of the this protocol implementation is to allow a Client receive e
 
 ![Subscription_2.png](images/Subscription_2.png)
 
-Negotiation phase implies that client and server exchange required data using Tango commands [RFC-3, RFC-13]:
+Negotiation phase implies that client and server exchange required data using Tango commands [RFC-3](https://github.com/tango-controls/rfc/blob/draft/3/Command.md#specification), [RFC-13]:
 
 * Client MUST notify server providing SUBSCRIBER_INFO to establish Publisher-Subscriber relationship
 
