@@ -103,27 +103,27 @@ NOTE All GROUPED REQUESTS should be logged once with the same information as the
 
 ### Connection management
 
-The Reqest-Reply protocol SHALL manage client connection to devcie server.
+The Request-Reply protocol SHALL manage client connections to Device Servers.
 
 #### Connection establishement
 
-* To send any REQUESTS to a Device a Clien MUST connect to a Device Server which runs the Device.  
-* A Device Server SHALL wait for a client connections on one or multiple network endpoints.
-* The network endpoit SHALL define \<network_address\> and \<tcp_port\>, where:
+* To send any REQUESTS to a Device, a Client MUST connect to the Device Server manging the Device.  
+* A Device Server SHALL wait for client connections on one or multiple network endpoints.
+* The network endpoint SHALL define \<network_address\> and \<tcp_port\>, where:
 
 ... abnf
  network_address = ip_address / host_name
  tcp_port = num-val
 ...
 
-* A Client MAY connect any Device Server on one of Devcie Server's endpoints.
-* If a Client is running on the same host as a Device Server, client MAY use other than
+* A Client MAY connect any Device Server on one of Device Server's endpoints.
+* If a Client is running on the same host as a Device Server, the client MAY use other than
   network endpoints like operating system inter-process communication mechanism.
 * A Client MAY get information about Device Server's endpoints:
   * From the Tango Database service, if the service is available,
   * From command-line parameters,
-  * Other way,
-* The endpoint of Database Devcie Server SHOULD be provided to the Client via the `TANGO_HOST` environment variable defined as follows:
+  * In another suitable way,
+* The endpoint of Database Device Server SHOULD be provided to the Client via the `TANGO_HOST` environment variable defined as follows:
 ... abnf
  tango_host = network_address ":" tcp_port 
 ...
@@ -140,4 +140,3 @@ The Reqest-Reply protocol SHALL manage client connection to devcie server.
 #### Staled connections
 
 #### Transparent reconnection on client side
-
