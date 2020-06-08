@@ -23,7 +23,7 @@ Short Name             | Title                                                  
 [RFC-5](5/README.md)   | The property model                                            | Standard | Raw          | Gwenaelle Abeillé
 [RFC-6](6/README.md)   | The database system                                           | Standard | Raw          | Gwenaelle Abeillé
 [RFC-7](7/README.md)   | The pipe model                                                | Standard | Raw          |
-[RFC-8](8/README.md)   | The server model                                              | Standard | Raw          | Lorenzo Pivetta
+[RFC-8](8/SERVER.md)   | The server model                                              | Standard | Raw          | Lorenzo Pivetta
 [RFC-9](9/README.md)   | Data types                                                    | Standard | Raw          | 
 [RFC-10](10/README.md) | The Request-Reply protocol                                    | Standard | Raw          | Reynald Bourtembourg
 [RFC-11](11/README.md) | The Request-Reply protocol - CORBA implementation             | Standard | Raw          | 
