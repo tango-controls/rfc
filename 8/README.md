@@ -107,12 +107,13 @@ instance = member
 |---|---|
 | polling_threads_pool_conf | TODO |
 
-| Command Name | description |
-|---|---|
-| AddLoggingTarget | DevVarStringArray | DevVoid |
-| AddObjPolling | DevVarLongStringArray | DevVoid |
-| DevLockStatus | DevString | DevVarLongStringArray |
-| DevPollStatus | DevString | DevVarStringArray |
+| Command Name | Argument input | Argument Output | description |
+|---|---|---|---|
+| AddLoggingTarget | DevVarStringArray | DevVoid | Define the level of Logging([RFC-14]()) |
+| AddObjPolling | DevVarLongStringArray | DevVoid | Polling related command ([RFC-10]()) |
+| DevLockStatus | DevString | DevVarLongStringArray | Request Replay command ([RFC-10]()) |
+| DevPollStatus | DevString | DevVarStringArray | Polling related command ([RFC-10]()) |
+
 | DevRestart | DevString | DevVoid |
 | EventConfirmSubscription | DevVarStringArray | DevVoid |
 | EventSubscriptionChange | DevVarStringArray | DevLong |
