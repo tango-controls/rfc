@@ -95,9 +95,10 @@ server = family
 instance = member
 ```
 
+* The family part of the Administration Device Name SHALL be the Server name
+
 * The member part of the Administration Device Name SHALL be the Instance
 
-* The family part of the Administration Device Name SHALL be the Server name
 
 
 #### Device Server interface
