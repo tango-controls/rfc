@@ -43,7 +43,7 @@ RFC-8  | The server model                                               | Raw   
 [RFC-9](9/DataTypes.md)  | Data types                                                     | Draft          | Gwenaelle Abeillé
 RFC-10 | The Request-Reply protocol                                     | Raw          | Reynald Bourtembourg
 RFC-11 | The Request-Reply protocol - CORBA implementation              | Raw          | 
-RFC-12 | The Publisher-Subscriber protocol                              | Raw          | Vincent Hardion 
+[RFC-12](12/Pub-Sub.md)  | The Publisher-Subscriber protocol                              | Draft     | Vincent Hardion 
 RFC-13 | The Publisher-Subscriber protocol - ZeroMQ implementation      | Raw          | 
 [RFC-14](14/Logging.md) | Logging service                               | Raw          | Sergi Blanchi-Torné
 [RFC-15](15/Dynamic-Attr-Cmd.md) | The dynamic attribute and command    | Draft        | Reynald Bourtembourg
