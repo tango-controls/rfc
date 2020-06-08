@@ -59,6 +59,32 @@ There are few main use cases for The Request-Reply protocol:
 * Setting-up Publisher-Subscriber communication,
 
 ## Specification
+
+### Client duty
+#### Reconnection
+TODO Describe here how to check the connection and in which condition should the client reconnect
+
+### Version compatibility
+TODO describe here in which condition
+TODO decide which version the specification should focus on i.e version 5
+
+### Protocol
+#### Message
+SHOULD include:
+* client process idendification i.e pid
+* source
+
+#### Exception
+
+#### Timeout
+
+#### Asynchronous request
+TODO understand the PUSH_BACK model. CORBA or more generic?
+
+#### Cache
+
+#### Serialisation
+
 ### Blackbox
 A blackbox system should record every REQUEST on the Device especially:
 
