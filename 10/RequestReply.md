@@ -77,7 +77,7 @@ SHOULD include:
 #### Exception
 
 #### Timeout
-
+#### Synchronous request
 #### Asynchronous request
 TODO understand the PUSH_BACK model. CORBA or more generic?
 
@@ -140,4 +140,3 @@ NOTE All GROUPED REQUESTS should be logged once with the same information as the
 #### Staled connections
 
 #### Transparent reconnection on client side
-
