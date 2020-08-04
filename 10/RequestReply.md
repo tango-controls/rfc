@@ -63,15 +63,15 @@ There are few main use cases for The Request-Reply protocol:
 ### Client duty
 #### Reconnection
 
-The client (API?) SHALL manage connections to any Device Servers it is using.
+The client SHALL manage connections to any Device Servers it is using.
 
-When sending any request to a Device Server the client (API?) SHALL:
-* check if the connection to the Device Server is established and active,
-* if the connection is not yet established or broken, the client (API?) SHALL try to connect to the Device Server,
-* if the connection cannot be made within a specified time defined by a user (timeout) the client (API?) SHALL inform the user by throwing a DevFailed exception,
-* if the connection is established and active, the client (API?) SHALL use this connection to send the request,
-* if the client (API?) get no response within a certain time defined by a user (timeout) the connection SHALL be set to broken (teardown) and the client (API?) SHALL inform the user via throwing a DevFailed exception,
-* the client (API?) SHALL respond adequately to any information on the connection state changes provided be the connection itself (e.g. os level exceptions). 
+When sending any request to a Device Server the client:
+* SHALL check if the connection to the Device Server is established and active,
+* if the connection is not yet established or broken, the client SHALL try to connect to the Device Server,
+* if the connection cannot be made within a specified time defined by a user (timeout) the client SHALL inform the user by throwing a DevFailed exception,
+* if the connection is established and active, the client SHALL use this connection to send the request,
+* if the client get no response within a certain time defined by a user (timeout) the connection SHALL be set to broken (teardown) and the client SHALL inform the user via throwing a DevFailed exception,
+* the client SHALL respond adequately to any information on the connection state changes provided by the connection itself (e.g. os level exceptions). 
 
 ### Version compatibility
 TODO describe here in which condition
