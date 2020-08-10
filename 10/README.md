@@ -102,29 +102,33 @@ Operations case:
 NOTE All GROUPED REQUESTS should be logged once with the same information as the unique request
 
 ### Device Locking
-A Client has the possibility to avoid any modification of a Device from other Clients. This system is so-called Device Lock.
+A Client has the possibility to avoid any modification of a Device from other Clients. This system is so-called Device Lock. The Device Server has here the role and the responsibility to apply this mechanism.
 
-Only one Device Lock per Device SHALL be activated.
-A Device Lock SHALL be only owned by one Client.
+The following specifies the Device Lock system:  
+* Only one Device Lock per Device SHALL be activated.
+* A Device Lock SHALL be only owned by one Client.
 
-When a Client activates a Device Lock, the Server MUST rejected the following request:
-* Command call except for State Command, Status Command and all commands listed in the Allowed Commands list.
-* Write Attribute Request (including atomic Write Read request)
-* Write Pipe Request (including atomic Write Read request)
+When a Client activates a Device Lock, the Server MUST reject any of the following request from other Client:
+* Command call except for State Command, Status Command and all commands listed in the Allowed Commands list (described further down).
+* Write Attribute Request (including the atomic Write Read request)
+* Write Pipe Request (including the atomic Write Read request)
 * Setting Attribute Configuration
 * Setting Pipe Configuration
-* Polling Request 
-* Logging Request
+* Setting Polling Configuration
+* Setting Logging Configuration
 In general it is RECOMMANDED to block any request resulting a mutation of a Device.
 
-An Allowed Command is not affected by the Device Lock. The DeviceServer define a list of Allowed Command.
+An Allowed Command is not affected by any the Device Lock, even this implies a modification of the Device state. The DeviceServer define a list of Allowed Command per Device Class which can only be changed at the Initialisation phase (TODO find the exact term) of the Device Server.
+TODO: Explain how to set/get this list?
 
 Other Clients have the possibility to check a Device Lock is currently activated (TODO See DeviceServer command)
 
-The request of a Device Lock is done throught the DeviceServer command (?). The protocol of activation SHOULD follow this sequence: (?)
-* TODO
+The request of a Device Lock is done throught the DeviceServer command (?). The protocol of activation SHALL be the responsibility of the Device Server, following this sequence: (?)
+* Check no other Client owns an active and valid DeviceLock on the requested Device
+* Activate the Device Lock 
+* Increase the counter of Device Lock (See Below).
 * Case of Forwarded Attribute(?): a Device Lock request SHALL be sent and validated by all Devices connected to the Forwarded Attributes of the targetted Device. 
-In case of failure the Device Server SHALL throw a (LOCKING?) Tango Exception.
+In case of failure of the activation of a Device Lock the Device Server SHALL throw a (LOCKING?) Tango Exception.
 A Locking Exception is an Exception with the id "API_DeviceLocked".
 
 A Client owning a Device Lock can:
@@ -134,16 +138,16 @@ A Locking Tango Exception SHALL be thrown if the Device Lock is not active anymo
 
 
 A Device Lock is defined by:
-* a Client Identification (?) of the owner
-* the Client Identification (?) of the previous owner (Mandatory?)
+* a Client Identification (TODO specify in this RFC) of the owner
+* the Client Identification of the previous owner (Mandatory?)
 * a timestamp corresponding of the locking activation
 * a counter (?) representing the number of valid activation from the same Client 
-* "lock_ctr" (?)
-* the activation time in second # time_t in the implementation?)
+* the activation time in second defining the locking period from the last activation timestamp  # time_t in the implementation?)
 
 The desactivation  of a Device Lock is defined by these conditions:
 * Time of activation expired
 * The Connection to the Client is lost
+* The Device Server is reinitialised 
 * ... TODO
 
 A Client Identication SHOULD cary these information:
