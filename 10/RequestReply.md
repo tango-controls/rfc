@@ -87,7 +87,7 @@ TODO understand the PUSH_BACK model. CORBA or more generic?
 
 The Serialization Mode defines how the Device Server handles multiple requests. 
 
-The Serialization SHALL apply to all requests independently of a request origin (network, the same machine, the same Device Server process). 
+The Serialization SHALL apply to all requests independently of a request origin (any network host, localhost, the same Device Server process). 
 
 A Device Server MAY handle requests with the following Serialization Modes:
 * Serialization by Device
@@ -95,12 +95,12 @@ A Device Server MAY handle requests with the following Serialization Modes:
 * Serialization by Process
 * No Serialization
 
-If Device Server is set to Serialization by Device:
+When a Device Server is set to Serialization by Device:
 * it SHALL process requests to each Device in the order of requests arrival,
-* for any of Devices, it MUST NOT start the processing of a new request until the processing of the previous request is not finished,
+* for any Device in the Device Server, it MUST NOT start the processing of a new request until the processing of the previous request is not finished,
 * it MAY process multiple requests in parallel, providing that there is maximum one processed request per a Device.
 
-If Device Server is set to Serialization by Class:
+When a Device Server is set to Serialization by Class:
 * it SHALL process requests to each set of Devices belonging to the same Class in the order of requests arrival,
 * for each Device Class, it MUST NOT start the processing of a new request until the processing of the previous request is not finished,
 * it MAY process multiple requests in parallel, providing that there is maximum one processed request per Device Class.
@@ -114,6 +114,8 @@ Serialisation Mode it SHOULD be queued for later processing and served as soon a
 
 If Device Server is set to No Serialization it MAY process any requests in parallel. 
 It is NOT RECOMMENDED to use No Serialization mode. 
+
+The default serialization Mode is "Serialization by Device".
 
 ### Blackbox
 A blackbox system should record every REQUEST on the Device especially:
