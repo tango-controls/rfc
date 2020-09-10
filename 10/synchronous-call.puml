@@ -1,0 +1,27 @@
+@startuml
+activate Client
+
+Client -> DeviceServer: read_attribute(A)
+deactivate Client
+activate DeviceServer
+
+DeviceServer -> Client: reply_attribute(A)
+deactivate DeviceServer
+activate Client
+
+Client -> DeviceServer: call_command(B)
+deactivate Client
+activate DeviceServer
+
+DeviceServer -> Client: return_command(B)
+deactivate DeviceServer
+activate Client
+
+Client -> DeviceServer: call_command(C)
+deactivate Client
+activate DeviceServer
+
+DeviceServer -> Client: return_command(C)
+deactivate DeviceServer
+activate Client
+@enduml
