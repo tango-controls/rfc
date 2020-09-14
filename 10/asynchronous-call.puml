@@ -1,26 +1,13 @@
 @startuml
+hide footbox
 activate Client
 
 Client -> DeviceServer: read_attribute(A)
-activate DeviceServer
-
-Client -> DeviceServer: read_attribute(B)
-activate DeviceServer
-
-Client -> DeviceServer: call_command(C)
-activate DeviceServer
-
+Client -> DeviceServer: call_command(B)
+Client -> DeviceServer: write_attribute(C)
+return reply_read_attribute(A)
 Client -> DeviceServer: call_command(D)
-activate DeviceServer
-
-DeviceServer -> Client: reply_attribute(A)
-
-DeviceServer -> Client: reply_attribute(B)
-
-DeviceServer -> Client: return_command(C)
-
-DeviceServer -> Client: return_command(D)
-deactivate DeviceServer
-activate Client
-
-@enduml 
+DeviceServer --> Client: return_command(B)
+DeviceServer --> Client: reply_write_attribute(C)
+DeviceServer --> Client:return_command(D)
+@enduml
