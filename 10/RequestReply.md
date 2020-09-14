@@ -95,6 +95,10 @@ The client MAY decide whether to process the result of Asynchronous Request:
 * or when it decides to process,
 * or skip processing of the result. 
 
+Below is a diagram showing an example seqence of Asynchronous Requests: 
+
+![Asynchronous Call diagram](asynchronous-call.png)
+
 A Device Server SHALL process any incoming requests in the order of their arrival and according to its [Serialisation](Serialisation).
 
 
