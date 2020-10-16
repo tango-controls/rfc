@@ -73,6 +73,11 @@ When sending any request to a Device Server the client:
 * if the client get no response within a certain time defined by a user (timeout) the connection SHALL be set to broken (teardown) and the client SHALL inform the user via throwing a DevFailed exception,
 * the client SHALL respond adequately to any information on the connection state changes provided by the connection itself (e.g. os level exceptions). 
 
+* The Request-Reply protocol SHALL implement Transparent Reconnection mechianism on the client side. Transparent Recconection is hidding temporary connection issues by re-trying of connection establishement.
+
+* The Client MAY opt-out from using Transparent Reconnection.
+
+
 ### Version compatibility
 TODO describe here in which condition
 TODO decide which version the specification should focus on i.e version 5
