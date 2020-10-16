@@ -85,10 +85,6 @@ Certain conditions may prevent a Request to be handled properly.
 * If a Device Server throws a (Multi)DevFailed excepiton upon request processing, the exception SHALL be sent to the Client which sent the request.
 * If a Client receives a (Multi)DevFailed exception it SHALL be available (rethrown) to user (code).
 
-* The Request-Reply protocol SHALL implement Transparent Reconnection mechianism on the client side. Transparent Recconection is hidding temporary connection issues by re-trying of connection establishement. In such a case exception throwing 
-
-* The Client MAY opt-out from using Transparent Reconnection.
-
 #### Timeout
 #### Synchronous request
 #### Asynchronous request
