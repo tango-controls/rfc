@@ -78,7 +78,7 @@ SHOULD include:
 
 #### Timeout
 
-* On the client side, the Request-Reply protocol SHALL implement timeout mechanism for every type of request. Timeout mechanism is returning DevFailed expetion if a request cannot be served in specified time called Timeout.
+* On the client side, the Request-Reply protocol SHALL implement timeout mechanism for every type of request. Timeout mechanism is returning DevFailed exception if a request cannot be served in specified time called Timeout.
 * For each request the client MAY setup Timeout value or opt-out from using timeout mechanism which is equal to set Timeout to infinity.
 * The default Timeout is 3 seconds.
 
