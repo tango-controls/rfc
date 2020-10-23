@@ -332,7 +332,7 @@ Results of failed operations (exceptions) within the Tango Controls are sent as 
  MultiDevFailed = "MultiDevFailed"
 ```
 
-* Any value of MultiDevFailed type SHALL follow \<milti-dev-failed-value\> rule:
+* Any value of MultiDevFailed type SHALL follow \<multi-dev-failed-value\> rule:
 ```abnf
  multi-dev-failed-value = 1*named-dev-error 
 
