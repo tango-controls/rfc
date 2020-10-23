@@ -308,7 +308,7 @@ DevVarStringArray, DevVarStateArray, DevState, DevVarEncodedArray.
 
 #### Exceptions 
 
-Results of failed operations (exceptions) within the Tango Controls are sent as values/messages of DevFailed data type.
+Results of failed operations (exceptions) within the Tango Controls are sent as values/messages of DevFailed or MultiDevFailed data type.
 
 * DevFailed type name is as follows:
 ```abnf
@@ -319,6 +319,28 @@ Results of failed operations (exceptions) within the Tango Controls are sent as 
 ```abnf
  dev-failed-value = 1*error 
 
+ error = reason severity desc origin
+
+ reason = *VCHAR ; SHOULD be a symbolic name, without whitespace, which points the reason for the failure and is standardized for some errors thrown by the API. Examples: "API_AttrOptProp", "API_AttrNotPolled","API_CmdNotPolled", "API_CommandNotFound"
+ severity = "WARN" | "ERR" | "PANIC"
+ desc = *VCHAR ; SHOULD describe the failure in more details
+ origin = *VCHAR ; SHALL identify the operation or the tango object which caused the failure, eg. function name
+```
+
+* MultiDevFailed type name is as follows:
+```abnf
+ MultiDevFailed = "MultiDevFailed"
+```
+
+* Any value of MultiDevFailed type SHALL follow \<milti-dev-failed-value\> rule:
+```abnf
+ multi-dev-failed-value = 1*named-dev-error 
+
+ named-dev-error = name index-in-call 1*error
+
+ name = *VCHAR
+ index-in-call = num-val ; of lon data type in range of -(2^31) to (2^31)-1
+ 
  error = reason severity desc origin
 
  reason = *VCHAR ; SHOULD be a symbolic name, without whitespace, which points the reason for the failure and is standardized for some errors thrown by the API. Examples: "API_AttrOptProp", "API_AttrNotPolled","API_CmdNotPolled", "API_CommandNotFound"
