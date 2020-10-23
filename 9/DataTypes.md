@@ -339,7 +339,7 @@ Results of failed operations (exceptions) within the Tango Controls are sent as 
  named-dev-error = name index-in-call 1*error
 
  name = *VCHAR
- index-in-call = num-val ; of lon data type in range of -(2^31) to (2^31)-1
+ index-in-call = num-val ; of long data type in range of -(2^31) to (2^31)-1
  
  error = reason severity desc origin
 
