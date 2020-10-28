@@ -147,20 +147,19 @@ In general it is RECOMMANDED to block any request resulting a mutation of a Devi
 An Allowed Command is not affected by any the Device Lock, even this implies a modification of the Device state. The DeviceServer define a list of Allowed Command per Device Class which can only be changed at the Initialisation phase (TODO find the exact term) of the Device Server.
 TODO: Explain how to set/get this list?
 
-Other Clients have the possibility to check a Device Lock is currently activated (TODO See DeviceServer command)
+Other Clients MAY use DevLockStatus command of a DeviceServer to check if a Device Lock is currently activated.
 
-The request of a Device Lock is done throught the DeviceServer command (?). The protocol of activation SHALL be the responsibility of the Device Server, following this sequence: (?)
+The request of a Device Lock is done throught the DeviceServer command LockDevice. The protocol of activation SHALL be the responsibility of the Device Server, following this sequence: (?)
 * Check no other Client owns an active and valid DeviceLock on the requested Device
 * Activate the Device Lock 
 * Increase the counter of Device Lock (See Below).
 * Case of Forwarded Attribute(?): a Device Lock request SHALL be sent and validated by all Devices connected to the Forwarded Attributes of the targetted Device. 
-In case of failure of the activation of a Device Lock the Device Server SHALL throw a (LOCKING?) Tango Exception.
-A Locking Exception is an Exception with the id "API_DeviceLocked".
+In case of failure of the activation of a Device Lock the Device Server SHALL throw a related DevFailed exception with \<reason\> field set to "API_DeviceLocked".
 
-A Client owning a Device Lock can:
-* revoke the Device Lock by the DeviceServer command(?)
-* renew the Device Lock activation by the DeviceServer command (in the code lock and relock seem to be from the same effect apart that lock does not need an active lock?)
-A Locking Tango Exception SHALL be thrown if the Device Lock is not active anymore
+A Client owning a Device Lock MAY:
+* revoke the Device Lock by the DeviceServer command UnLockDevice,
+* renew the Device Lock activation by the DeviceServer command ReLockDevices
+A Locking Tango Exception SHALL be thrown if the Device Lock is not active anymore.
 
 
 A Device Lock is defined by:
@@ -170,11 +169,11 @@ A Device Lock is defined by:
 * a counter (?) representing the number of valid activation from the same Client 
 * the activation time in second defining the locking period from the last activation timestamp  # time_t in the implementation?)
 
-The desactivation  of a Device Lock is defined by these conditions:
-* Time of activation expired
-* The Connection to the Client is lost
-* The Device Server is reinitialised 
-* ... TODO
+A Device Lock SHALL be deactivated when:
+* The Client which locked the Devcie call DeviceServer command UnLockDevice for the locked Device,
+* or Time of activation expired,
+* or the Connection to the Client is lost,
+* The Device Server is reinitialised.
 
 A Client Identication SHOULD cary these information:
 * Hostname where the Client process runs
