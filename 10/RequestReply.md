@@ -134,7 +134,7 @@ The following specifies the Device Lock system:
 * Only one Device Lock per Device SHALL be activated.
 * A Device Lock SHALL be only owned by one Client.
 
-When a Client activates a Device Lock, the Server MUST reject any of the following request from other Client:
+When a Client activates a Device Lock, the Server MUST reject any of the following requests from any other Client:
 * Command call except for State Command, Status Command and all commands listed in the Allowed Commands list (described further down).
 * Write Attribute Request (including the atomic Write Read request)
 * Write Pipe Request (including the atomic Write Read request)
@@ -142,9 +142,9 @@ When a Client activates a Device Lock, the Server MUST reject any of the followi
 * Setting Pipe Configuration
 * Setting Polling Configuration
 * Setting Logging Configuration
-In general it is RECOMMANDED to block any request resulting a mutation of a Device.
+In general it is RECOMMENDED to block any request resulting in a mutation of a Device.
 
-An Allowed Command is not affected by any the Device Lock, even this implies a modification of the Device state. The DeviceServer define a list of Allowed Command per Device Class which can only be changed at the Initialisation phase (TODO find the exact term) of the Device Server.
+An Allowed Command is not affected by the Device Lock, even if this command execution implies a modification of the Device state. The Device Server defines a list of Allowed Commands per Device Class which can only be changed at the Initialisation phase (TODO find the exact term) of the Device Server.
 TODO: Explain how to set/get this list?
 
 Other Clients MAY use DevLockStatus command of a DeviceServer to check if a Device Lock is currently activated.
@@ -177,7 +177,7 @@ A Device Lock SHALL be deactivated when:
 
 If Device Lock has been disabled with `force` flag set to true, the Server SHALL sent to the Client who originaly owned the Device Lock a DevFailed exception with reason set to "API_DeviceUnlocked" upon next request from the Client.
 
-A Client Identication SHOULD cary these information:
+A Client Identification SHOULD carry these information:
 * Hostname where the Client process runs
 * PID of the Client process
 * IP of the Client connection
