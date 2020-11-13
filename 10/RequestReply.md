@@ -117,7 +117,39 @@ TODO understand the PUSH_BACK model. CORBA or more generic?
 
 #### Cache
 
-#### Serialisation
+#### Serialization
+
+The Serialization Mode defines how the Device Server handles multiple requests. 
+
+The Serialization SHALL apply to all requests independently of a request origin (any network host, localhost, the same Device Server process). 
+
+A Device Server MAY handle requests with the following Serialization Modes:
+* Serialization by Device
+* Serialization by Class
+* Serialization by Process
+* No Serialization
+
+When a Device Server is set to Serialization by Device:
+* it SHALL process requests to each Device in the order of requests arrival,
+* for any Device in the Device Server, it MUST NOT start the processing of a new request until the processing of the previous request is not finished,
+* it MAY process multiple requests in parallel, providing that there is maximum one processed request per a Device.
+
+When a Device Server is set to Serialization by Class:
+* it SHALL process requests to each set of Devices belonging to the same Class in the order of requests arrival,
+* for each Device Class, it MUST NOT start the processing of a new request until the processing of the previous request is not finished,
+* it MAY process multiple requests in parallel, providing that there is maximum one processed request per Device Class.
+
+If Device Server is set to Serialization by Process:
+* it SHALL process requests in the order of requests arrival,
+* it MUST NOT start the processing of a new request until the processing of the previous request is not finished,
+
+The Device Server SHOULD process requests as soon as possible. If an incoming request cannot be processed due to Device Server 
+Serialisation Mode it SHOULD be queued for later processing and served as soon as possible.
+
+If Device Server is set to No Serialization it MAY process any requests in parallel. 
+It is NOT RECOMMENDED to use No Serialization mode. 
+
+The default serialization Mode is "Serialization by Device".
 
 ### Blackbox
 A blackbox system should record every REQUEST on the Device especially:
