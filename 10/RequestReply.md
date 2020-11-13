@@ -113,7 +113,29 @@ The Device Server MAY process multiple synchronous requests in parallel accordin
 
 
 #### Asynchronous request
-TODO understand the PUSH_BACK model. CORBA or more generic?
+
+The client MAY send Asynchronous Requests.
+
+When the client sends an Asynchronous Request it MAY not wait for the request to be processed before sending another request.
+
+The client thread which sends an Asynchronous Request MUST NOT be blocked for a time of the request being processed (except for a time needed for the request registration).
+
+A result of the Asynchronous Request SHALL be available for the client.
+
+The client SHALL be informed when the result of the Asynchronous Request is available.
+
+The client MAY decide whether to process the result of Asynchronous Request:
+* as soon as it is available (for example in the call-back pattern),
+* or when it decides to process,
+* or skip processing of the result. 
+
+Below is a diagram showing an example seqence of Asynchronous Requests: 
+
+![Asynchronous Call diagram](asynchronous-call.png)
+
+A Device Server SHALL process any incoming requests in the order of their arrival and according to its [Serialisation](Serialisation).
+
+
 
 #### Cache
 

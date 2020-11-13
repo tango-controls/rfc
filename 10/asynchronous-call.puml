@@ -1,0 +1,13 @@
+@startuml
+hide footbox
+activate Client
+
+Client -> DeviceServer: read_attribute(A)
+Client -> DeviceServer: call_command(B)
+Client -> DeviceServer: write_attribute(C)
+return reply_read_attribute(A)
+Client -> DeviceServer: call_command(D)
+DeviceServer --> Client: return_command(B)
+DeviceServer --> Client: reply_write_attribute(C)
+DeviceServer --> Client:return_command(D)
+@enduml
