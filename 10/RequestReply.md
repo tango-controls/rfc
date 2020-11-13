@@ -100,6 +100,13 @@ Certain conditions may prevent a Request to be handled properly.
 * If a Client receives a (Multi)DevFailed exception it SHALL be available (rethrown) to user (code).
 
 #### Timeout
+
+* On the client side, the Request-Reply protocol SHALL implement timeout mechanism for every type of request. Timeout mechanism is returning DevFailed exception if a request cannot be served in specified time called Timeout.
+* For each request the client MAY setup Timeout value or opt-out from using timeout mechanism which means that:
+  - if the request is Synchronous, the client SHALL be blocked as long as it takes the request to be served. A timeout realted exception SHALL not be returned.
+  - if the request is Asynchronous, the Client SHALL NOT be blocked. The Client SHALL be able to access the request result after it is served by a Device Server without any time limits. A timeout realted exception SHALL NOT be returned. 
+* The default Timeout is 3 seconds.
+
 #### Synchronous request
 
 The client MAY send Synchronous Requests. 
