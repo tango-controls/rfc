@@ -92,6 +92,26 @@ SHOULD include:
 
 #### Timeout
 #### Synchronous request
+
+The client MAY send Synchronous Requests. 
+
+When the client sends a Synchronous Request it SHOULD wait for a request to be processed.
+
+If one client thread sends multiple Synchronous Requests sequentially, these SHALL be processed in the same order as these have been sent.
+
+The client SHALL handle the Synchronous Request in the way that it blocks the calling client 
+thread until the request is fully processed (a Device Server reply to the request and the result is 
+available to the client) or timeout or other error appear.
+
+Below is a diagram showing an example seqence: 
+
+![Synchronous Call diagram](synchronous-call.png)
+
+The client MAY allow multiple Synchronous Requests to be sent in parallel if these are sent by multiple client threads.
+
+The Device Server MAY process multiple synchronous requests in parallel according to its [Serialisation](Serialisation).
+
+
 #### Asynchronous request
 TODO understand the PUSH_BACK model. CORBA or more generic?
 
