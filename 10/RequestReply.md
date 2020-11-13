@@ -62,7 +62,21 @@ There are few main use cases for The Request-Reply protocol:
 
 ### Client duty
 #### Reconnection
-TODO Describe here how to check the connection and in which condition should the client reconnect
+
+The client SHALL manage connections to any Device Servers it is using.
+
+When sending any request to a Device Server the client:
+* SHALL check if the connection to the Device Server is established and active,
+* if the connection is not yet established or broken, the client SHALL try to connect to the Device Server,
+* if the connection cannot be made within a specified time defined by a user (timeout) the client SHALL inform the user by throwing a DevFailed exception,
+* if the connection is established and active, the client SHALL use this connection to send the request,
+* if the client get no response within a certain time defined by a user (timeout) the connection SHALL be set to broken (teardown) and the client SHALL inform the user via throwing a DevFailed exception,
+* the client SHALL respond adequately to any information on the connection state changes provided by the connection itself (e.g. os level exceptions). 
+
+* The Request-Reply protocol SHALL implement Transparent Reconnection mechianism on the client side. Transparent Recconection is hidding temporary connection issues by re-trying of connection establishement.
+
+* The Client MAY opt-out from using Transparent Reconnection.
+
 
 ### Version compatibility
 TODO describe here in which condition
