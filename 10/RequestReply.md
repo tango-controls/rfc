@@ -144,8 +144,7 @@ When a Client activates a Device Lock, the Server MUST reject any of the followi
 * Setting Logging Configuration
 In general it is RECOMMENDED to block any request resulting in a mutation of a Device.
 
-An Allowed Command is not affected by the Device Lock, even if this command execution implies a modification of the Device state. The Device Server defines a list of Allowed Commands per Device Class which can only be changed at the Initialisation phase (TODO find the exact term) of the Device Server.
-TODO: Explain how to set/get this list?
+An Allowed Command is not affected by the Device Lock, even if this command execution implies a modification of the Device state. A list of Allowed Commands are defined per Device Class with the `AllowedAccessCmd` Class Property of type DevVarStringArray.
 
 Other Clients MAY use DevLockStatus command of a DeviceServer to check if a Device Lock is currently activated.
 
