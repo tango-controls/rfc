@@ -173,6 +173,8 @@ The Polling is periodical invoking a list of requests on Devices instantiated by
 
 * A Client MAY switch off/on a Polling for any Attribute or Command of any Device.
 
+* If the Polling Period is set to 0, the Device Server may fill the Cache with arbitrary values at any moment. This is called Externally Triggered Polling.
+
 * The Polling SHALL be configurable by a Client via the following Admin Device commands:
   * `AddObjPolling`:
     Add a new object (command or attribute) to the list of object(s) to be polled. It is also with this command that the polling period is specified.
@@ -195,9 +197,20 @@ The Polling is periodical invoking a list of requests on Devices instantiated by
 
 * The depth of the Cache (the circular buffer size) SHALL be configurable.
   
-* For any Request, a Client MAY decide whether it wants a response from the Cache or execute underlying request. The Device Server SHALL respond adequately.
+* For any Request, a Client MAY decide whether it wants a response from:
+  * the Cache,
+  * or execute underlying request,
+  * or the Cache with fallback to underlying request if the Cache is empty or old. The Cache for certain Attribute or Command is considered old if the most recent value is older than Polling Period multiplied by `poll_old_factor` property from the Database.
+  
+  The Device Server SHALL respond adequately.
 
-* The Request-Reply protocol SHALL allow a Client to read a history from the Cache.
+* If the client asks for the Cache without fallback and the Cache is old, the Device Server SHALL respond with DevFailedExcpetion with `<reason>` field set to `API_NotUpdatedAnyMore`.
+
+* If the client asks for the Cache without fallback and the Cache is empty, the Device Server SHALL respond with DevFailedExcpetion with `<reason>` field set to `API_NoDataYet`.
+
+* The Request-Reply protocol SHALL allow a Client to read a history from the Cache. 
+
+* If the Client asks for a history of not polled Attribute or Command, a Device Server SHALL return DevFaildException with `<reason>` field set to `API_AttrNotPolled` or `API_CmdNotPolled` respectively.
 
 #### Serialization
 
