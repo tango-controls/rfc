@@ -155,7 +155,7 @@ A Device Server SHALL process any incoming requests in the order of their arriva
 
 #### Cache
 
-The Cache is a circular buffer of recent responses for requests genereted internally by Device Server's Polling mechanism.
+The Cache is a circular buffer of recent responses for requests generated internally by Device Server's Polling mechanism.
 
 The Polling is periodical invoking a list of requests on Devices instantiated by a Device Server. A period of invokiong a request is called a Polling Period. 
 
@@ -163,9 +163,9 @@ The Polling is periodical invoking a list of requests on Devices instantiated by
 
 * The Polling SHALL support the following requests:
   * read Attribute,
-  * execution of  Command with DevVoid argin,
+  * execution of  Command with DevVoid argin
 
-* The Polling Period MAY be configured separately for each Attribute or Command of each Device spearately.
+* The Polling Period MAY be configured separately for each Attribute or Command of each Device.
 
 * A Device Class MAY implement default settings of the Polling for Attributes and Commands.
 
@@ -175,7 +175,7 @@ The Polling is periodical invoking a list of requests on Devices instantiated by
 
 * The Polling SHALL be configurable by a Client via the following Admin Device commands:
   * `AddObjPolling`:
-    It add a new object (command or attribute) to the list of object(s) to be polled. It is also with this command that the polling period is specified.
+    Add a new object (command or attribute) to the list of object(s) to be polled. It is also with this command that the polling period is specified.
   * `RemObjPolling`:
     To remove one object (command or attribute) from the polled object(s) list
   * `UpdObjPollingPeriod`:
@@ -185,9 +185,9 @@ The Polling is periodical invoking a list of requests on Devices instantiated by
   * `StopPolling`:
     Stops polling for the whole process
   * `PolledDevice`:
-    Allow a client to know which device are polled
+    Allow a client to know which devices are polled
   * `DevPollStatus`:
-    Allow a client to precisely knows the polling status for a device.
+    Allow a client to precisely know the polling status for a device.
 
 * The Polling configuration defined by a Client SHALL be stored in database and applied upon a Device initialisation.
 
@@ -195,7 +195,7 @@ The Polling is periodical invoking a list of requests on Devices instantiated by
 
 * The depth of the Cache (the circular buffer size) SHALL be configurable.
   
-* For any Request, a Clinent MAY decide whether it want a response from the Cache or excute underlying request. The Device Server SHALL respond adequatly.
+* For any Request, a Client MAY decide whether it wants a response from the Cache or execute underlying request. The Device Server SHALL respond adequately.
 
 * The Request-Reply protocol SHALL allow a Client to read a history from the Cache.
 
